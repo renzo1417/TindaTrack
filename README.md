@@ -35,3 +35,6 @@ It aims to reduce waste, prevent stock shortages, and improve overall store deci
 - UML: Use Case and Class Diagram included
 - Design Pattern
 
+## SpreadSheet for Workload Distribution
+https://docs.google.com/spreadsheets/d/1dZKlAPsaUubLA-WlDA5lmgklyEAya4bQHBr8akPBue0/edit?usp=sharing
+
