@@ -13,7 +13,7 @@ public class DashboardApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(DashboardApplication.class.getResource("Dashboard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(1500);
-        stage.setMinHeight(900);
+        stage.setMinHeight(950);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
