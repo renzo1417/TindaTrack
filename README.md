@@ -1,11 +1,11 @@
 TindaTrack
 
 👥 Group Members
-Renzo Pogoy
-Joel Coyoca
-Johanne Froilan Cando
-Casidey Kirzteen Quibuyen
-Lei Sheldon Densing
+- Renzo Pogoy
+- Joel Coyoca
+- Johanne Froilan Cando
+- Casidey Kirzteen Quibuyen
+- Lei Sheldon Densing
 
 📌 Project Description
 TindaTrack is a Java-based desktop application designed for small retail businesses such as sari-sari stores to efficiently manage their inventory. The system tracks product quantities, monitors expiration dates, and automatically analyzes stock movement to generate smart inventory insights.
