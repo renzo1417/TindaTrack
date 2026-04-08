@@ -48,7 +48,7 @@ Smart Suggestions:
 - “Avoid Restocking”
 - “Monitor Closely”
 
-## 🔔 Notifications (Navigation) / undecided to this
+🔔 Notifications (Navigation) / undecided to this
 Alerts for:
 - Expiring items
 - Low stock levels
@@ -70,7 +70,7 @@ Scene Builder (UI Design)
 JDBC (Database Connectivity)
 SQLite / MySQL (Database)
 
-Evaluation Criteria Mapping (Initial)
+##Evaluation Criteria Mapping (Initial)
 - OOP: Planned use of classes such as ...
 - GUI: JavaFX with FXML views
 - UML: Use Case and Class Diagram included
