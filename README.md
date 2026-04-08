@@ -64,11 +64,11 @@ User preferences
 Optional alert thresholds (e.g., low stock limit)
 
 ## 🧱 Planned Technologies
-Java (Core Logic)
-JavaFX (User Interface)
-Scene Builder (UI Design)
-JDBC (Database Connectivity)
-SQLite / MySQL (Database)
+- Java (Core Logic)
+- JavaFX (User Interface)
+- Scene Builder (UI Design)
+- JDBC (Database Connectivity)
+- SQLite / MySQL (Database)
 
 ## Evaluation Criteria Mapping (Initial)
 - OOP: Planned use of classes such as ...
