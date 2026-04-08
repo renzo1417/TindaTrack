@@ -33,9 +33,9 @@
                         <Font name="Segoe UI" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="52.0" layoutY="14.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Dashboard">
+                <Label layoutX="52.0" layoutY="18.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Dashboard">
                     <font>
-                        <Font name="Segoe UI Bold" size="28.0" />
+                        <Font name="Segoe UI Bold" size="24.0" />
                     </font>
                 </Label>
                 <Pane layoutX="1147.0" layoutY="11.0" prefHeight="63.0" prefWidth="161.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;">
@@ -74,7 +74,7 @@
                         </DropShadow>
                     </effect>
                <children>
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" layoutX="18.0" layoutY="36.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
                </children>
                 </Pane>
             </children>
@@ -90,12 +90,12 @@
             <children>
                 <VBox layoutX="10.0" layoutY="140.0" prefHeight="269.0" prefWidth="155.0" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
@@ -105,6 +105,11 @@
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
                         <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
@@ -117,6 +122,7 @@
                         <FontIcon iconColor="#16a34a" iconLiteral="mdi2h-home-outline" iconSize="30" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
                     </children>
                 </VBox>
@@ -141,12 +147,33 @@
                   <Image url="@Images/TindaTrackLogo.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER_RIGHT" layoutX="29.0" layoutY="870.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="107.0" style="-fx-background-color: F9FAFB;" text="LOGOUT">
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="173.0" style="-fx-background-color: F9FAFB;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <FontIcon iconLiteral="mdi2l-logout" iconSize="25" layoutX="35.0" layoutY="900.0" />
+            <FontIcon iconColor="#00000097" iconLiteral="mdi2l-logout" iconSize="20" layoutX="143.0" layoutY="917.0" text="󰍃" />
+            <Line endX="83.0" layoutX="103.0" layoutY="867.0" startX="-103.0" strokeWidth="0.2" />
+            <Circle fill="#26ab2a78" layoutX="37.0" layoutY="908.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Label alignment="CENTER" layoutX="17.0" layoutY="892.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="26.0" />
+               </font>
+            </Label>
+            <VBox layoutX="68.0" layoutY="890.0" prefHeight="25.0" prefWidth="68.0">
+               <children>
+                  <Label lineSpacing="3.0" prefHeight="10.0" prefWidth="68.0" text="Froilan">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="3.0" prefHeight="1.0" prefWidth="54.0" text="User" textFill="#00000080">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
             </children>
         </Pane>
         <Pane layoutX="211.0" layoutY="105.0" prefHeight="93.0" prefWidth="1268.0" style="-fx-background-color: linear-gradient(to bottom right, #1B5E20 0%, #2E7D32 45%, #43A047 100%); -fx-background-radius: 15;">
@@ -160,12 +187,12 @@
             <children>
                 <Label layoutX="35.0" layoutY="21.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="834.0" text="Hello User! - Here's your inventory overview" textFill="WHITE">
                     <font>
-                        <Font name="Arial Bold" size="28.0" />
+                        <Font name="Segoe UI Bold" size="26.0" />
                     </font>
                 </Label>
                 <Label layoutX="35.0" layoutY="55.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="429.0" text="Monday, April 6, 2026 - 24 items tracked" textFill="#ffffffea">
                     <font>
-                        <Font name="Segoe UI" size="16.0" />
+                        <Font name="Segoe UI" size="15.0" />
                     </font>
                 </Label>
             <Button alignment="CENTER" layoutX="1079.0" layoutY="19.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF2E; -fx-background-radius: 15; -fx-border-color: #FFFFFF40; -fx-border-radius: 15;" text="View alerts &gt;" textFill="WHITE">
@@ -200,7 +227,7 @@
                      <children>
                               <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="74.0" text="Total Items" textFill="#00000080">
                                   <font>
-                                      <Font name="Segoe UI" size="15.0" />
+                                      <Font name="Segoe UI" size="14.0" />
                                   </font>
                               </Label>
                               <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="Across different categories" textFill="#000000a9">
@@ -235,7 +262,7 @@
                      <children>
                               <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="92.0" text="Expiring Soon" textFill="#00000080">
                                   <font>
-                                      <Font name="Segoe UI" size="15.0" />
+                                      <Font name="Segoe UI" size="14.0" />
                                   </font>
                               </Label>
                               <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="1 already expired" textFill="#ff0000a8">
@@ -269,7 +296,7 @@
                      <children>
                         <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="134.0" text="Low / Out of Stock" textFill="#00000080">
                            <font>
-                              <Font name="Segoe UI" size="15.0" />
+                              <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="2 out of stock" textFill="#ff0000a8">
@@ -304,7 +331,7 @@
                      <children>
                         <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="148.0" text="Total Expire Units" textFill="#00000080">
                            <font>
-                              <Font name="Segoe UI" size="15.0" />
+                              <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="7 items wasted" textFill="#ff0000a8">
@@ -332,7 +359,7 @@
                <children>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Chicken Breast">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -346,7 +373,7 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Greek Yogurt">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Greek Yogurt">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -360,7 +387,7 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Spinach">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Spinach">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -448,10 +475,10 @@
                   </Pane>
                   <Label layoutX="71.0" layoutY="22.0" prefHeight="17.0" prefWidth="100.0" text="Sell First">
                      <font>
-                        <Font name="Segoe UI Bold" size="20.0" />
+                        <Font name="Segoe UI Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="71.0" layoutY="40.0" lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="Items approaching expiry sell first" textFill="#000000a9">
+                  <Label layoutX="71.0" layoutY="43.0" lineSpacing="3.0" prefHeight="19.0" prefWidth="180.0" text="Items approaching expiry sell first" textFill="#000000a9">
                      <font>
                         <Font name="Segoe UI" size="12.0" />
                      </font>
@@ -460,9 +487,9 @@
                      <children>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Chicken Breast">
+                              <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 700;" text="Chicken Breast">
                                  <font>
-                                    <Font name="Segoe UI Bold" size="16.0" />
+                                    <Font name="Segoe UI" size="16.0" />
                                  </font>
                               </Label>
                               <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce · Freezer" textFill="#000000a9">
@@ -651,7 +678,7 @@
                <children>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Coconut Water">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coconut Water">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -665,7 +692,7 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Frozen Peas">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Frozen Peas">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -679,7 +706,7 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" text="Instant Noodles">
+                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Instant Noodles">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
@@ -748,17 +775,17 @@
             </VBox>
             <VBox layoutX="16.0" layoutY="49.0" prefHeight="102.0" prefWidth="136.0" spacing="20.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="317.0" text="Coffee Beans">
+                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coffee Beans">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="24.0" prefWidth="317.0" text="Chicken Breast">
-                     <font>
-                        <Font name="Segoe UI Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="24.0" prefWidth="317.0" text="Protein Bars">
+                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Protein Bars">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>

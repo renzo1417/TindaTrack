@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.bigo.tindatrack.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: #F0F4F1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.LoginController">
+   <children>
+      <Circle fill="#d1e7d3" layoutX="167.0" layoutY="560.0" opacity="0.35" radius="93.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#d1e7d3" layoutX="1351.0" layoutY="149.0" opacity="0.74" radius="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#d1e7d3" layoutX="130.0" layoutY="820.0" opacity="0.38" radius="130.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <VBox layoutX="536.0" layoutY="333.0" prefHeight="480" prefWidth="430.0" style="-fx-background-color: white; -fx-background-radius: 18; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 24, 0, 0, 4); -fx-padding: 36 36 32 36;">
+         <children>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Welcome back!" />
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #888888;" text="Sign in to manage your inventory">
+               <VBox.margin>
+                  <Insets bottom="22" top="2" />
+               </VBox.margin>
+            </Label>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Username">
+               <VBox.margin>
+                  <Insets bottom="6" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="46" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15; -fx-border-width: 1; -fx-padding: 0 14 0 14;">
+               <children>
+                  <TextField fx:id="usernameField" prefHeight="44" promptText="Enter your username" style="-fx-background-color: transparent; -fx-background-radius: 0; -fx-border-color: transparent; -fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-text-fill: #333333; -fx-prompt-text-fill: #b0b8b0;" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Password">
+               <VBox.margin>
+                  <Insets bottom="6" top="16" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="46" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15; -fx-border-width: 1; -fx-padding: 0 14 0 14;">
+               <children>
+                  <PasswordField fx:id="passwordField" prefHeight="44" promptText="Enter your password" style="-fx-background-color: transparent; -fx-background-radius: 0; -fx-border-color: transparent; -fx-font-family: 'Segoe UI';  -fx-font-size: 13.5; -fx-text-fill: #333333; -fx-prompt-text-fill: #b0b8b0;" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="togglePasswordIcon" style="-fx-font-size: 15; -fx-text-fill: #aaaaaa; -fx-cursor: hand; -fx-padding: 0 0 0 8;" text="👁" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" style="-fx-padding: 14 0 0 0;">
+               <children>
+                  <CheckBox fx:id="rememberMe" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #444444;" text="Remember me" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label text="Forgot password?" textFill="#2e8b2e">
+                     <font>
+                        <Font name="Segoe UI" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Button fx:id="signInButton" maxWidth="Infinity" prefHeight="48" style="-fx-background-color: #2e8b2e; -fx-background-radius: 28; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-font-weight: bold;" text="Sign In">
+               <VBox.margin>
+                  <Insets bottom="0" top="18" />
+               </VBox.margin>
+            </Button>
+            <HBox alignment="CENTER" spacing="10" style="-fx-padding: 18 0 0 0;">
+               <children>
+                  <Line endX="120" style="-fx-stroke: #dddddd;" />
+                  <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 12.5; -fx-text-fill: #aaaaaa;" text="or" />
+                  <Line endX="120" style="-fx-stroke: #dddddd;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="4" style="-fx-padding: 14 0 0 0;">
+               <children>
+                  <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #555555;" text="Don't have an account?" />
+                  <Label text="Create Account" textFill="#2e8b2e">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label layoutX="673.0" layoutY="237.0" prefHeight="43.0" prefWidth="156.0" text="TindaTrack">
+         <font>
+            <Font name="Segoe UI Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="608.0" layoutY="280.0" prefHeight="18.0" prefWidth="287.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14;" text="Smart Inventory &amp; Expiry Optimization System" textFill="#00000099" />
+      <Circle fill="#d1e7d3" layoutX="414.0" layoutY="204.0" opacity="0.2" radius="67.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#d1e7d3" layoutX="1135.0" layoutY="820.0" opacity="0.2" radius="67.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#d1e7d3" layoutX="1392.0" layoutY="514.0" opacity="0.1" radius="67.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#d1e7d3" layoutX="119.0" layoutY="109.0" opacity="0.08" radius="67.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <ImageView fitHeight="110.0" fitWidth="110.0" layoutX="695.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/TindaTrackLogo.png" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

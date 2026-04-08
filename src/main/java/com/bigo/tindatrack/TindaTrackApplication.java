@@ -7,14 +7,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DashboardApplication extends Application {
+public class TindaTrackApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DashboardApplication.class.getResource("Dashboard-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TindaTrackApplication.class.getResource("Dashboard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(1500);
         stage.setMinHeight(950);
-        stage.setTitle("Hello!");
+        stage.setTitle("TindaTrack");
         stage.setScene(scene);
         stage.show();
     }
