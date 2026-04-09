@@ -48,8 +48,8 @@ Smart Suggestions:
 - “Avoid Restocking”
 - “Monitor Closely”
 
-🔔 Notifications (Navigation) / undecided to this
-Alerts for:
+🔔 Notifications (Navigation (still undecided if it belongs to Navigation))
+- Alerts for:
 - Expiring items
 - Low stock levels
 = Visual indicators in dashboard
