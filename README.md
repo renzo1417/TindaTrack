@@ -55,13 +55,13 @@ Alerts for:
 = Visual indicators in dashboard
 
 🔍 Inventory View (Navigation)
-TableView display of all products
-Search and filter functionality
-Sort by category, expiry, or stock level
+- TableView display of all products
+- Search and filter functionality
+- Sort by category, expiry, or stock level
 
 ⚙️ Settings (Navigation)
-User preferences
-Optional alert thresholds (e.g., low stock limit)
+- User preferences
+- Optional alert thresholds (e.g., low stock limit)
 
 ## 🧱 Planned Technologies
 - Java (Core Logic)
