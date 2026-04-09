@@ -1,4 +1,4 @@
-# TindaTrack
+# TindaTrack: A Smart Inventory and Expiry Monitoring System for Small Retail Stores
 
 ## 👥 Group Members
 - Renzo Pogoy
