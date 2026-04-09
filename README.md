@@ -18,6 +18,7 @@ Unlike traditional systems that require manual sales input, TindaTrack uses stoc
 
 📊 Dashboard (Navigation)
 Overview of inventory status
+
 Summary cards:
 - Low Stock Items
 - Expiring Soon
@@ -31,6 +32,7 @@ Summary cards:
 
 🔄 Stock Movement Tracking (Core Innovation)
 Automatically records stock changes when quantity is updated
+
 Detects:
 - Stock decrease → estimated sales
 - Stock increase → restocking
@@ -43,6 +45,7 @@ Stock Status Indicators:
 - 🔴 At Risk of Expiry
 Expiry Risk Analysis:
 Identifies items likely to expire before being sold
+
 Smart Suggestions:
 - “Restock Soon”
 - “Avoid Restocking”
