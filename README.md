@@ -12,47 +12,48 @@ TindaTrack is a Java-based desktop application designed for small retail busines
 Unlike traditional systems that require manual sales input, TindaTrack uses stock change detection to estimate product movement. This allows store owners to understand which items are fast-moving, slow-moving, overstocked, or at risk of expiring—without additional effort. The system aims to reduce product waste, prevent stock shortages, and help store owners maintain optimal inventory levels through simple, actionable insights.
 
 ## ⚙️ Propose Features
-🔐 User Management
+🔐 User Management\
 - User Login and Registration
 - Secure authentication system
 
 📊 Dashboard (Navigation)
-Overview of inventory status
-Summary cards:
+Overview of inventory status\
+Summary cards:\
 - Low Stock Items
 - Expiring Soon
 - Overstocked Items
-- At-Risk Items
+- At-Risk Items\
 
 📦 Inventory Management
 - Add, edit, and delete products
 - Categorize items (e.g., canned goods, beverages, snacks)
-- Track quantity and expiration dates
+- Track quantity and expiration dates\
 
 🔄 Stock Movement Tracking (Core Innovation)
-Automatically records stock changes when quantity is updated
-Detects:
+Automatically records stock changes when quantity is updated\
+Detects:\
 - Stock decrease → estimated sales
 - Stock increase → restocking
 - Maintains stock history for analysis
 
 🧠 Inventory Health Insights (Replaces “Phase-Out”)
-Stock Status Indicators:
+Stock Status Indicators:\
 - 🟢 Balanced
 - 🟡 Overstocked
 - 🔴 At Risk of Expiry
+  
 Expiry Risk Analysis:
-Identifies items likely to expire before being sold
-Smart Suggestions:
+Identifies items likely to expire before being sold\
+Smart Suggestions:\
 - “Restock Soon”
 - “Avoid Restocking”
-- “Monitor Closely”
+- “Monitor Closely”\
 
-🔔 Notifications (Navigation (still undecided if it belongs to Navigation))
-- Alerts for:
+🔔 Notifications (Navigation (still undecided if it belongs to Navigation))\
+ Alerts for:\
 - Expiring items
 - Low stock levels
-= Visual indicators in dashboard
+= Visual indicators in dashboard\
 
 🔍 Inventory View (Navigation)
 - TableView display of all products
@@ -61,7 +62,7 @@ Smart Suggestions:
 
 ⚙️ Settings (Navigation)
 - User preferences
-- Optional alert thresholds (e.g., low stock limit)
+- Optional alert thresholds (e.g., low stock limit)\
 
 ## 🧱 Planned Technologies
 - Java (Core Logic)
