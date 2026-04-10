@@ -7,13 +7,10 @@
 - Casidey Kirzteen Quibuyen
 - Lei Sheldon Densing
 
-<br>
-
 ## 📌 Project Description
 TindaTrack is a Java-based desktop application designed for small retail businesses such as sari-sari stores to efficiently manage their inventory. The system tracks product quantities, monitors expiration dates, and automatically analyzes stock movement to generate smart inventory insights.
 Unlike traditional systems that require manual sales input, TindaTrack uses stock change detection to estimate product movement. This allows store owners to understand which items are fast-moving, slow-moving, overstocked, or at risk of expiring—without additional effort. 
 The system aims to reduce product waste, prevent stock shortages, and help store owners maintain optimal inventory levels through simple, actionable insights.
-<br>
 
 ## ⚙️ Proposed Features
 
@@ -41,7 +38,7 @@ Automatically records stock changes when the quantity is updated.
 - Maintains stock history for analysis
 
 ### 🧠 Inventory Health Insights
-**Stock Status Indicators:**
+Stock Status Indicators:
 - 🟢 Balanced
 - 🟡 Overstocked
 - 🔴 At Risk of Expiry
@@ -69,15 +66,15 @@ Alerts for:
 - User preferences
 - Optional alert thresholds (e.g., low stock limit)
 
-<br>
 
 ## 🧱 Planned Technologies
-
 * **Java** (Core Logic)
 * **JavaFX** (User Interface)
 * **Scene Builder** (UI Design)
 * **JDBC** (Database Connectivity)
 * **SQLite / MySQL** (Database)
+
+
 ## Evaluation Criteria Mapping (Initial)
 - OOP: Planned use of classes such as ...
 - GUI: JavaFX with FXML views
