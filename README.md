@@ -12,6 +12,7 @@ TindaTrack is a Java-based desktop application designed for small retail busines
 Unlike traditional systems that require manual sales input, TindaTrack uses stock change detection to estimate product movement. This allows store owners to understand which items are fast-moving, slow-moving, overstocked, or at risk of expiring—without additional effort. 
 The system aims to reduce product waste, prevent stock shortages, and help store owners maintain optimal inventory levels through simple, actionable insights.
 
+
 ## ⚙️ Proposed Features
 
 ### 🔐 User Management
