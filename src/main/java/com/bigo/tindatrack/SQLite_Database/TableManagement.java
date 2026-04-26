@@ -5,11 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateTable {
+// This CreateTable is similar to sir Serato's CreateTable for mysql + XAMPP, but instead Joel used SQLITE.
+// Joel Notes:
+// It wouldn't make sense to have a store management software to run online where the users would most probably
+// be more comfortable in using this software in an offline environment.
 
-    private static final String URL = "JDBC:sqlite:sarisari_store.db";
+// the db file is located under the Target Files, Db file name: USER_tindatracker.db
 
-    public CreateTable() throws SQLException {
+public class TableManagement {
+
+    private static final String URL = "JDBC:sqlite:USER_tindaTracker.db";
+
+    public TableManagement() throws SQLException {
     }
 
     public static Connection connect(){
