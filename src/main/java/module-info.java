@@ -8,4 +8,6 @@ module com.bigo.tindatrack {
 
     opens com.bigo.tindatrack to javafx.fxml;
     exports com.bigo.tindatrack;
+    exports com.bigo.tindatrack.Controller;
+    opens com.bigo.tindatrack.Controller to javafx.fxml;
 }

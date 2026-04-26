@@ -54,14 +54,14 @@
                <children>
                   <CheckBox fx:id="rememberMe" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #444444;" text="Remember me" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label text="Forgot password?" textFill="#2e8b2e">
+                  <Label fx:id="forgotPasswordField" text="Forgot password?" textFill="#2e8b2e">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <Button fx:id="signInButton" maxWidth="Infinity" prefHeight="48" style="-fx-background-color: #2e8b2e; -fx-background-radius: 28; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-font-weight: bold;" text="Sign In">
+            <Button fx:id="signInButton" maxWidth="Infinity" onAction="#handleSignInButton" prefHeight="48" style="-fx-background-color: #2e8b2e; -fx-background-radius: 28; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-font-weight: bold;" text="Sign In">
                <VBox.margin>
                   <Insets bottom="0" top="18" />
                </VBox.margin>
@@ -76,7 +76,7 @@
             <HBox alignment="CENTER" spacing="4" style="-fx-padding: 14 0 0 0;">
                <children>
                   <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #555555;" text="Don't have an account?" />
-                  <Label text="Create Account" textFill="#2e8b2e">
+                  <Label fx:id="createAccountField" text="Create Account" textFill="#2e8b2e">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>

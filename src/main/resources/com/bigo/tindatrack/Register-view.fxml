@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.RegisterController">
    <children>
       <ScrollPane prefHeight="950.0" prefWidth="1500.0">
          <content>
@@ -44,7 +44,10 @@
                                     <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #888888;" text="Set up your TindaTrack store" />
                                  </children>
                               </VBox>
-                              <StackPane fx:id="iconBadge" prefHeight="46" prefWidth="46" style="-fx-background-color: #2e8b2e; -fx-background-radius: 12;" />
+                              <StackPane fx:id="iconBadge" prefHeight="46" prefWidth="46" style="-fx-background-color: #2e8b2e; -fx-background-radius: 12;">
+                                 <children>
+                                    <FontIcon iconColor="WHITE" iconLiteral="mdi2a-account-outline" iconSize="35" />
+                                 </children></StackPane>
                            </children>
                         </HBox>
                         <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11; -fx-font-weight: bold; -fx-text-fill: #999999;" text="PERSONAL INFORMATION">
@@ -52,7 +55,7 @@
                               <Insets bottom="8" top="22" />
                            </VBox.margin>
                         </Label>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Full Name *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Full Name">
                            <VBox.margin>
                               <Insets bottom="5" />
                            </VBox.margin>
@@ -62,7 +65,7 @@
                               <TextField fx:id="fullNameField" promptText="e.g. Maria Santos" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-family: 'Segoe UI'; -fx-font-size: 13;  -fx-text-fill: #333333; -fx-prompt-text-fill: #b0b8b0;" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Email Address *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Email Address">
                            <VBox.margin>
                               <Insets bottom="5" top="13" />
                            </VBox.margin>
@@ -87,7 +90,7 @@
                               <Insets bottom="8" top="22" />
                            </VBox.margin>
                         </Label>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Store Name *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Store Name">
                            <VBox.margin>
                               <Insets bottom="5" />
                            </VBox.margin>
@@ -102,7 +105,7 @@
                               <Insets bottom="8" top="22" />
                            </VBox.margin>
                         </Label>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Username *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Username">
                            <VBox.margin>
                               <Insets bottom="5" />
                            </VBox.margin>
@@ -112,7 +115,7 @@
                               <TextField fx:id="usernameField" promptText="Choose a username" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-family: 'Segoe UI'; -fx-font-size: 13;  -fx-text-fill: #333333; -fx-prompt-text-fill: #b0b8b0;" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Password *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Password">
                            <VBox.margin>
                               <Insets bottom="5" top="13" />
                            </VBox.margin>
@@ -122,7 +125,7 @@
                               <PasswordField fx:id="passwordField" promptText="At least 8 characters" style="-fx-background-color: transparent; -fx-border-color: transparent;  -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #333333; -fx-prompt-text-fill: #b0b8b0;" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Confirm Password *">
+                        <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Confirm Password">
                            <VBox.margin>
                               <Insets bottom="5" top="13" />
                            </VBox.margin>
@@ -145,7 +148,7 @@
                               </HBox>
                            </children>
                         </HBox>
-                        <Button fx:id="createAccountButton" maxWidth="Infinity" prefHeight="48" style="-fx-background-color: #2e8b2e; -fx-background-radius: 28; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-font-weight: bold; -fx-cursor: hand;" text="Create My Account">
+                        <Button fx:id="createAccountButton" maxWidth="Infinity" onAction="#handleSignInButton" prefHeight="48" style="-fx-background-color: #2e8b2e; -fx-background-radius: 28; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-font-weight: bold; -fx-cursor: hand;" text="Create My Account">
                            <VBox.margin>
                               <Insets top="18" />
                            </VBox.margin>
@@ -156,7 +159,7 @@
                            </VBox.margin>
                            <children>
                               <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #555555;" text="Already have an account?" />
-                              <Label text="Sign in" textFill="#2e8b2e">
+                              <Label fx:id="signInLabel" text="Sign in" textFill="#2e8b2e">
                                  <font>
                                     <Font name="Segoe UI Bold" size="13.0" />
                                  </font>
