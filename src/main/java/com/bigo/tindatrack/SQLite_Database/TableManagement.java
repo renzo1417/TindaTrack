@@ -35,8 +35,12 @@ public class TableManagement {
     public static void createUserTable() {
         String query = "CREATE TABLE IF NOT EXISTS users (\n" +
                         " id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " fullName TEXT NOT NULL,\n" +
                         " username TEXT NOT NULL UNIQUE,\n" +
-                        " password TEXT NOT NULL\n" + ");";
+                        " password TEXT NOT NULL,\n" +
+                        " email TEXT NOT NULL,\n" +
+                        " phoneNumber TEXT NOT NULL,\n" +
+                        " storeName TEXT NOT NULL" + ");";
 
         try(Connection connected = connect(); Statement stmt = connected.createStatement()){
             stmt.execute(query);
