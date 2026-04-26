@@ -10,7 +10,7 @@ public class testArea {
 
         // 1username, 2fullname, 3password, 4email, 5phoneNumber, 6storeName
 
-//        createUserTable();
+        createUserTable();
         System.out.println("\nTEST REGS:");
         createUser("test1", "test first", "123", "test@j.com", "011", "sari");
         createUser("admin", "admin gwapo", "123", "test@k.com","022", "adminStore");
