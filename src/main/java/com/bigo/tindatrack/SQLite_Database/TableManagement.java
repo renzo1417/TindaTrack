@@ -51,7 +51,10 @@ public class TableManagement {
         }
     }
 
+
+
     public static void main(String[] args) {
+
         createUserTable();
     }
 

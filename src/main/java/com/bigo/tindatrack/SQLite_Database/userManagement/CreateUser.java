@@ -1,5 +1,7 @@
 package com.bigo.tindatrack.SQLite_Database.userManagement;
 
+import com.bigo.tindatrack.data.models.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,6 +22,8 @@ public class CreateUser {
             pstmt.setString(4,email);
             pstmt.setString(5,phoneNumber);
             pstmt.setString(6,storeName);
+
+
 
             // why execute update and why not query? because we are updating values in the database
             // not asking for a query
