@@ -17,6 +17,9 @@ public class PasswordHandler {
 
     // i used username since it will be a unique value instead of fullname
     //so I made the verifyUser return a username String
+
+    // added verify user inside password handler because this block will only be mostly used when verifying before
+    //changing user password
     public static String verifyUser(String fullname, String phoneNumber, String storeName){
         String query = "SELECT username FROM users WHERE fullname = ? AND phoneNumber = ? AND storeName = ?";
         try(Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)){
