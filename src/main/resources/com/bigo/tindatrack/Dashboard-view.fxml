@@ -82,27 +82,27 @@
             <children>
                 <VBox layoutX="10.0" layoutY="140.0" prefHeight="269.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
+                        <Button mnemonicParsing="false" onAction="#goThreeDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                        <Button fx:id="inventoryButton" mnemonicParsing="false" onAction="#goToInventoryButton" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Insights" textAlignment="JUSTIFY">
+                        <Button fx:id="insightButton" mnemonicParsing="false" onAction="#goToInsightButton" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Insights" textAlignment="JUSTIFY">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
+                  <Button fx:id="stockactivityButton" alignment="CENTER" mnemonicParsing="false" onAction="#goToStockactivityButton" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
+                        <Button fx:id="settingButton" mnemonicParsing="false" onAction="#goToSettingButton" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
@@ -139,7 +139,7 @@
                   <Image url="@Images/TindaTrackLogo.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" onAction="#setLogout" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -187,7 +187,7 @@
                         <Font name="Segoe UI" size="15.0" />
                     </font>
                 </Label>
-            <Button alignment="CENTER" layoutX="1079.0" layoutY="19.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF2E; -fx-background-radius: 15; -fx-border-color: #FFFFFF40; -fx-border-radius: 15;" text="View alerts &gt;" textFill="WHITE">
+            <Button fx:id="viewAllerts" alignment="CENTER" layoutX="1079.0" layoutY="19.0" mnemonicParsing="false" onAction="#gotoviewAllerts" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF2E; -fx-background-radius: 15; -fx-border-color: #FFFFFF40; -fx-border-radius: 15;" text="View alerts &gt;" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
