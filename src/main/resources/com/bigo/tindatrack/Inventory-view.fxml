@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -79,7 +81,15 @@
                         </HBox>
                         <Line endX="1120.0" layoutX="99.0" layoutY="67.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
                         <Line endX="1120.0" layoutX="100.0" layoutY="97.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
-                        <HBox layoutY="98.0" prefHeight="865.0" prefWidth="1251.0" />
+                        <HBox layoutY="98.0" prefHeight="865.0" prefWidth="1219.0">
+                           <children>
+                              <TableView prefHeight="865.0" prefWidth="1225.0">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </children></HBox>
                      </children>
                   </Pane>
                </children>
