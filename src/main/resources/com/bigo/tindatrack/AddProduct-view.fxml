@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="460.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-radius: 12;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.AddProductController">
+<Pane fx:id="addProductPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="460.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-border-radius: 12;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.AddProductController.AddProductController">
    <children>
       <VBox prefHeight="483.0" prefWidth="460.0" style="-fx-background-color: white; -fx-border-radius: 12; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.18), 24, 0, 0, 6);">
          <children>
@@ -24,7 +23,7 @@
                      </font>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 16px; -fx-text-fill: #888888;  -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="✕" />
+                  <Button fx:id="exitButton" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 16px; -fx-text-fill: #888888;  -fx-cursor: hand; -fx-padding: 2 6 2 6;" text="✕" />
                </children>
             </HBox>
             <VBox prefWidth="464.0" spacing="16.0" style="-fx-padding: 20 24 28 24;">
@@ -66,12 +65,12 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="42.0" prefWidth="412.0" promptText="Select category" style="-fx-background-color: #f5f6f5; -fx-background-radius: 8; -fx-border-color: #e2e4e2; -fx-border-radius: 8;  -fx-border-width: 1;  -fx-font-size: 13px;" />
+                        <ComboBox fx:id="categoryComboBox" prefHeight="42.0" prefWidth="412.0" promptText="Select category" style="-fx-background-color: #f5f6f5; -fx-background-radius: 8; -fx-border-color: #e2e4e2; -fx-border-radius: 8;  -fx-border-width: 1;  -fx-font-size: 13px;" />
                      </children>
                   </VBox>
                   <HBox spacing="12.0" style="-fx-padding: 6 0 0 0;">
                      <children>
-                        <Button prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #cccccc; -fx-border-radius: 8;  -fx-border-width: 1.5;  -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #444444;  -fx-cursor: hand;" text="Cancel" />
+                        <Button fx:id="cancelButton" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #cccccc; -fx-border-radius: 8;  -fx-border-width: 1.5;  -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #444444;  -fx-cursor: hand;" text="Cancel" />
                         <Button prefHeight="44.0" prefWidth="204.0" style="-fx-background-color: #3a7d44;  -fx-background-radius: 8;  -fx-border-color: transparent;  -fx-font-size: 13px; -fx-font-weight: bold;  -fx-text-fill: white;   -fx-cursor: hand;" text="Add Product">
                            <font>
                               <Font name="System Bold" size="13.0" />
