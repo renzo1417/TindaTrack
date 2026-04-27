@@ -45,48 +45,18 @@
                               <Font name="Segoe UI Bold" size="13.0" />
                            </font>
                         </Button>
-                        <HBox layoutY="67.0" prefHeight="30.0" prefWidth="1220.0" spacing="80.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="134.0" text="Product Name">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="134.0" text="Category">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="134.0" text="Quantity">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="134.0" text="Expiry Date">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" lineSpacing="10.0" prefHeight="30.0" prefWidth="134.0" text="Status">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="30.0" prefWidth="134.0" text="Actions">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
                         <Line endX="1120.0" layoutX="99.0" layoutY="67.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
                         <Line endX="1120.0" layoutX="100.0" layoutY="97.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
-                        <HBox layoutY="98.0" prefHeight="865.0" prefWidth="1219.0">
+                        <HBox layoutY="67.0" prefHeight="865.0" prefWidth="1218.0">
                            <children>
-                              <TableView prefHeight="865.0" prefWidth="1225.0">
+                              <TableView prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="280.0" style="-fx-background-color: white; -fx-alignment: CENTER_LEFT; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
+                                  <TableColumn prefWidth="240.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI';" text="Category" />
+                                    <TableColumn prefWidth="100.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Quantity" />
+                                    <TableColumn prefWidth="180.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Expiry Date" />
+                                    <TableColumn prefWidth="180.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Status" />
+                                    <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Actions" />
                                 </columns>
                               </TableView>
                            </children></HBox>
