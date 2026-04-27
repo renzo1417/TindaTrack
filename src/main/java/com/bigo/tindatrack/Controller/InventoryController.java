@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class InventoryController {
@@ -34,5 +35,11 @@ public class InventoryController {
     @FXML
     public void setToDashboard(ActionEvent event){
         switchScene(event,"/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    //logout implementation
+    public void setInventoryLogout(ActionEvent event){
+        com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
+        switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
 }

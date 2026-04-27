@@ -184,7 +184,7 @@
                   <Image url="@Images/TindaTrackLogo.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" onAction="#setInventoryLogout" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
