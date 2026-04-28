@@ -51,14 +51,14 @@
                                 <Line endX="1120.0" layoutX="100.0" layoutY="97.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
                                 <HBox layoutY="67.0" prefHeight="865.0" prefWidth="1218.0">
                                     <children>
-                                        <TableView fx:id="inventoryTableView" prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
+                                        <TableView fx:id="inventoryTableView" fixedCellSize="35.0" prefHeight="865.0" prefWidth="1215.0" style="-fx-background-color: white; -fx-alignment: BASELINE_LEFT;">
                                             <columns>
-                                                <TableColumn fx:id="productNameColumn" prefWidth="280.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #000000;" text="Product Name" />
-                                                <TableColumn fx:id="categoryColumn" prefWidth="240.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI';" text="Category" />
-                                                <TableColumn fx:id="quantityColumn" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Quantity" />
-                                                <TableColumn fx:id="expiryDateColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Expiry Date" />
-                                                <TableColumn fx:id="statusColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Status" />
-                                                <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Actions" />
+                                                <TableColumn fx:id="productNameColumn" prefWidth="280.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #000000; -fx-padding: 0 15 0 15;" text="Product Name" />
+                                                <TableColumn fx:id="categoryColumn" prefWidth="240.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Category" />
+                                                <TableColumn fx:id="quantityColumn" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Quantity" />
+                                                <TableColumn fx:id="expiryDateColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Expiry Date" />
+                                                <TableColumn fx:id="statusColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Status" />
+                                                <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-padding: 0 15 0 15; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Actions" />
                                             </columns>
                                         </TableView>
                                     </children></HBox>
