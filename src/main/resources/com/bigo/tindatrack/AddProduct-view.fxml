@@ -35,7 +35,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="42.0" prefWidth="412.0" promptText="e.g, Utan bisaya" style="-fx-background-color: #f5f6f5;  -fx-background-radius: 8;  -fx-border-color: #e2e4e2; -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #333333; -fx-prompt-text-fill: #aaaaaa; -fx-padding: 10 14 10 14;" />
+                        <TextField fx:id="productNameTextField" prefHeight="42.0" prefWidth="412.0" promptText="e.g, Utan bisaya" style="-fx-background-color: #f5f6f5;  -fx-background-radius: 8;  -fx-border-color: #e2e4e2; -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #333333; -fx-prompt-text-fill: #aaaaaa; -fx-padding: 10 14 10 14;" />
                      </children>
                   </VBox>
                   <VBox spacing="6.0">
@@ -45,7 +45,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="42.0" prefWidth="412.0" promptText="e.g. 10" style="-fx-background-color: #f5f6f5;  -fx-background-radius: 8;  -fx-border-color: #e2e4e2; -fx-border-radius: 8;  -fx-border-width: 1;  -fx-font-size: 13px;  -fx-text-fill: #333333; -fx-prompt-text-fill: #aaaaaa; -fx-padding: 10 14 10 14;" />
+                        <TextField fx:id="quantityTextFIeld" prefHeight="42.0" prefWidth="412.0" promptText="e.g. 10" style="-fx-background-color: #f5f6f5;  -fx-background-radius: 8;  -fx-border-color: #e2e4e2; -fx-border-radius: 8;  -fx-border-width: 1;  -fx-font-size: 13px;  -fx-text-fill: #333333; -fx-prompt-text-fill: #aaaaaa; -fx-padding: 10 14 10 14;" />
                      </children>
                   </VBox>
                   <VBox spacing="6.0">
@@ -55,7 +55,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <DatePicker prefHeight="42.0" prefWidth="412.0" promptText="dd/mm/yyyy" style="-fx-background-radius: 8; -fx-border-color: #e2e4e2; -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px;" />
+                        <DatePicker fx:id="expiryDatePicker" prefHeight="42.0" prefWidth="412.0" promptText="dd/mm/yyyy" style="-fx-background-radius: 8; -fx-border-color: #e2e4e2; -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px;" />
                      </children>
                   </VBox>
                   <VBox spacing="6.0">
@@ -71,7 +71,7 @@
                   <HBox spacing="12.0" style="-fx-padding: 6 0 0 0;">
                      <children>
                         <Button fx:id="cancelButton" prefHeight="44.0" prefWidth="196.0" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #cccccc; -fx-border-radius: 8;  -fx-border-width: 1.5;  -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #444444;  -fx-cursor: hand;" text="Cancel" />
-                        <Button prefHeight="44.0" prefWidth="204.0" style="-fx-background-color: #3a7d44;  -fx-background-radius: 8;  -fx-border-color: transparent;  -fx-font-size: 13px; -fx-font-weight: bold;  -fx-text-fill: white;   -fx-cursor: hand;" text="Add Product">
+                        <Button fx:id="addProductButton" prefHeight="44.0" prefWidth="204.0" style="-fx-background-color: #3a7d44;  -fx-background-radius: 8;  -fx-border-color: transparent;  -fx-font-size: 13px; -fx-font-weight: bold;  -fx-text-fill: white;   -fx-cursor: hand;" text="Add Product">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>

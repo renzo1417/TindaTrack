@@ -1,42 +1,61 @@
 package com.bigo.tindatrack.Controller.Inventory;
 
+import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
 public class InventoryController {
     @FXML
-    private Button addProductBtn;
+    private Button addProductPopoutBtn;
     @FXML
     private Pane unclickablePane;
     @FXML
     private Pane addProductPane;
+    @FXML
+    private TableView<Product> inventoryTableView;
+    @FXML
+    private TableColumn<Product, String> productNameColumn;
+    @FXML
+    private TableColumn<Product, String> categoryColumn;
+    @FXML
+    private TableColumn<Product, Integer> quantityColumn;
+    @FXML
+    private TableColumn<Product, String> expiryDateColumn;
+    @FXML
+    private TableColumn<Product, Pane> statusColumn;
 
     private InventoryPresenter presenter;
 
     @FXML
     public void initialize() {
         presenter = new InventoryPresenter(this);
+
+       inventoryTableView.setItems(InventoryList.getProductList());
+       productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
+       categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+       quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+       expiryDateColumn.setCellValueFactory(new PropertyValueFactory<>("expiryDate"));
+       statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     @FXML
-    public void addNewProduct() {
+    public void addNewProductPopout() {
         unclickablePane.setVisible(true);
         presenter.addNewProduct(addProductPane);
         addProductPane.setVisible(true);
     }
-
-
-
 
     //this is helper function for switching screens
     private void switchScene(ActionEvent event, String fxmlPath) {

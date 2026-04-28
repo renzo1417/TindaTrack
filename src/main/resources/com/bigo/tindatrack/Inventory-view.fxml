@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.InventoryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.InventoryController">
     <children>
         <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="865.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
             <content>
@@ -31,7 +41,7 @@
                                 </HBox>
                                 <ComboBox layoutX="272.0" layoutY="14.0" prefHeight="38.0" prefWidth="130.0" promptText="All Status" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #d1d5db;  -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #374151;" />
 
-                                <Button fx:id="addProductBtn" layoutX="1038.0" layoutY="14.0" onAction="#addNewProduct" prefHeight="38.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom right, #1B5E20 0%, #2E7D32 45%, #43A047 100%); -fx-background-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-cursor: hand;" text="＋  Add Product">
+                                <Button fx:id="addProductPopoutBtn" layoutX="1038.0" layoutY="14.0" onAction="#addNewProductPopout" prefHeight="38.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom right, #1B5E20 0%, #2E7D32 45%, #43A047 100%); -fx-background-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-cursor: hand;" text="＋  Add Product">
                                     <font>
                                         <Font name="Segoe UI Bold" size="13.0" />
                                     </font>
@@ -41,13 +51,13 @@
                                 <Line endX="1120.0" layoutX="100.0" layoutY="97.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
                                 <HBox layoutY="67.0" prefHeight="865.0" prefWidth="1218.0">
                                     <children>
-                                        <TableView prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
+                                        <TableView fx:id="inventoryTableView" prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
                                             <columns>
-                                                <TableColumn prefWidth="280.0" style="-fx-background-color: white; -fx-alignment: CENTER_LEFT; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
-                                                <TableColumn prefWidth="240.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI';" text="Category" />
-                                                <TableColumn prefWidth="100.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Quantity" />
-                                                <TableColumn prefWidth="180.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Expiry Date" />
-                                                <TableColumn prefWidth="180.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Status" />
+                                                <TableColumn fx:id="productNameColumn" prefWidth="280.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #000000;" text="Product Name" />
+                                                <TableColumn fx:id="categoryColumn" prefWidth="240.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI';" text="Category" />
+                                                <TableColumn fx:id="quantityColumn" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Quantity" />
+                                                <TableColumn fx:id="expiryDateColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Expiry Date" />
+                                                <TableColumn fx:id="statusColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13;" text="Status" />
                                                 <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Actions" />
                                             </columns>
                                         </TableView>
