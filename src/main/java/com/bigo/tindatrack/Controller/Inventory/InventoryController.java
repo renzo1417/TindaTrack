@@ -2,6 +2,7 @@ package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,8 @@ public class InventoryController {
     private TableColumn<Product, String> expiryDateColumn;
     @FXML
     private TableColumn<Product, Pane> statusColumn;
+    @FXML
+    private TableColumn<Product, Product> actionColumn;
 
     private InventoryPresenter presenter;
 
@@ -42,12 +45,16 @@ public class InventoryController {
     public void initialize() {
         presenter = new InventoryPresenter(this);
 
-       inventoryTableView.setItems(InventoryList.getProductList());
+       inventoryTableView.setItems(presenter.getProductList());
        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
        expiryDateColumn.setCellValueFactory(new PropertyValueFactory<>("expiryDate"));
        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+       actionColumn.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()));
+       actionColumn.setCellFactory(column -> presenter.buildActionCell());
+
+        inventoryTableView.setSelectionModel(null);
     }
 
     @FXML

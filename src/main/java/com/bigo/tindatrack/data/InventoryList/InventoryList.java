@@ -8,11 +8,15 @@ import javafx.collections.ObservableList;
 public class InventoryList {
     private static ObservableList<Product> productList = FXCollections.observableArrayList();
 
-    public static void addNewProduct(Product newProduct) {
+    public void addNewProduct(Product newProduct) {
         productList.add(0, newProduct);
     }
 
-    public static ObservableList<Product> getProductList() {
+    public void removeProduct(Product item) {
+        productList.remove(item);
+    }
+
+    public ObservableList<Product> getProductList() {
         return productList;
     }
 }

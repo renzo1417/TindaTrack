@@ -58,7 +58,7 @@
                                                 <TableColumn fx:id="quantityColumn" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Quantity" />
                                                 <TableColumn fx:id="expiryDateColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Expiry Date" />
                                                 <TableColumn fx:id="statusColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Status" />
-                                                <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-padding: 0 15 0 15; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Actions" />
+                                                <TableColumn fx:id="actionColumn" prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-padding: 0 15 0 15; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Actions" />
                                             </columns>
                                         </TableView>
                                     </children></HBox>
