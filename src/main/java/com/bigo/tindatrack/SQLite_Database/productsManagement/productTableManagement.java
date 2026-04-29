@@ -8,11 +8,11 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class productTableManagement {
     public static void createProductTable() {
-        String query = "CREATE TABLE IF NOT EXISTS users (\n" +
+        String query = "CREATE TABLE IF NOT EXISTS products (\n" +
                 " id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " name TEXT NOT NULL,\n" +
                 " quantity INTEGER NOT NULL DEFAULT 0,\n" +
-                " expiry_date TEXT,\n"+");";
+                " expiry_date TEXT"+");";
 
         try(Connection connected = connect(); Statement stmt = connected.createStatement()){
             stmt.execute(query);

@@ -1,5 +1,8 @@
 package com.bigo.tindatrack.SQLite_Database;
 
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.addProduct;
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.viewInventory;
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.productTableManagement.createProductTable;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.UsersTableManagement.createUserTable;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.AuthenticateUser.authenticateUser;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.PasswordHandler.changePass;
@@ -33,6 +36,13 @@ public class testArea {
         // dint use fullname because edgecase: there might be two same fullnames entries
         // didnt use id because i wanted to use username lol since its unique but will change it later in case
         // something comes up
+
+        System.out.println();
+        System.out.println("PRODUCTSSS");
+        createProductTable();
+        // WHEN ADDIDNG PRODUCTS PLEASE FOLLOW YYYY-MM-DD format
+        addProduct("Beplop", 50, "2025-12-12");
+        viewInventory();
 
     }
 
