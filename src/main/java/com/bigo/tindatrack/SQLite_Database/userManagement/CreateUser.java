@@ -1,12 +1,11 @@
 package com.bigo.tindatrack.SQLite_Database.userManagement;
 
-import com.bigo.tindatrack.data.models.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static com.bigo.tindatrack.SQLite_Database.TableManagement.connect;
+import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
+
 
 public class CreateUser {
 

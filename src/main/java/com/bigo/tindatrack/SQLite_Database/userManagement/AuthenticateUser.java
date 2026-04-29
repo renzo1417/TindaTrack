@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.bigo.tindatrack.SQLite_Database.TableManagement.connect;
+import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class AuthenticateUser {
 

@@ -1,8 +1,7 @@
 package com.bigo.tindatrack.SQLite_Database;
 
-import static com.bigo.tindatrack.SQLite_Database.TableManagement.createUserTable;
+import static com.bigo.tindatrack.SQLite_Database.userManagement.UsersTableManagement.createUserTable;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.AuthenticateUser.authenticateUser;
-import static com.bigo.tindatrack.SQLite_Database.userManagement.CreateUser.createUser;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.PasswordHandler.changePass;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.PasswordHandler.verifyUser;
 

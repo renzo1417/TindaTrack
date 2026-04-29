@@ -1,9 +1,11 @@
-package com.bigo.tindatrack.SQLite_Database;
+package com.bigo.tindatrack.SQLite_Database.userManagement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 // This CreateTable is similar to sir Serato's CreateTable for mysql + XAMPP, but instead Joel used SQLITE.
 // Joel Notes:
@@ -12,24 +14,10 @@ import java.sql.Statement;
 
 // the db file is located under the Target Files, Db file name: USER_tindatracker.db
 
-public class TableManagement {
+public class UsersTableManagement {
 
-    private static final String URL = "JDBC:sqlite:USER_tindaTracker.db";
 
-    public TableManagement() throws SQLException {
-    }
-
-    public static Connection connect(){
-        Connection connectRoute = null;
-        try{
-            connectRoute = DriverManager.getConnection(URL);
-            System.out.println("SUCCESSFUL SQLITE DATABASE CONNECTION");
-        }catch(SQLException e){
-            System.err.println("FAILED CONNECTING TO SQLITE DATABASE " + e.getMessage() + "\n");
-            e.printStackTrace();
-        }
-
-        return connectRoute;
+    public UsersTableManagement() throws SQLException {
     }
 
     public static void createUserTable() {
