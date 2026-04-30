@@ -27,6 +27,21 @@ public class ProductManagement {
         }
     }
 
+    public static boolean removeProduct(String productName){
+        String query = "DELETE FROM products WHERE name = ?";
+
+        try(Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)){
+            pstmt.setString(1, productName);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("ERROR removing PRODUCT");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     // FOR TESTING PURPOSES ONLY STILL NEEDS MORE IMPROVEMENTS DO NOT USE FOR UI YET
     public static void viewInventory(){
         String query = "SELECT id, name, quantity, expiry_date, " +
