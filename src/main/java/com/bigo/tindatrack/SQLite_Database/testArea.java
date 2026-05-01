@@ -1,7 +1,6 @@
 package com.bigo.tindatrack.SQLite_Database;
 
-import static com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.addProduct;
-import static com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.viewInventory;
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.*;
 import static com.bigo.tindatrack.SQLite_Database.productsManagement.productTableManagement.createProductTable;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.UsersTableManagement.createUserTable;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.AuthenticateUser.authenticateUser;
@@ -41,7 +40,13 @@ public class testArea {
         System.out.println("PRODUCTSSS");
         createProductTable();
         // WHEN ADDIDNG PRODUCTS PLEASE FOLLOW YYYY-MM-DD format
-        addProduct("Beplop", 50, "2025-12-12");
+//        addProduct("Beplop", 50, "2025-12-12");
+//        addProduct("cornbep", 5, "2026-12-12");
+//        addProduct("hatdug", 3, "2024-11-12");
+//        addProduct("chorizo", 10, "2026-1-18");
+//        addProduct("tuna", 11, "2025-12-12");
+//        addProduct("pancit canton", 16, "2027-6-12");
+//        removeProduct("Beplop");
         viewInventory();
 
     }
