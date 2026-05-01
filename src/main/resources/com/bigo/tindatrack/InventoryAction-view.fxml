@@ -13,7 +13,7 @@
          </graphic>
       </Button>
       <Label alignment="CENTER" layoutX="16.0" prefHeight="13.0" prefWidth="28.0" style="-fx-font-family: 'Segoe UI'; -fx-text-fill: #3db5ff;" text="Qty" />
-      <Button layoutX="69.0" layoutY="-1.0" minHeight="14.0" minWidth="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: transparent;">
+      <Button fx:id="modifyButton" layoutX="69.0" layoutY="-1.0" minHeight="14.0" minWidth="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: transparent;">
          <graphic>
             <FontIcon iconColor="#a1a1a1" iconLiteral="mdi2p-pencil-outline" iconSize="16" selectionFill="#3db5ff" />
          </graphic>

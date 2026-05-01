@@ -15,6 +15,10 @@ public class InventoryModel {
         list.removeProduct(item);
     }
 
+    public void modifyProduct(Product item) {
+        list.modifyProduct(item);
+    }
+
     public ObservableList<Product> getProductList() {
         return list.getProductList();
     }
