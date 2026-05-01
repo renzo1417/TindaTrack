@@ -1,9 +1,8 @@
 package com.bigo.tindatrack.Controller;
 
 
-import static com.bigo.tindatrack.SQLite_Database.userManagement.AuthenticateUser.authenticateUser;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.UserService.getUser;
-
+import com.bigo.tindatrack.utils.utility;
 import com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager;
 import com.bigo.tindatrack.data.models.User;
 import javafx.event.ActionEvent;
@@ -16,8 +15,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import javafx.scene.Node;
 
 public class LoginController {
 
@@ -55,6 +52,14 @@ public class LoginController {
     }
 
 
+
+    // forgotpassword switch scene
+    @FXML
+    public void goToforgotPassword(MouseEvent event){
+        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/FogotPassword-view.fxml");
+    }
+
+
     @FXML
     public void initialize(){
         User user = SessionManager.loadUser();
@@ -76,6 +81,8 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 
     public void handleSignInButton(ActionEvent event){
         String username  = usernameField.getText();
@@ -104,13 +111,15 @@ public class LoginController {
     }
 
     @FXML
-    public void onCreateAccountClick(MouseEvent mouseEvent) throws IOException {
+    public void onCreateAccountClick(MouseEvent event ){
+//
+//        Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Register-view.fxml"));
+//
+//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+//
+//        stage.setScene(new Scene(root));
+//        stage.show();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Register-view.fxml"));
-
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
-        stage.setScene(new Scene(root));
-        stage.show();
+        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/Register-view.fxml");
     }
 }
