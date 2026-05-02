@@ -25,6 +25,11 @@ public class DashboardController  {
     private User user = loadUser();
 
     public void initialize(){
+        // para ni if walay user d siya ka direct sa dashboard
+        if (user == null) {
+            System.out.println("Error: No user found!");
+            return;
+        }
 
         welcomeField.setText("Hello " + user.getUsername() +"! - Here's your inventory overview");
         username_top.setText(String.valueOf(user.getUsername()));
