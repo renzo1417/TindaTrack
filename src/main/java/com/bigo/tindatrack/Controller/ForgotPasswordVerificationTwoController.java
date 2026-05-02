@@ -47,6 +47,7 @@ public class ForgotPasswordVerificationTwoController {
         alert.showAndWait();
     }
 
+
     private void updateIcon(StackPane icon, boolean valid) {
         if (valid) {
             icon.setStyle("-fx-background-color: #2e8b2e; -fx-border-color: #2e8b2e;");
