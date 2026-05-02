@@ -25,8 +25,12 @@ module com.bigo.tindatrack {
     opens com.bigo.tindatrack.Controller.Inventory.InventoryActionController to javafx.fxml;
     exports com.bigo.tindatrack.Product;
     opens com.bigo.tindatrack.Product to javafx.fxml;
+    exports com.bigo.tindatrack.data.StockDetails;
+    opens com.bigo.tindatrack.data.StockDetails to javafx.fxml;
     exports com.bigo.tindatrack.utils;
     opens com.bigo.tindatrack.utils to javafx.fxml;
     exports com.bigo.tindatrack.Controller.Notification;
     opens com.bigo.tindatrack.Controller.Notification to javafx.fxml;
+    exports com.bigo.tindatrack.Controller.StockActivity;
+    opens com.bigo.tindatrack.Controller.StockActivity to javafx.fxml;
 }

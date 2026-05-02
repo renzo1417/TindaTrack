@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.StockActivityController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.StockActivity.StockActivityController">
    <children>
       <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="865.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
          <content>
@@ -41,14 +41,14 @@
                         <Line endX="1120.0" layoutX="100.0" layoutY="86.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
                         <HBox layoutX="1.0" layoutY="86.0" prefHeight="865.0" prefWidth="1216.0">
                            <children>
-                              <TableView prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
+                              <TableView fx:id="detailsTableView" prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
                                  <columns>
-                                    <TableColumn prefWidth="260.0" style="-fx-background-color: white; -fx-alignment: LEFT; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
-                                    <TableColumn prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI';" text="Old Qty" />
-                                    <TableColumn prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13;" text="New Qty" />
-                                    <TableColumn prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Change" />
-                                    <TableColumn prefWidth="207.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Reason" />
-                                    <TableColumn prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13;" text="Date &amp; Time" />
+                                    <TableColumn fx:id="productNameColumn" prefWidth="260.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
+                                    <TableColumn fx:id="oldQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Old Qty" />
+                                    <TableColumn fx:id="newQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="New Qty" />
+                                    <TableColumn prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Change" />
+                                    <TableColumn fx:id="reasonColumn" prefWidth="207.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Reason" />
+                                    <TableColumn fx:id="dateColumn" prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Date &amp; Time" />
                                  </columns>
                               </TableView>
                            </children>
@@ -78,7 +78,7 @@
                            <children>
                               <VBox layoutX="23.0" layoutY="37.0" prefHeight="60.0" prefWidth="329.0" spacing="1.0">
                                  <children>
-                                    <Label text="4">
+                                    <Label fx:id="totalRestockLabel" text="0">
                                        <font>
                                           <Font name="Segoe UI Bold" size="30.0" />
                                        </font>
@@ -102,7 +102,7 @@
                            <children>
                               <VBox layoutX="23.0" layoutY="40.0" prefHeight="60.0" prefWidth="329.0" spacing="1.0">
                                  <children>
-                                    <Label text="8">
+                                    <Label fx:id="totalSoldLabel" text="0">
                                        <font>
                                           <Font name="Segoe UI Bold" size="30.0" />
                                        </font>
@@ -127,7 +127,7 @@
                            <children>
                               <VBox layoutX="23.0" layoutY="37.0" prefHeight="60.0" prefWidth="329.0" spacing="1.0">
                                  <children>
-                                    <Label prefHeight="37.0" prefWidth="77.0" text="12">
+                                    <Label fx:id="totalLabel" prefHeight="37.0" prefWidth="77.0" text="0">
                                        <font>
                                           <Font name="Segoe UI Bold" size="30.0" />
                                        </font>

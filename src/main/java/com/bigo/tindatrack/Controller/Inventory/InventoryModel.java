@@ -2,6 +2,7 @@ package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
+import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
 import javafx.collections.ObservableList;
 
 public class InventoryModel {
