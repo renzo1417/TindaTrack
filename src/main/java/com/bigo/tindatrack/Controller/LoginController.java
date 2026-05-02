@@ -8,6 +8,7 @@ import com.bigo.tindatrack.data.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -54,10 +55,10 @@ public class LoginController {
 
 
     // forgotpassword switch scene
-    @FXML
-    public void goToforgotPassword(MouseEvent event){
-        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/FogotPassword-view.fxml");
-    }
+//    @FXML
+//    public void goToforgotPassword(MouseEvent event){
+//        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/FogotPassword-view.fxml");
+//    }
 
 
     @FXML
@@ -111,16 +112,16 @@ public class LoginController {
     }
 
     @FXML
-    public void onCreateAccountClick(MouseEvent event ){
+    public void onCreateAccountClick(MouseEvent event ) throws IOException {
 //
-//        Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Register-view.fxml"));
-//
-//        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-//
-//        stage.setScene(new Scene(root));
-//        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Register-view.fxml"));
 
-        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/Register-view.fxml");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.show();
+
+//        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/Register-view.fxml");
     }
 
 
