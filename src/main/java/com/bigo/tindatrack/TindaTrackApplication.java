@@ -3,6 +3,7 @@ package com.bigo.tindatrack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,9 +18,6 @@ public class TindaTrackApplication extends Application {
         stage.setTitle("TindaTrack");
         stage.setScene(scene);
         stage.show();
-
-
-
 
     }
 }

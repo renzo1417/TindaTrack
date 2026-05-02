@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Notification.NotificationController">
+   <children>
+      <AnchorPane fx:id="listCard" layoutX="260.0" layoutY="258.0" prefHeight="655.0" prefWidth="1186.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 12, 0, 0, 2);">
+         <children>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefWidth="1186.0" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent; -fx-background-radius: 12;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+               <content>
+                  <VBox fx:id="notificationList" spacing="0" style="-fx-background-color: transparent;">
+                     <children>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 32 20 32; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="63.0" prefWidth="55.0" style="-fx-background-color: #fdecea; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #d32f2f; -fx-background-color: #fdecea; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="CRITICAL" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Baby Spinach has expired! Remove from stock immediately." wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-08 08:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 32 20 32; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="40" prefWidth="55.0" style="-fx-background-color: #fdecea; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #d32f2f; -fx-background-color: #fdecea; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="CRITICAL" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Chicken Breast expires in 1 day. Use or sell first!" wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-08 07:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 32 20 32; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="40" prefWidth="55.0" style="-fx-background-color: #fff8e1; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #e6a817; -fx-background-color: #fff8e1; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="WARNING" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Organic Milk expires in 2 days. Consider marking for priority sale." wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-07 18:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 32 20 32;  -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0;  -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="40" prefWidth="55.0" style="-fx-background-color: #fff8e1; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #e6a817; -fx-background-color: #fff8e1; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="WARNING" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Greek Yogurt is nearing expiry — 3 days remaining." wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-07 12:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 32 20 32; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="40" prefWidth="55.0" style="-fx-background-color: #fff8e1; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #e6a817; -fx-background-color: #fff8e1; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="WARNING" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Orange Juice stock is low (3 units). Consider restocking." wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-07 10:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_LEFT" spacing="20" style="-fx-background-color: #fafafa; -fx-padding: 20 32 20 32; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;">
+                           <children>
+                              <StackPane minHeight="40" minWidth="40" prefHeight="40" prefWidth="55.0" style="-fx-background-color: #e8f0fe; -fx-background-radius: 15;" />
+                              <VBox spacing="6" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="8">
+                                       <children>
+                                          <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #1a73e8; -fx-background-color: #e8f0fe; -fx-background-radius: 5; -fx-padding: 3 9 3 9;" text="INFO" />
+                                       </children>
+                                    </HBox>
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5; -fx-text-fill: #444444;" text="White Rice has been restocked. Inventory updated." wrapText="true" />
+                                    <Label style="-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;" text="2026-04-05 11:00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Pane layoutX="171.0" prefHeight="85.0" prefWidth="1329.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow height="41.0" radius="20.0" spread="0.15" width="41.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Label layoutX="87.0" layoutY="48.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="429.0" text="Alerts and updates" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="18.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Notifications">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="1147.0" layoutY="11.0" prefHeight="63.0" prefWidth="161.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;">
+               <effect>
+                  <DropShadow height="30.0" offsetY="1.0" radius="14.5" spread="0.15" width="30.0">
+                     <color>
+                        <Color opacity="0.15000000596046448" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Circle fill="#26ab2a78" layoutX="34.0" layoutY="32.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="68.0" layoutY="11.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="Froilan">
+                     <font>
+                        <Font name="Segoe UI Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="70.0" layoutY="35.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="54.0" text="USER" textFill="#00000080">
+                     <font>
+                        <Font name="Segoe UI" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="1066.0" layoutY="18.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: #F9FAFB; -fx-background-radius: 20;">
+               <effect>
+                  <DropShadow height="30.0" offsetY="1.0" radius="14.5" spread="0.15" width="30.0">
+                     <color>
+                        <Color opacity="0.15000000596046448" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="950.0" prefWidth="222.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow height="30.0" offsetY="8.0" radius="14.5" spread="0.15" width="30.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <VBox layoutX="10.0" layoutY="140.0" prefHeight="328.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Insights" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToStockActivity" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Notifications" textFill="#15803d">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutX="14.0" layoutY="147.0" prefHeight="308.0" prefWidth="30.0" spacing="25.0">
+               <children>
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2h-home-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
+                  <FontIcon iconColor="#16a34a" iconLiteral="mdi2b-bell-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
+               </children>
+            </VBox>
+            <Label layoutX="14.0" layoutY="110.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="107.0" text="NAVIGATION" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI Bold" size="12.0" />
+               </font>
+            </Label>
+            <Line endX="119.0" layoutX="103.0" layoutY="99.0" startX="-103.0" strokeWidth="0.2" />
+            <Label layoutX="59.0" layoutY="31.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="TindaTrack">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="55.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="92.0" text="SMART TRACKER" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI" size="11.5" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="4.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/TindaTrackLogo.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" onAction="#setNotificationsLogout" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <FontIcon iconColor="#00000097" iconLiteral="mdi2l-logout" iconSize="20" layoutX="168.0" layoutY="914.0" text="󰍃" />
+            <Line endX="119.0" layoutX="103.0" layoutY="867.0" startX="-103.0" strokeWidth="0.2" />
+            <Circle fill="#26ab2a78" layoutX="51.0" layoutY="906.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Label alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="26.0" />
+               </font>
+            </Label>
+            <VBox layoutX="82.0" layoutY="889.0" prefHeight="25.0" prefWidth="68.0">
+               <children>
+                  <Label lineSpacing="3.0" prefHeight="10.0" prefWidth="68.0" text="Froilan">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="3.0" prefHeight="1.0" prefWidth="54.0" text="User" textFill="#00000080">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="headerCard" layoutX="260.0" layoutY="115.0" prefWidth="1186.0" style="-fx-background-color: white;                        -fx-background-radius: 12;                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 12, 0, 0, 2);">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="358.0" spacing="14.0" AnchorPane.leftAnchor="24" AnchorPane.rightAnchor="804.0" AnchorPane.topAnchor="18">
+               <children>
+                  <StackPane fx:id="bellIconContainer" minHeight="42.0" minWidth="43.0" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: #2e8b2e; -fx-background-radius: 10;">
+                     <children>
+                        <FontIcon iconColor="WHITE" iconLiteral="mdi2b-bell-outline" iconSize="25" text="󰂜" wrappingWidth="25.0" />
+                     </children>
+                  </StackPane>
+                  <VBox spacing="2">
+                     <children>
+                        <Label style="-fx-font-family: 'Segoe UI';                               -fx-font-size: 17;                               -fx-font-weight: bold;                               -fx-text-fill: #1a1a1a;" text="Notification Center" />
+                        <Label fx:id="unreadCountLabel" style="-fx-font-family: 'Segoe UI';                               -fx-font-size: 12;                               -fx-text-fill: #888888;" text="4 unread alerts" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="8" AnchorPane.bottomAnchor="16" AnchorPane.leftAnchor="24" AnchorPane.rightAnchor="24" AnchorPane.topAnchor="82">
+               <children>
+                  <ToggleButton fx:id="filterAll" selected="true" style="-fx-background-color: #2e8b2e; -fx-background-radius: 20; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-font-weight: bold; -fx-padding: 6 22 6 22; -fx-border-color: transparent;" text="All">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="filterGroup" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton fx:id="filterUnread" style="-fx-background-color: transparent;                                  -fx-background-radius: 20;                                  -fx-text-fill: #444444;                                  -fx-font-family: 'Segoe UI';                                  -fx-font-size: 13;                                  -fx-cursor: hand;                                  -fx-padding: 6 22 6 22;                                  -fx-border-color: #d0d0d0;                                  -fx-border-radius: 20;                                  -fx-border-width: 1;" text="Unread (4)" toggleGroup="$filterGroup" />
+                  <ToggleButton fx:id="filterCritical" style="-fx-background-color: transparent;                                  -fx-background-radius: 20;                                  -fx-text-fill: #444444;                                  -fx-font-family: 'Segoe UI';                                  -fx-font-size: 13;                                  -fx-cursor: hand;                                  -fx-padding: 6 22 6 22;                                  -fx-border-color: #d0d0d0;                                  -fx-border-radius: 20;                                  -fx-border-width: 1;" text="Critical" toggleGroup="$filterGroup" />
+                  <ToggleButton fx:id="filterWarning" style="-fx-background-color: transparent;                                  -fx-background-radius: 20;                                  -fx-text-fill: #444444;                                  -fx-font-family: 'Segoe UI';                                  -fx-font-size: 13;                                  -fx-cursor: hand;                                  -fx-padding: 6 22 6 22;                                  -fx-border-color: #d0d0d0;                                  -fx-border-radius: 20;                                  -fx-border-width: 1;" text="Warning" toggleGroup="$filterGroup" />
+                  <ToggleButton fx:id="filterInfo" style="-fx-background-color: transparent;                                  -fx-background-radius: 20;                                  -fx-text-fill: #444444;                                  -fx-font-family: 'Segoe UI';                                  -fx-font-size: 13;                                  -fx-cursor: hand;                                  -fx-padding: 6 22 6 22;                                  -fx-border-color: #d0d0d0;                                  -fx-border-radius: 20;                                  -fx-border-width: 1;" text="Info" toggleGroup="$filterGroup" />
+               </children>
+            </HBox>
+            <Button fx:id="markAllReadButton" layoutX="1021.0" layoutY="24.0" style="-fx-background-color: transparent;                            -fx-border-color: #cccccc;                            -fx-border-radius: 8;                            -fx-border-width: 1;                            -fx-font-family: 'Segoe UI';                            -fx-font-size: 12.5;                            -fx-text-fill: #555555;                            -fx-cursor: hand;                            -fx-padding: 7 18 7 18;" text="Mark all as read" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

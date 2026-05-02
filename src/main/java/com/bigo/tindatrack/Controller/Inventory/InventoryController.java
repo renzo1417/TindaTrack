@@ -1,7 +1,6 @@
 package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
-import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,6 +63,12 @@ public class InventoryController {
         addProductPane.setVisible(true);
     }
 
+    public void modifyProductPopout() {
+        unclickablePane.setVisible(true);
+        presenter.showModifyProductPopout(addProductPane);
+        addProductPane.setVisible(true);
+    }
+
     //this is helper function for switching screens
     private void switchScene(ActionEvent event, String fxmlPath) {
         try {
@@ -79,9 +84,16 @@ public class InventoryController {
     }
 
     // these are function that switches screen from inventory more to add.
-    @FXML
-    public void setToDashboard(ActionEvent event){
+    public void goToDashboard(ActionEvent event){
         switchScene(event,"/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    public void goToStockActivity(ActionEvent event){
+        switchScene(event,"/com/bigo/tindatrack/StockActivity-view.fxml");
+    }
+
+    public void goToNotifications(ActionEvent event){
+        switchScene(event,"/com/bigo/tindatrack/Notification-view.fxml");
     }
 
     //logout implementation
@@ -97,5 +109,9 @@ public class InventoryController {
         if (addProductPane.isVisible()) {
             addProductPane.setVisible(false);
         }
+    }
+
+    public void refreshTable() {
+        inventoryTableView.refresh();
     }
 }

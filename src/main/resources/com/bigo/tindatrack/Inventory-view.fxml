@@ -137,14 +137,14 @@
                 </DropShadow>
             </effect>
             <children>
-                <VBox layoutX="10.0" layoutY="140.0" prefHeight="269.0" prefWidth="200.0" spacing="10.0">
+                <VBox layoutX="10.0" layoutY="140.0" prefHeight="338.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#setToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
+                        <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Inventory" textFill="#15803d">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
@@ -154,11 +154,16 @@
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToStockActivity" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#goToNotifications" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
                         <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
@@ -166,12 +171,13 @@
                         </Button>
                     </children>
                 </VBox>
-                <VBox layoutX="14.0" layoutY="147.0" prefHeight="240.0" prefWidth="30.0" spacing="25.0">
+                <VBox layoutX="14.0" layoutY="147.0" prefHeight="306.0" prefWidth="30.0" spacing="25.0">
                     <children>
-                        <FontIcon iconColor="#16a34a" iconLiteral="mdi2h-home-outline" iconSize="30" />
-                        <FontIcon iconColor="#00000080" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
+                        <FontIcon iconColor="#00000080" iconLiteral="mdi2h-home-outline" iconSize="30" />
+                        <FontIcon iconColor="#16a34a80" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" />
                         <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
                     </children>
                 </VBox>

@@ -45,7 +45,11 @@
                <children>
                   <CheckBox fx:id="rememberMe" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #444444;" text="Remember me" />
                   <Region HBox.hgrow="ALWAYS" />
+<<<<<<< HEAD
                   <Label fx:id="forgotPasswordField" onMouseClicked="#OnForgotPasswordClick" text="Forgot password?" textFill="#2e8b2e">
+=======
+                  <Label fx:id="forgotPasswordField" onMouseClicked="#goToforgotPassword" text="Forgot password?" textFill="#2e8b2e">
+>>>>>>> 04b2360546afa6a757723874b7d884ad46d76079
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>

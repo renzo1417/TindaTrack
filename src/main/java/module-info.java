@@ -7,6 +7,9 @@ module com.bigo.tindatrack {
     requires org.kordamp.ikonli.materialdesign2;
     requires java.sql;
     requires java.desktop;
+    requires javafx.base;
+    requires javafx.graphics;
+//    requires com.bigo.tindatrack;
 
     opens com.bigo.tindatrack to javafx.fxml;
     exports com.bigo.tindatrack;
@@ -16,8 +19,14 @@ module com.bigo.tindatrack {
     opens com.bigo.tindatrack.Controller.Inventory to javafx.fxml;
     exports com.bigo.tindatrack.Controller.Inventory.AddProductController;
     opens com.bigo.tindatrack.Controller.Inventory.AddProductController to javafx.fxml;
+    exports com.bigo.tindatrack.Controller.Inventory.ModifyProductController;
+    opens com.bigo.tindatrack.Controller.Inventory.ModifyProductController to javafx.fxml;
     exports com.bigo.tindatrack.Controller.Inventory.InventoryActionController;
     opens com.bigo.tindatrack.Controller.Inventory.InventoryActionController to javafx.fxml;
     exports com.bigo.tindatrack.Product;
     opens com.bigo.tindatrack.Product to javafx.fxml;
+    exports com.bigo.tindatrack.utils;
+    opens com.bigo.tindatrack.utils to javafx.fxml;
+    exports com.bigo.tindatrack.Controller.Notification;
+    opens com.bigo.tindatrack.Controller.Notification to javafx.fxml;
 }
