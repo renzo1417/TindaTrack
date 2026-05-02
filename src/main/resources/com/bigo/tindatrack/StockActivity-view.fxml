@@ -216,7 +216,7 @@
             </DropShadow>
          </effect>
          <children>
-            <VBox layoutX="10.0" layoutY="140.0" prefHeight="269.0" prefWidth="200.0" spacing="10.0">
+            <VBox layoutX="10.0" layoutY="140.0" prefHeight="345.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard">
                      <font>
@@ -238,6 +238,11 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
@@ -245,13 +250,14 @@
                   </Button>
                </children>
             </VBox>
-            <VBox layoutX="14.0" layoutY="147.0" prefHeight="240.0" prefWidth="30.0" spacing="25.0">
+            <VBox layoutX="14.0" layoutY="147.0" prefHeight="307.0" prefWidth="30.0" spacing="25.0">
                <children>
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2h-home-outline" iconSize="30" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
                   <FontIcon iconColor="#16a149" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" wrappingWidth="30.0" />
                </children>
             </VBox>
             <Label layoutX="14.0" layoutY="110.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="107.0" text="NAVIGATION" textFill="#00000080">
