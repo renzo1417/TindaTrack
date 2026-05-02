@@ -84,9 +84,16 @@ public class InventoryController {
     }
 
     // these are function that switches screen from inventory more to add.
-    @FXML
-    public void setToDashboard(ActionEvent event){
+    public void goToDashboard(ActionEvent event){
         switchScene(event,"/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    public void goToStockActivity(ActionEvent event){
+        switchScene(event,"/com/bigo/tindatrack/StockActivity-view.fxml");
+    }
+
+    public void goToNotifications(ActionEvent event){
+        switchScene(event,"/com/bigo/tindatrack/Notification-view.fxml");
     }
 
     //logout implementation

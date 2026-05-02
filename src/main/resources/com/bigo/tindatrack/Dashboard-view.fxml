@@ -90,12 +90,12 @@
             <children>
                 <VBox layoutX="10.0" layoutY="140.0" prefHeight="334.0" prefWidth="200.0" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#goThreeDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
+                        <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Dashboard" textFill="#15803d">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
                         </Button>
-                        <Button fx:id="inventoryButton" mnemonicParsing="false" onAction="#goToInventoryButton" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                        <Button fx:id="inventoryButton" mnemonicParsing="false" onAction="#goToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
                             <font>
                                 <Font name="Segoe UI Bold" size="16.0" />
                             </font>
@@ -110,7 +110,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications">
+                  <Button mnemonicParsing="false" onAction="#goToNotifications" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -201,7 +201,7 @@
                         <Font name="Segoe UI" size="15.0" />
                     </font>
                 </Label>
-            <Button fx:id="viewAllerts" alignment="CENTER" layoutX="1079.0" layoutY="19.0" mnemonicParsing="false" onAction="#gotoviewAllerts" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF2E; -fx-background-radius: 15; -fx-border-color: #FFFFFF40; -fx-border-radius: 15;" text="View alerts &gt;" textFill="WHITE">
+            <Button fx:id="viewAllerts" alignment="CENTER" layoutX="1079.0" layoutY="19.0" mnemonicParsing="false" onAction="#goTovVewAllerts" prefHeight="51.0" prefWidth="126.0" style="-fx-background-color: #FFFFFF2E; -fx-background-radius: 15; -fx-border-color: #FFFFFF40; -fx-border-radius: 15;" text="View alerts &gt;" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

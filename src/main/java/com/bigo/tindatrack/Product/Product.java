@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import java.time.LocalDate;
 
 public class Product {
+    private int    id;
     private String productName;
     private int quantity;
     private LocalDate expiryDate;
@@ -25,7 +26,13 @@ public class Product {
         status = new Status();
         status.updateStatus(expiryDate, quantity, originalQuantity);
     }
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getProductName() {
         return productName;
     }

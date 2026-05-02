@@ -1,10 +1,7 @@
 package com.bigo.tindatrack.SQLite_Database.productsManagement;
 
 import java.lang.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Scanner;
 
 import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
@@ -118,6 +115,28 @@ public class ProductManagement {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void createNotificationsTable() {
+        // No user_id — matches your products table which also has no user_id
+        String query =
+                "CREATE TABLE IF NOT EXISTS notifications (" +
+                        "  id         INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "  product_id INTEGER," +                  // links to products.id
+                        "  type       TEXT    NOT NULL," +          // CRITICAL / WARNING / INFO
+                        "  message    TEXT    NOT NULL," +
+                        "  timestamp  TEXT    NOT NULL," +
+                        "  is_read    INTEGER NOT NULL DEFAULT 0," +
+                        "  FOREIGN KEY (product_id) REFERENCES products(id)" +
+                        ");";
+
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement()) {
+            stmt.execute(query);
+            System.out.println("SUCCESSFULLY CREATED notifications TABLE");
+        } catch (SQLException e) {
+            System.err.println("FAILED CREATING notifications TABLE: " + e.getMessage());
         }
     }
 

@@ -53,31 +53,35 @@ public class DashboardController  {
 
 
    //  These are all the buttons for the dashboard and this includes the logout button that resets the SessionManager for user
-    @FXML
-    public void goToInventoryButton(ActionEvent event){
-                    utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
+
+    public void goToInventory(ActionEvent event){
+        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
     }
-    @FXML
+
     public void goToInsightButton(ActionEvent event ){
         utility.switchScene(event, "/com/bigo/tindatrack/insight-view.fxml");
     }
-    @FXML
+
     public void goToStockactivityButton(ActionEvent event){
-        utility.switchScene(event, "/com/bigo/tindatrack/Stocksactivity-view.fxml");
+        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
     }
-    @FXML
+
     public void goToSettingButton(ActionEvent event){
         utility.switchScene(event, "/com/bigo/tindatrack/Settings-view.fxml");
     }
-    @FXML
-    public void gotoviewAllerts(ActionEvent event){
+
+    public void goTovVewAllerts(ActionEvent event){
         utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
     }
-    @FXML
-    public void goThreeDashboard(ActionEvent event){
+
+    public void goToDashboard(ActionEvent event){
         utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
     }
-    @FXML
+
+    public void goToNotifications(ActionEvent event){
+        utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
+    }
+
     public void setLogout(ActionEvent event) {
         com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
         this.user = null;

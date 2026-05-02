@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TindaTrackApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TindaTrackApplication.class.getResource("Dashboard-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TindaTrackApplication.class.getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(1500);
         stage.setMinHeight(950);
