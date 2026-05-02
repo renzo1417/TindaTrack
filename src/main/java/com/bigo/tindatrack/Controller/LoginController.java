@@ -113,4 +113,15 @@ public class LoginController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
+    public void OnForgotPasswordClick(MouseEvent mouseEvent) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/ForgotPassword-view.fxml"));
+
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }
