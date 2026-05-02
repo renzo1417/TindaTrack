@@ -34,6 +34,8 @@ public class Product {
         return quantity;
     }
 
+    public int getOriginalQuantity() { return originalQuantity; }
+
     public String getExpiryDate() {
         if (expiryDate == null) {
             return "Non-perishable";
@@ -43,11 +45,41 @@ public class Product {
         return date;
     }
 
+    public LocalDate getLocalExpiryDate() {
+        return expiryDate;
+    }
+
     public String getCategory() {
         return category;
     }
 
     public Pane getStatus() {
         return status.getStatusPane();
+    }
+
+    public Status getStatusController() {
+        return status;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setOriginalQuantity(int originalQuantity) {
+        if (originalQuantity > this.originalQuantity) {
+            this.originalQuantity = originalQuantity;
+        }
     }
 }
