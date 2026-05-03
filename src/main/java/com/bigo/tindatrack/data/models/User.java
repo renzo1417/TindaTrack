@@ -3,9 +3,11 @@ package com.bigo.tindatrack.data.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private int id;
     private String username, fullname, password, email, phoneNumber, storeName;
 
-    public User(String username, String fullname, String password, String email, String phoneNumber, String storeName) {
+    public User(int id, String username, String fullname, String password, String email, String phoneNumber, String storeName) {
+        this.id = id;
         this.username = username;
         this.fullname = fullname;
         this.password = password;
@@ -61,5 +63,9 @@ public class User implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", storeName='" + storeName + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
     }
 }

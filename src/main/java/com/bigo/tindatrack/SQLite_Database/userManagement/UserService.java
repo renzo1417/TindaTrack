@@ -24,7 +24,7 @@ public class UserService {
             if(rs.next()){
                 System.out.println("SUCCESSFULLY LOGGED IN FOR " + user);
 
-
+                int id = rs.getInt("id");
                 String username = rs.getString("username");
                 String fullname = rs.getString("fullname");
                 String password = rs.getString("password");
@@ -32,7 +32,7 @@ public class UserService {
                 String phoneNumber = rs.getString("phoneNumber");
                 String storeName = rs.getString("storeName");
 
-                User user_from_database = new User(username, fullname, password, email, phoneNumber, storeName);
+                User user_from_database = new User(id, username, fullname, password, email, phoneNumber, storeName);
 
                 return user_from_database;
 

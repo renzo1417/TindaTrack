@@ -8,22 +8,27 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class ProductManagement {
 
-    // for the backend logic PLEASE PLESAE utilize the boolean funcitonality of this method
-    public static boolean addProduct(String name, int quantity, String expiry){
-        String query = "INSERT INTO products(name, quantity, expiry_date) VALUES (?,?,?)";
-        try(Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)){
+    // changed from returning boolean to return the id
+    public static int addProduct(String name, int quantity, String expiry, int ownerId) {
+        String query = "INSERT INTO products(name, quantity, expiry_date, owner_id) VALUES (?,?,?,?)";
+
+        try (Connection connected = connect();
+             PreparedStatement pstmt = connected.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
             pstmt.setString(1, name);
-            pstmt.setInt(2,quantity);
-            pstmt.setString(3,expiry);
+            pstmt.setInt(2, quantity);
+            pstmt.setString(3, expiry);
+            pstmt.setInt(4, ownerId);
 
             pstmt.executeUpdate();
-            System.out.println("SUCCESSFULLY ADDED PRODUCT: " + name + " - " + quantity + " - " + expiry);
-            return true;
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
         } catch (SQLException e) {
-            System.err.println("ERROR ADDING PRODUCT");
             e.printStackTrace();
-            return false;
         }
+        return -1;
     }
 
     public static boolean removeProduct(String productName){
@@ -123,6 +128,7 @@ public class ProductManagement {
         String query =
                 "CREATE TABLE IF NOT EXISTS notifications (" +
                         "  id         INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " owner_id INTEGER NOT NULL," +
                         "  product_id INTEGER," +                  // links to products.id
                         "  type       TEXT    NOT NULL," +          // CRITICAL / WARNING / INFO
                         "  message    TEXT    NOT NULL," +

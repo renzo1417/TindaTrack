@@ -49,5 +49,9 @@ public class SessionManager {
         return new File(SESSION_FILE).exists();
     }
 
+    public static int getCurrentUserId() {
+        User user = loadUser();
+        return (user != null) ? user.getId() : -1;
+    }
 }
 
