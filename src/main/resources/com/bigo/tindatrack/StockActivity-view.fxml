@@ -46,8 +46,8 @@
                                     <TableColumn fx:id="productNameColumn" prefWidth="260.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
                                     <TableColumn fx:id="oldQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Old Qty" />
                                     <TableColumn fx:id="newQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="New Qty" />
-                                    <TableColumn prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Change" />
-                                    <TableColumn fx:id="reasonColumn" prefWidth="207.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Reason" />
+                                    <TableColumn fx:id="changeColumn" prefWidth="171.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Change" />
+                                    <TableColumn fx:id="reasonColumn" prefWidth="206.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Reason" />
                                     <TableColumn fx:id="dateColumn" prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Date &amp; Time" />
                                  </columns>
                               </TableView>
@@ -223,7 +223,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                  <Button mnemonicParsing="false" onAction="#switchToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

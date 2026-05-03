@@ -32,6 +32,26 @@ public class StockDetailsList {
         updateActivity(newStockDetails.getReason());
     }
 
+    public void modifiedStockActivity(Product product, int oldQty, int newQty) {
+        String reason;
+
+        if (oldQty > newQty) {
+            reason = "Sold";
+        } else {
+            reason = "Restocked";
+        }
+
+        StockDetails newStockDetails = new StockDetails(
+            product.getProductName(),
+            oldQty,
+            newQty,
+            reason
+        );
+
+        detailsList.add(0, newStockDetails);
+        updateActivity(newStockDetails.getReason());
+    }
+
     public ObservableList<StockDetails> getDetailsList() {
         return detailsList;
     }

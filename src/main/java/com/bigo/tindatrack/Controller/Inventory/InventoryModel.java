@@ -23,6 +23,11 @@ public class InventoryModel {
     }
 
     public boolean saveNewProduct(Product newProduct) {
+        list.addNewProduct(newProduct);
+        return saveProductToDB(newProduct);
+    }
+
+    private boolean saveProductToDB(Product newProduct) {
         int ownerId = com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId();
         String name = newProduct.getProductName();
         int quan = newProduct.getQuantity();
@@ -33,26 +38,41 @@ public class InventoryModel {
         if (generatedId != -1) {
             newProduct.setId(generatedId);
             com.bigo.tindatrack.Controller.Notification.NotificationService.onProductAdded(newProduct);
-            syncWithDatabase();
             return true;
         }
         return false;
     }
 
     public boolean removeProduct(Product item) {
-        boolean isRemovedFromDB = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.removeProduct(item.getProductName());
         list.removeProduct(item);
 
+        return removeProductFromDB(item);
+    }
+
+    public boolean removeProductFromDB(Product item) {
+        boolean isRemovedFromDB = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.removeProduct(item.getProductName());
+
         if(isRemovedFromDB){
-            syncWithDatabase();
             return true;
         }
 
         return false;
     }
 
-    public void modifyProduct(Product item) {
+    public boolean modifyProduct(Product item) {
         list.modifyProduct(item);
+
+        return modifyProductInDB(item);
+    }
+
+    public boolean modifyProductInDB(Product item) {
+        boolean isModifiedFromDB = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.modifyProduct(item);
+
+        if (isModifiedFromDB) {
+            return true;
+        }
+
+        return false;
     }
 
     public ObservableList<Product> getProductList() {

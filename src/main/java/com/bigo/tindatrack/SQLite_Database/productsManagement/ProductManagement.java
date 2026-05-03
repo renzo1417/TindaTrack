@@ -1,5 +1,7 @@
 package com.bigo.tindatrack.SQLite_Database.productsManagement;
 
+import com.bigo.tindatrack.Product.Product;
+
 import java.lang.*;
 import java.sql.*;
 import java.util.Scanner;
@@ -40,6 +42,25 @@ public class ProductManagement {
             return true;
         } catch (SQLException e) {
             System.err.println("ERROR removing PRODUCT");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean modifyProduct(Product product) {
+        String query = "UPDATE products SET name = ?, quantity = ?, expiry_date = ? WHERE id = ?";
+
+        try (Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)) {
+            pstmt.setString(1, product.getProductName());
+            pstmt.setInt(2, product.getQuantity());
+            pstmt.setString(3, product.getExpiryDate());
+            pstmt.setInt(4, product.getId());
+
+            pstmt.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.err.println("ERROR MODIFYING PRODUCT");
             e.printStackTrace();
             return false;
         }

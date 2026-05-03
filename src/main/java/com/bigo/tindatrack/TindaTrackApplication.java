@@ -1,4 +1,3 @@
-
 package com.bigo.tindatrack;
 
 import com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class TindaTrackApplication extends Application {
-
     @Override
     public void start(Stage stage) throws IOException {
         initDatabase();

@@ -115,9 +115,6 @@ public class InventoryController {
     }
 
     public void refreshTable() {
-        int ownerId = getCurrentUserId();
-        javafx.collections.ObservableList<com.bigo.tindatrack.Product.Product> newData = getInventoryOrderedByStatus(ownerId);
-        inventoryTableView.setItems(newData);
         inventoryTableView.refresh();
     }
 }
