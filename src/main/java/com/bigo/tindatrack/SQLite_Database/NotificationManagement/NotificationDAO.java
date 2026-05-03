@@ -11,22 +11,29 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 public class NotificationDAO {
 
     // ── Insert a new notification ─────────────────────────────────────────
-    public static boolean insert(Integer productId, String type,
+    public static boolean insert(int ownerId, Integer productId, String type,
                                  String message, String timestamp) {
+        // 1. Added owner_id to the columns and values list
         String query =
-                "INSERT INTO notifications (product_id, type, message, timestamp, is_read)" +
-                        " VALUES (?, ?, ?, ?, 0)";
+                "INSERT INTO notifications (owner_id, product_id, type, message, timestamp, is_read)" +
+                        " VALUES (?, ?, ?, ?, ?, 0)";
 
         try (Connection conn = connect();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
-            if (productId != null) ps.setInt(1, productId);
-            else                   ps.setNull(1, Types.INTEGER);
-            ps.setString(2, type);
-            ps.setString(3, message);
-            ps.setString(4, timestamp);
+            ps.setInt(1, ownerId);
+            if (productId != null) {
+                ps.setInt(2, productId);
+            } else {
+                ps.setNull(2, java.sql.Types.INTEGER);
+            }
+
+            ps.setString(3, type);
+            ps.setString(4, message);
+            ps.setString(5, timestamp);
+
             ps.executeUpdate();
-            System.out.println("NOTIFICATION ADDED: [" + type + "] " + message);
+            System.out.println("NOTIFICATION ADDED FOR USER " + ownerId + ": [" + type + "] " + message);
             return true;
 
         } catch (SQLException e) {
