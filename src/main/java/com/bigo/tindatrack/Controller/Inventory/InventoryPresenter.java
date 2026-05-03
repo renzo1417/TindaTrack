@@ -63,9 +63,16 @@ public class InventoryPresenter {
             Product newProduct = addProductController.addNewProduct();
 
             if (newProduct != null) {
-                model.saveNewProduct(newProduct);
-                controller.hideAddPopOut();
-                addProductController.clearInputs();
+                // model handles all work (notif, owner id and database)
+                boolean success = model.saveNewProduct(newProduct);
+
+                if (success) {
+                    controller.hideAddPopOut();
+                    addProductController.clearInputs();
+                    controller.refreshTable();
+                } else {
+                    System.err.println("Failed to save to database!");
+                }
             }
         });
 

@@ -16,6 +16,9 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable.getInventoryOrderedByStatus;
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId;
+
 public class InventoryController {
     @FXML
     private Button addProductPopoutBtn;
@@ -112,6 +115,9 @@ public class InventoryController {
     }
 
     public void refreshTable() {
+        int ownerId = getCurrentUserId();
+        javafx.collections.ObservableList<com.bigo.tindatrack.Product.Product> newData = getInventoryOrderedByStatus(ownerId);
+        inventoryTableView.setItems(newData);
         inventoryTableView.refresh();
     }
 }

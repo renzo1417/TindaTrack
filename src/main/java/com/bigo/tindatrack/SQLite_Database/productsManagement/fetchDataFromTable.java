@@ -114,6 +114,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
@@ -126,8 +127,12 @@ public class fetchDataFromTable {
         int       quantity   = rs.getInt("quantity");
         String    status     = rs.getString("status");
         String    expiryStr  = rs.getString("expiry_date");
-        LocalDate expiryDate = (expiryStr != null) ? LocalDate.parse(expiryStr) : null;
-
+        LocalDate expiryDate = null;
+        if (expiryStr != null && !expiryStr.trim().isEmpty()) {
+            // This will change all date formats to a unified YYYY-MM-DD(SQLite Requirement)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+            expiryDate = LocalDate.parse(expiryStr, formatter);
+        }
         Product p = new Product(name, quantity, expiryDate, "general");
         p.setId(id);         // make sure Product has setId()
         return p;
@@ -140,38 +145,39 @@ public class fetchDataFromTable {
                     "  WHEN date(expiry_date) <= date('now', '+7 days', 'localtime') THEN 'Near Expiry' " +
                     "  WHEN quantity < 10 THEN 'Low Stock' " +
                     "  ELSE 'Safe' " +
-                    "END as status FROM products ";
+                    "END as status FROM products WHERE owner_id = ?";
 
-    public static ObservableList<Product> getInventoryOrderedByStatus() {
+    public static ObservableList<Product> getInventoryOrderedByStatus(int ownerId) {
         String query = BASE_QUERY +
                 "ORDER BY CASE " +
                 "  WHEN date(expiry_date) < date('now','localtime') THEN 1 " +
                 "  WHEN date(expiry_date) <= date('now','+7 days','localtime') THEN 2 " +
                 "  WHEN quantity < 10 THEN 3 ELSE 4 END, quantity ASC";
-        return runQuery(query);
+        return runQuery(query, ownerId);
     }
 
-    public static ObservableList<Product> getInventoryOrderedByQuantity() {
-        return runQuery(BASE_QUERY + "ORDER BY quantity DESC");
+    public static ObservableList<Product> getInventoryOrderedByQuantity(int ownerId) {
+        return runQuery(BASE_QUERY + "ORDER BY quantity DESC",ownerId);
     }
 
-    public static ObservableList<Product> getInventoryOrderedByID() {
-        return runQuery(BASE_QUERY + "ORDER BY id ASC");
+    public static ObservableList<Product> getInventoryOrderedByID(int ownerId) {
+        return runQuery(BASE_QUERY + "ORDER BY id ASC",ownerId);
     }
 
     // ── NEW: used by NotificationService ─────────────────────────────────
-    public static ObservableList<Product> getAllProducts() {
-        return runQuery(BASE_QUERY + "ORDER BY id ASC");
+    public static ObservableList<Product> getAllProducts(int ownerId) {
+        return runQuery(BASE_QUERY + "ORDER BY id ASC",ownerId);
     }
 
-    private static ObservableList<Product> runQuery(String query) {
+    private static ObservableList<Product> runQuery(String query, int ownerId) {
         ObservableList<Product> list = FXCollections.observableArrayList();
-        try (Connection conn = connect();
-             PreparedStatement ps = conn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, ownerId);
 
-            while (rs.next()) {               // ← rs.next() FIRST, then read
-                list.add(mapRow(rs));
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapRow(rs));
+                }
             }
         } catch (SQLException e) {
             System.err.println("Error fetching inventory: " + e.getMessage());
