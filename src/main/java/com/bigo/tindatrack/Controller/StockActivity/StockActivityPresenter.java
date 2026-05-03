@@ -21,7 +21,6 @@ public class StockActivityPresenter {
                         model.getTotalSold(),
                         model.getTotalActivities()
                 );
-                System.out.println("TEEEEEEESTTTT!!!!!!");
             }
         });
     }

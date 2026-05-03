@@ -124,8 +124,14 @@ public class InventoryPresenter {
                     setGraphic(null);
                     setText(null);
                 } else {
-                    actionController.getTrashButton().setOnAction(e -> { remove(item); });
-                    actionController.getModifyButton().setOnAction(e -> { modify(item); });
+                    actionController.getTrashButton().setOnAction(e -> {
+                        remove(item);
+                        controller.refreshTable();
+                    });
+                    actionController.getModifyButton().setOnAction(e -> {
+                        modify(item);
+                        controller.refreshTable();
+                    });
 
                     setGraphic(root);
                 }
