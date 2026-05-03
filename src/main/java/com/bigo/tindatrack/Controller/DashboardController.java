@@ -21,10 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId;
@@ -32,17 +29,12 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class DashboardController {
 
-
     @FXML private Label welcomeField, username_top, username_bottom, dateField;
-
-
     @FXML private VBox sellFirstList;
-
     @FXML private Button inventoryButton, insightButton,
             stockactivityButton, settingButton, viewAllerts;
 
     private User user = loadUser();
-
 
     @FXML
     public void initialize() {
@@ -67,7 +59,6 @@ public class DashboardController {
         populateSellFirst();
     }
 
-
     //populate to sellfirst
     private void populateSellFirst() {
         sellFirstList.getChildren().clear();
@@ -76,19 +67,36 @@ public class DashboardController {
         int ownerId = getCurrentUserId();
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
 
-       //list of expired
+        // helper using Hashmap to  get expiry date of a product by productId for sorting
+        Map<Integer, LocalDate> expiryMap = new HashMap<>();
+        for (Product p : products) {
+            expiryMap.put(p.getId(), p.getLocalExpiryDate());
+        }
+
+        //list of expired also it is sorted for the ones who will expire first
+
         List<NotificationItem> expired = all.stream()
                 .filter(n -> n.type == NotificationItem.Type.CRITICAL
                         && (n.message.contains("has expired!")
                         ||  n.message.contains("expires in 1 day")))
-                .limit(2)
+                .sorted(Comparator.comparing(n -> {
+                    LocalDate exp = expiryMap.get(n.productId);
+                    if (exp == null) return Long.MAX_VALUE;
+                    // Negative = expired, less negative = more recent expiry = show first
+                    return ChronoUnit.DAYS.between(LocalDate.now(), exp);
+                }))
                 .collect(Collectors.toList());
 
-      // list of near expiry
+        // list of near expiry it is sorted also to the ones who are expiring first using comparator
+
         List<NotificationItem> nearExpiry = all.stream()
                 .filter(n -> n.type == NotificationItem.Type.WARNING
                         && n.message.contains("is nearing expiry"))
-                .limit(2)
+                .sorted(Comparator.comparing(n -> {
+                    LocalDate exp = expiryMap.get(n.productId);
+                    if (exp == null) return Long.MAX_VALUE;
+                    return ChronoUnit.DAYS.between(LocalDate.now(), exp);
+                }))
                 .collect(Collectors.toList());
 
         // products already in expired/nearExpiry exclude from inStock
@@ -96,24 +104,32 @@ public class DashboardController {
         expired.forEach(n -> urgentProductIds.add(n.productId));
         nearExpiry.forEach(n -> urgentProductIds.add(n.productId));
 
-        // safe producs or instock products=
+        // safe produces or instock products sorted using comparator to the ones who will expire first
+
         List<NotificationItem> inStock = all.stream()
                 .filter(n -> n.type == NotificationItem.Type.INFO
                         && n.message.contains("added to inventory")
                         && !urgentProductIds.contains(n.productId))
-                .limit(2)
+                .sorted(Comparator.comparing(n -> {
+                    LocalDate exp = expiryMap.get(n.productId);
+                    if (exp == null) return Long.MAX_VALUE;
+                    return ChronoUnit.DAYS.between(LocalDate.now(), exp);
+                }))
                 .collect(Collectors.toList());
 
-        // this is for rows
-        for (NotificationItem item : expired)
-            sellFirstList.getChildren().add(buildRow(item, products));
-        for (NotificationItem item : nearExpiry)
-            sellFirstList.getChildren().add(buildRow(item, products));
-        for (NotificationItem item : inStock)
-            sellFirstList.getChildren().add(buildRow(item, products));
+        // merge all into one priority list, cap at 7
+        List<NotificationItem> finalList = new ArrayList<>();
+        finalList.addAll(expired);
+        finalList.addAll(nearExpiry);
+        finalList.addAll(inStock);
 
-       //this will empty the its state in dashboard
-        if (expired.isEmpty() && nearExpiry.isEmpty() && inStock.isEmpty()) {
+        // take only up to 7
+        List<NotificationItem> toDisplay = finalList.stream()
+                .limit(7)
+                .collect(Collectors.toList());
+
+
+        if (toDisplay.isEmpty()) {
             Label empty = new Label("No items to flag right now.");
             empty.setStyle(
                     "-fx-font-family: 'Segoe UI';" +
@@ -122,12 +138,15 @@ public class DashboardController {
             );
             empty.setPadding(new Insets(24, 0, 0, 20));
             sellFirstList.getChildren().add(empty);
+        } else {
+            for (NotificationItem item : toDisplay) {
+                sellFirstList.getChildren().add(buildRow(item, products));
+            }
         }
     }
 
-    // builds rows
+    // for rows
     private HBox buildRow(NotificationItem item, ObservableList<Product> products) {
-
 
         HBox row = new HBox(16);
         row.setAlignment(Pos.CENTER_LEFT);
@@ -138,7 +157,7 @@ public class DashboardController {
                         "-fx-border-width: 0 0 1 0;"
         );
 
-
+        // ican pane display
         Pane iconPane = new Pane();
         iconPane.setPrefSize(40, 40);
         iconPane.setMinSize(40, 40);
@@ -147,19 +166,17 @@ public class DashboardController {
                 "-fx-background-color: " + iconBgColor(item.type) + ";" +
                         "-fx-background-radius: 10;"
         );
-
         Circle dot = new Circle(5);
         dot.setStyle("-fx-fill: " + textColor(item.type) + ";");
         dot.setLayoutX(20);
         dot.setLayoutY(20);
         iconPane.getChildren().add(dot);
 
-
+        // for the name and the category
         VBox textContent = new VBox(3);
         HBox.setHgrow(textContent, Priority.ALWAYS);
 
-        String productName = extractName(item.message);
-        Label nameLabel = new Label(productName);
+        Label nameLabel = new Label(extractName(item.message));
         nameLabel.setStyle(
                 "-fx-font-family: 'Segoe UI Bold';" +
                         "-fx-font-size: 16;" +
@@ -180,7 +197,7 @@ public class DashboardController {
 
         textContent.getChildren().addAll(nameLabel, categoryLabel);
 
-
+        // this is the badge pane
         Pane badgePane = new Pane();
         badgePane.setPrefSize(117, 40);
         badgePane.setMinSize(117, 40);
@@ -212,7 +229,7 @@ public class DashboardController {
 
         badgePane.getChildren().addAll(badgeTop, badgeSub);
 
-
+        // ── Hover ─────────────────────────────────────────────────────────
         row.setOnMouseEntered(e -> row.setStyle(
                 "-fx-background-color: #f9f9f9;" +
                         "-fx-border-color: transparent transparent #eeeeee transparent;" +
@@ -230,7 +247,7 @@ public class DashboardController {
     }
 
 
-    // helperrs
+    // helpers for the populate
     private String extractName(String message) {
         int cut = message.indexOf(" has");
         if (cut == -1) cut = message.indexOf(" is");
@@ -264,7 +281,7 @@ public class DashboardController {
             return "";
         }
 
-       // for instock it will calculate the real expiry date
+        // this calculates the expiry date for the stock
         return products.stream()
                 .filter(p -> p.getId() == item.productId)
                 .map(p -> {
@@ -287,9 +304,9 @@ public class DashboardController {
 
     private String badgeBgColor(NotificationItem item) {
         String msg = item.message;
-        if (msg.contains("has expired!"))       return "#FEF2F2";
-        if (msg.contains("expires in 1 day"))   return "#FFF7ED";
-        if (msg.contains("is nearing expiry"))  return "#FFF7ED";
+        if (msg.contains("has expired!"))      return "#FEF2F2";
+        if (msg.contains("expires in 1 day"))  return "#FFF7ED";
+        if (msg.contains("is nearing expiry")) return "#FFF7ED";
         return "#F0FDF4";
     }
 
@@ -301,13 +318,13 @@ public class DashboardController {
         };
     }
 
-    // this will refresh to show real time products
+    // refreshes the dashboard
     public void refreshSellFirst() {
         NotificationService.evaluateAllProducts();
         populateSellFirst();
     }
 
-
+    // navigation
     public void goToInventory(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
     }
