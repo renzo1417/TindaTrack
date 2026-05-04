@@ -323,7 +323,6 @@ public class DashboardController {
         NotificationService.evaluateAllProducts();
         populateSellFirst();
     }
-
     // navigation
     public void goToInventory(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");

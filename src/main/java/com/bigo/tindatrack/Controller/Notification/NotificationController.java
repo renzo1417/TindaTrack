@@ -328,5 +328,4 @@ public class NotificationController {
         utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
 
-
 }
