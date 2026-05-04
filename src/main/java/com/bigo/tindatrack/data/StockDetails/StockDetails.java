@@ -1,5 +1,8 @@
 package com.bigo.tindatrack.data.StockDetails;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+
 import java.time.LocalDate;
 
 public class StockDetails {
@@ -8,6 +11,7 @@ public class StockDetails {
     private int newQty;
     private String reason;
     private LocalDate date;
+    private StockDetailManager manager;
 
     public StockDetails(String productName, int oldQty, int newQty, String reason) {
         this.productName = productName;
@@ -15,6 +19,14 @@ public class StockDetails {
         this.newQty = newQty;
         this.reason = reason;
         date = LocalDate.now();
+
+        int change;
+        if (newQty == oldQty) {
+            change = newQty;
+        } else {
+            change = newQty - oldQty;
+        }
+        manager = new StockDetailManager(reason,change);
     }
 
     public String getReason() {
@@ -36,4 +48,8 @@ public class StockDetails {
     public String getDate() {
         return date.toString();
     }
+
+    public Pane getChange() { return manager.getChange(); }
+
+    public Pane getReasoning() { return manager.getReason(); }
 }

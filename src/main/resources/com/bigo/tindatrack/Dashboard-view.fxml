@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: #F8F9FA;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.DashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: #F8F9FA;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.DashboardController">
     <children>
         <Pane layoutX="170.0" prefHeight="85.0" prefWidth="1329.0" style="-fx-background-color: FFFFFF;">
             <effect>
@@ -446,35 +438,6 @@
             <Pane prefHeight="634.0" prefWidth="712.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
                <children>
                   <Line endX="664.0" layoutX="100.0" layoutY="76.0" startX="-100.0" stroke="#00000080" strokeWidth="0.2" />
-                  <VBox layoutX="26.0" layoutY="91.0" prefHeight="542.0" prefWidth="46.0" spacing="30.0">
-                     <children>
-                        <Pane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: FEF2F2; -fx-background-radius: 10;">
-                           <children>
-                              <FontIcon iconColor="#ef4444" iconLiteral="mdi2c-clock-time-five-outline" iconSize="25" layoutX="11.0" layoutY="29.0" text="󱑏" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="25" layoutX="11.0" layoutY="29.0" text="󱑏" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="25" layoutX="11.0" layoutY="29.0" text="󱑏" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="25" layoutX="11.0" layoutY="29.0" text="󱑏" />
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="25" layoutX="11.0" layoutY="29.0" text="󱑏" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
                   <Pane layoutX="22.0" layoutY="19.0" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
                      <children>
                         <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="20" layoutX="10.0" layoutY="27.0" text="󱑏" />
@@ -490,16 +453,17 @@
                         <Font name="Segoe UI" size="12.0" />
                      </font>
                   </Label>
-                  <VBox layoutX="91.0" layoutY="91.0" prefHeight="560.0" prefWidth="253.0" spacing="37.0">
+                  <VBox fx:id="sellFirstList" layoutX="5.0" layoutY="91.0" prefHeight="800.0" prefWidth="697.0" spacing="0.0">
+
                      <children>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Chicken Breast" textFill="#000000d9">
+                              <Label fx:id="expired1" prefHeight="31.0" prefWidth="299.0" text="Chicken Breast" textFill="#000000d9">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce · Freezer" textFill="#000000a9">
+                              <Label fx:id="expired1_category" lineSpacing="3.0" prefHeight="14.0" prefWidth="306.0" text="Produce · Freezer" textFill="#000000a9">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -508,12 +472,12 @@
                         </VBox>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Spinach" textFill="#000000d9">
+                              <Label fx:id="expired2" prefHeight="24.0" prefWidth="317.0" text="Spinach" textFill="#000000d9">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce · Refrigerator" textFill="#000000a9">
+                              <Label fx:id="expired2_category" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce · Refrigerator" textFill="#000000a9">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -522,12 +486,12 @@
                         </VBox>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Whole Wheat Bread" textFill="#000000d9">
+                              <Label fx:id="expiry1" prefHeight="24.0" prefWidth="317.0" text="Whole Wheat Bread" textFill="#000000d9">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Pantry Staples · Pantry" textFill="#000000a9">
+                              <Label fx:id="expiry1_category" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Pantry Staples · Pantry" textFill="#000000a9">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -536,12 +500,12 @@
                         </VBox>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Milk" textFill="#000000d9">
+                              <Label fx:id="expiry2" prefHeight="24.0" prefWidth="317.0" text="Milk" textFill="#000000d9">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy · Refrigerator" textFill="#000000a9">
+                              <Label fx:id="expiry2_category" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy · Refrigerator" textFill="#000000a9">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -550,12 +514,26 @@
                         </VBox>
                         <VBox prefHeight="34.0" prefWidth="310.0">
                            <children>
-                              <Label prefHeight="24.0" prefWidth="317.0" text="Almond Milk" textFill="#000000d9">
+                              <Label fx:id="instock1" prefHeight="24.0" prefWidth="317.0" text="Almond Milk" textFill="#000000d9">
                                  <font>
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy · Refrigerator" textFill="#000000a9">
+                              <Label fx:id="instock1_category" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy · Refrigerator" textFill="#000000a9">
+                                 <font>
+                                    <Font name="Segoe UI" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="294.0" prefHeight="34.0" prefWidth="310.0">
+                           <children>
+                              <Label fx:id="instock2" prefHeight="24.0" prefWidth="317.0" text="Almond Milk" textFill="#000000d9">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="instock2_category" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy · Refrigerator" textFill="#000000a9">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -568,80 +546,6 @@
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font></Button>
-                  <VBox layoutX="561.0" layoutY="94.0" prefHeight="555.0" prefWidth="116.0" spacing="29.5">
-                     <children>
-                        <Pane prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: FEF2F2; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="11.0" layoutY="4.0" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Expired 2d ago" textFill="#ef4444">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="21.0" prefHeight="13.0" prefWidth="92.0" style="-fx-alignment: CENTER_rIGHT;" text="- Expired" textAlignment="RIGHT" textFill="#ef4444" wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="11.0" layoutY="4.0" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Near Expiry" textFill="#c2410c">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="21.0" prefHeight="13.0" prefWidth="92.0" style="-fx-alignment: CENTER_rIGHT;" text="- 3d left" textAlignment="RIGHT" textFill="#c2410c" wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="11.0" layoutY="4.0" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Near Expiry" textFill="#c2410c">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="21.0" prefHeight="13.0" prefWidth="92.0" style="-fx-alignment: CENTER_rIGHT;" text="- 1d left" textAlignment="RIGHT" textFill="#c2410c" wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #FFF7ED; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="11.0" layoutY="4.0" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Near Expiry" textFill="#c2410c">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="21.0" prefHeight="13.0" prefWidth="92.0" style="-fx-alignment: CENTER_rIGHT;" text="- 5d left" textAlignment="RIGHT" textFill="#c2410c" wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #F0FDF4; -fx-background-radius: 10;">
-                           <children>
-                              <Label layoutX="11.0" layoutY="4.0" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="In Stock" textFill="#16a34a">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="21.0" prefHeight="13.0" prefWidth="92.0" style="-fx-alignment: CENTER_rIGHT;" text="- 9d left" textAlignment="RIGHT" textFill="#16a34a" wrapText="true">
-                                 <font>
-                                    <Font size="11.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
                </children>
             </Pane>
          </content>

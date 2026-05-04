@@ -6,9 +6,12 @@ import java.time.LocalDate;
 
 public class ModifyProductPresenter {
     private ModifyProductController controller;
+    private ModifyProductModel model;
+
 
     public ModifyProductPresenter(ModifyProductController controller) {
         this.controller = controller;
+        model = new ModifyProductModel();
     }
 
     public Product modifyProduct(Product product, String productName, String quantity, LocalDate expiryDate, String category) {
@@ -19,12 +22,16 @@ public class ModifyProductPresenter {
             controller.showAlert("Invalid quantity input!");
             return null;
         } else {
+            model.modifiedStockActivity(product, product.getQuantity(), Integer.parseInt(quantity));
+
             product.setProductName(productName);
             product.setCategory(category);
             product.setExpiryDate(expiryDate);
             product.setOriginalQuantity(Integer.parseInt(quantity));
             product.setQuantity(Integer.parseInt(quantity));
             product.getStatusController().updateStatus(product.getLocalExpiryDate(), product.getQuantity(), product.getOriginalQuantity());
+
+
         }
 
         return product;

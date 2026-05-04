@@ -13,6 +13,7 @@ public class InventoryList {
     public void addNewProduct(Product newProduct) {
         productList.add(0, newProduct);
         detailsList.newStockActivity(newProduct);
+        System.out.println("UPDATE LIST ID: " + System.identityHashCode(detailsList.getDetailsList()));
     }
 
     public void removeProduct(Product item) {

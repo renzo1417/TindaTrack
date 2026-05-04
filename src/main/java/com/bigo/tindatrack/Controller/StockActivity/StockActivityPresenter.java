@@ -16,13 +16,17 @@ public class StockActivityPresenter {
     public void setupListener() {
         model.getList().addListener((ListChangeListener<StockDetails>) change -> {
             while (change.next()) {
-                controller.updateActivityCount(
-                        model.getTotalRestocked(),
-                        model.getTotalSold(),
-                        model.getTotalActivities()
-                );
+                updateActivityCount();
             }
         });
+    }
+
+    public void updateActivityCount() {
+        controller.updateActivityCount(
+                model.getTotalRestocked(),
+                model.getTotalSold(),
+                model.getTotalActivities()
+        );
     }
 
     public ObservableList<StockDetails> getList() {

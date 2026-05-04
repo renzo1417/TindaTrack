@@ -1,5 +1,8 @@
 package com.bigo.tindatrack;
 
+import com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement;
+import com.bigo.tindatrack.SQLite_Database.productsManagement.productTableManagement;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UsersTableManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +14,8 @@ import java.io.IOException;
 public class TindaTrackApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TindaTrackApplication.class.getResource("inventory-view.fxml"));
+        initDatabase();
+        FXMLLoader fxmlLoader = new FXMLLoader(TindaTrackApplication.class.getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setMinWidth(1500);
         stage.setMinHeight(950);
@@ -20,4 +24,11 @@ public class TindaTrackApplication extends Application {
         stage.show();
 
     }
+    // creates the table
+    private void initDatabase() {
+        UsersTableManagement.createUserTable();
+        productTableManagement.createProductTable();
+        ProductManagement.createNotificationsTable();
+    }
 }
+

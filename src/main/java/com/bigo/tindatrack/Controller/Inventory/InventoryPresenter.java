@@ -69,7 +69,6 @@ public class InventoryPresenter {
                 if (success) {
                     controller.hideAddPopOut();
                     addProductController.clearInputs();
-                    controller.refreshTable();
                 } else {
                     System.err.println("Failed to save to database!");
                 }
@@ -126,11 +125,9 @@ public class InventoryPresenter {
                 } else {
                     actionController.getTrashButton().setOnAction(e -> {
                         remove(item);
-                        controller.refreshTable();
                     });
                     actionController.getModifyButton().setOnAction(e -> {
                         modify(item);
-                        controller.refreshTable();
                     });
 
                     setGraphic(root);
