@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.List;
@@ -152,10 +154,19 @@ public class NotificationController {
                         "-fx-background-radius: 20;"
         );
         // To add your icon image inside the circle:
-        // ImageView icon = new ImageView(new Image("/icons/warning.png"));
-        // icon.setFitWidth(20); icon.setFitHeight(20);
-        // circle.getChildren().add(icon);
-
+        if (item.type == NotificationItem.Type.CRITICAL || item.type == NotificationItem.Type.WARNING) {
+            try {
+                ImageView icon = new ImageView(new Image(
+                        getClass().getResourceAsStream("/com/bigo/tindatrack/icons/warning.png")
+                ));
+                icon.setFitWidth(20);
+                icon.setFitHeight(20);
+                icon.setPreserveRatio(true);
+                circle.getChildren().add(icon);
+            } catch (Exception ex) {
+                System.err.println("Warning icon not found: " + ex.getMessage());
+            }
+        }
         // ── Right: badge row + message + timestamp ────────────────────────
         VBox content = new VBox(6);
         HBox.setHgrow(content, Priority.ALWAYS);

@@ -200,17 +200,17 @@
          <children>
             <VBox layoutX="10.0" layoutY="140.0" prefHeight="328.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard">
+                  <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard    ">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#goToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory">
+                  <Button mnemonicParsing="false" onAction="#goToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory      ">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Insights" textAlignment="JUSTIFY">
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Insights         " textAlignment="JUSTIFY">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -225,7 +225,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings">
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings       ">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

@@ -338,7 +338,7 @@ public class DashboardController {
     }
 
     public void goToSettingButton(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/Settings-view.fxml");
+        utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
     }
 
     public void goTovVewAllerts(ActionEvent event) {

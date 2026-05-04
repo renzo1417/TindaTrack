@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
@@ -19,54 +16,8 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.InventoryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Settings.SettingsMarketController">
    <children>
-      <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="865.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
-         <content>
-            <Pane prefHeight="1036.0" prefWidth="1260.0" style="-fx-background-color: F8F9FA;">
-               <children>
-                  <Pane layoutX="24.0" layoutY="26.0" prefHeight="971.0" prefWidth="1218.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;">
-                     <effect>
-                        <DropShadow height="30.0" offsetY="2.0" radius="14.5" spread="0.15" width="30.0">
-                           <color>
-                              <Color opacity="0.15000000596046448" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                     <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="14.0" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 0 10 0 12;">
-                           <children>
-                              <TextField prefHeight="36.0" prefWidth="210.0" promptText="Search products..." style="-fx-background-color: transparent;  -fx-border-color: transparent; -fx-font-size: 13px; -fx-text-fill: #374151; -fx-prompt-text-fill: #9ca3af; -fx-padding: 0 0 0 6;" />
-                           </children>
-                        </HBox>
-                        <ComboBox layoutX="272.0" layoutY="14.0" prefHeight="38.0" prefWidth="130.0" promptText="All Status" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #d1d5db;  -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #374151;" />
-                        <Button fx:id="addProductPopoutBtn" layoutX="1038.0" layoutY="14.0" onAction="#addNewProductPopout" prefHeight="38.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom right, #1B5E20 0%, #2E7D32 45%, #43A047 100%); -fx-background-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-cursor: hand;" text="＋  Add Product">
-                           <font>
-                              <Font name="Segoe UI Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Line endX="1120.0" layoutX="99.0" layoutY="67.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
-                        <Line endX="1120.0" layoutX="100.0" layoutY="97.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />
-                        <HBox layoutY="67.0" prefHeight="865.0" prefWidth="1218.0">
-                           <children>
-                              <TableView fx:id="inventoryTableView" fixedCellSize="35.0" prefHeight="865.0" prefWidth="1215.0" style="-fx-background-color: white; -fx-alignment: BASELINE_LEFT;">
-                                 <columns>
-                                    <TableColumn fx:id="productNameColumn" prefWidth="280.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #000000; -fx-padding: 0 15 0 15;" text="Product Name" />
-                                    <TableColumn fx:id="categoryColumn" prefWidth="240.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Category" />
-                                    <TableColumn fx:id="quantityColumn" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Quantity" />
-                                    <TableColumn fx:id="expiryDateColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Expiry Date" />
-                                    <TableColumn fx:id="statusColumn" prefWidth="180.0" style="-fx-background-color: white; -fx-alignment: CENTER; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-padding: 0 15 0 15;" text="Status" />
-                                    <TableColumn fx:id="actionColumn" prefWidth="238.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-padding: 0 15 0 15; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Actions" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </content>
-      </ScrollPane>
       <Pane layoutX="171.0" prefHeight="85.0" prefWidth="1329.0" style="-fx-background-color: #FFFFFF;">
          <effect>
             <DropShadow height="41.0" radius="20.0" spread="0.15" width="41.0">
@@ -76,12 +27,12 @@
             </DropShadow>
          </effect>
          <children>
-            <Label layoutX="87.0" layoutY="48.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="429.0" text="Manage all your products" textFill="#00000080">
+            <Label layoutX="87.0" layoutY="48.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="429.0" text="Configure your preferences" textFill="#00000080">
                <font>
                   <Font name="Segoe UI" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="87.0" layoutY="18.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Inventory">
+            <Label layoutX="87.0" layoutY="18.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Settings">
                <font>
                   <Font name="Segoe UI Bold" size="24.0" />
                </font>
@@ -176,7 +127,7 @@
                   <FontIcon iconColor="#16a34a80" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" text="󰂜" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
                </children>
             </VBox>
@@ -230,7 +181,89 @@
             </VBox>
          </children>
       </Pane>
-      <Pane fx:id="unclickablePane" opacity="0.53" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: #000000;" visible="false" />
-      <Pane fx:id="addProductPane" layoutX="520.0" layoutY="234.0" prefHeight="483.0" prefWidth="460.0" />
+      <Pane layoutX="255.0" layoutY="130.0" prefHeight="185.0" prefWidth="375.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow height="35.0" offsetY="2.0" radius="17.0" spread="0.15" width="35.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <VBox layoutX="14.0" layoutY="20.0" prefHeight="147.0" prefWidth="342.0" spacing="10.0">
+               <children>
+                  <Button fx:id="storeInfoBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="342.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Store Info                                " textFill="#15803d">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ProfileBtn" mnemonicParsing="false" onAction="#goToProfileSettings" prefHeight="40.0" prefWidth="342.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Profile                                     ">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="notificationsBtn" mnemonicParsing="false" onAction="#goToNotificationsSettings" prefHeight="40.0" prefWidth="342.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications                           ">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutX="26.0" layoutY="27.0" prefHeight="128.0" prefWidth="25.0" spacing="26.0">
+               <children>
+                  <FontIcon iconColor="#095424" iconLiteral="mdi2s-storefront-outline" iconSize="25" selectionEnd="1" strokeWidth="0.0" text="󱃁" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2a-account-outline" iconSize="25" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="646.0" layoutY="130.0" prefHeight="340.0" prefWidth="820.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow height="35.0" offsetY="2.0" radius="17.0" spread="0.15" width="35.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <HBox alignment="CENTER_LEFT" layoutX="23.0" layoutY="14.0" prefHeight="42.0" prefWidth="358.0" spacing="14.0">
+               <children>
+                  <StackPane fx:id="bellIconContainer" minHeight="42.0" minWidth="43.0" prefHeight="42.0" prefWidth="42.0" style="-fx-background-color: #2e8b2e; -fx-background-radius: 10;">
+                     <children>
+                        <FontIcon iconColor="WHITE" iconLiteral="mdi2s-storefront-outline" iconSize="30" />
+                     </children>
+                  </StackPane>
+                  <VBox prefHeight="42.0" prefWidth="303.0" spacing="2">
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="272.0" style="-fx-font-family: 'Segoe UI';                               -fx-font-size: 17;                               -fx-font-weight: bold;                               -fx-text-fill: #1a1a1a;" text="Store Information" />
+                        <Label fx:id="unreadCountLabel" prefHeight="15.0" prefWidth="272.0" style="-fx-font-family: 'Segoe UI';                               -fx-font-size: 12;                               -fx-text-fill: #888888;" text="Update your store details" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox layoutX="23.0" layoutY="87.0" prefHeight="235.0" prefWidth="775.0" spacing="7.0">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="126.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Store Name" />
+                  <TextField fx:id="storeNameTF" prefHeight="45.0" prefWidth="740.0" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15;" />
+                  <HBox prefHeight="5.0" prefWidth="775.0" spacing="15.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="379.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Owner Name    " />
+                        <Label prefHeight="18.0" prefWidth="379.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Contact Number" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="contactNumberTF" prefHeight="47.0" prefWidth="775.0" spacing="15.0">
+                     <children>
+                        <TextField fx:id="ownerNameTF" prefHeight="45.0" prefWidth="380.0" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15;" />
+                        <TextField prefHeight="45.0" prefWidth="380.0" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15;" />
+                     </children>
+                  </HBox>
+                  <Label prefHeight="18.0" prefWidth="126.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Store Address" />
+                  <TextField fx:id="storeAddTF" prefHeight="45.0" prefWidth="740.0" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15;" />
+               </children>
+            </VBox>
+            <Line endX="676.0" layoutX="124.0" layoutY="71.0" startX="-113.0" stroke="#00000033" strokeWidth="0.5" />
+         </children>
+      </Pane>
    </children>
 </Pane>
