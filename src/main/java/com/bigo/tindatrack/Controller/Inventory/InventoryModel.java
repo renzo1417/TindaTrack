@@ -46,6 +46,9 @@ public class InventoryModel {
     public boolean removeProduct(Product item) {
         list.removeProduct(item);
 
+        com.bigo.tindatrack.Controller.Notification.NotificationService
+                .onProductDeleted(item.getId());
+
         return removeProductFromDB(item);
     }
 
