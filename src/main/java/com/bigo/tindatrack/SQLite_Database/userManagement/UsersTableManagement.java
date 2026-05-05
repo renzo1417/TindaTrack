@@ -32,7 +32,7 @@ public class UsersTableManagement {
 
         try(Connection connected = connect(); Statement stmt = connected.createStatement()){
             stmt.execute(query);
-            System.out.println("SUCCESSFULLY CREATED TABLE");
+            System.out.println("SUCCESSFULLY CREATED TABLE : Users");
         }catch(SQLException e){
             System.err.println("FAILED CREATING TABLE : " + e.getMessage() + "\n");
             e.printStackTrace();

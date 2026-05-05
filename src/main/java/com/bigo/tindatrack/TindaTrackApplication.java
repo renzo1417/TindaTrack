@@ -1,5 +1,6 @@
 package com.bigo.tindatrack;
 
+import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesTableManagement;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.productTableManagement;
 import com.bigo.tindatrack.SQLite_Database.userManagement.UsersTableManagement;
@@ -26,6 +27,7 @@ public class TindaTrackApplication extends Application {
     }
     // creates the table
     private void initDatabase() {
+        SalesTableManagement.createSalesTable();
         UsersTableManagement.createUserTable();
         productTableManagement.createProductTable();
         ProductManagement.createNotificationsTable();
