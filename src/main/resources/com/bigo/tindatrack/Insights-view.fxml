@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.InventoryController">
+   <children>
+      <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="1320.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
+         <content>
+            <Pane prefHeight="1321.0" prefWidth="1260.0" style="-fx-background-color: F8F9FA;">
+               <children>
+                  <VBox layoutX="21.0" layoutY="26.0" prefHeight="1297.0" prefWidth="1218.0" spacing="20.0" style="-fx-background-color: #F8F9FA; -fx-background-radius: 15;">
+                     <children>
+                        <HBox prefHeight="418.0" prefWidth="1310.0" spacing="20.0">
+                           <children>
+                              <Pane prefHeight="380.0" prefWidth="600.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <VBox layoutX="20.0" layoutY="20.0" prefHeight="382.0" prefWidth="530.0" spacing="20.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="530.0" spacing="10.0">
+                                             <children>
+                                                <Pane prefHeight="51.0" prefWidth="55.0" style="-fx-background-color: #e6f0ff; -fx-background-radius: 10;">
+                                                   <children>
+                                                      <FontIcon iconColor="#3b82f6" iconLiteral="mdi2a-arrow-top-right-thin" iconSize="30" layoutX="13.0" layoutY="36.0" />
+                                                   </children>
+                                                </Pane>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Fast Moving Items" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="15.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Frequently decreasing stock" textFill="#718096">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <VBox spacing="10.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefWidth="490.0" spacing="10.0">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="Coffee" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar prefHeight="25.0" prefWidth="380.0" progress="1.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="Fuji" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar prefHeight="25.0" prefWidth="310.0" progress="1.0" style="-fx-background-color: #90cdf4;" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="Protein" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar prefHeight="25.0" prefWidth="290.0" progress="1.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="Orange" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar prefHeight="25.0" prefWidth="270.0" progress="1.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label prefWidth="60.0" text="Chicken" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar prefHeight="25.0" prefWidth="240.0" progress="1.0" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" right="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox prefHeight="154.0" prefWidth="530.0" spacing="20.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label text="#1" textFill="#A0AEC0">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Coffee Beans" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="19.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
+                                                      <Label text="88x" textFill="#3182CE">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label text="#2" textFill="#A0AEC0" />
+                                                      <Label text="Fuji Apples" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="19.0" prefWidth="73.0" HBox.hgrow="ALWAYS" />
+                                                      <Label text="72x" textFill="#3182CE">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label text="#3" textFill="#A0AEC0" />
+                                                      <Label text="Protein Bars" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <Label text="67x" textFill="#3182CE">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label text="#4" textFill="#A0AEC0" />
+                                                      <Label text="Orange Juice" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Pane prefHeight="19.0" prefWidth="264.0" HBox.hgrow="ALWAYS" />
+                                                      <Label text="67x" textFill="#3182CE">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="321.0" prefWidth="641.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                                 <children>
+                                    <VBox layoutX="20.0" layoutY="20.0" prefHeight="393.0" prefWidth="580.0" spacing="30.0">
+                                       <children>
+                                          <VBox spacing="10.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="530.0" spacing="10.0">
+                                                   <children>
+                                                      <Pane prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #fffbf0; -fx-background-radius: 10;">
+                                                         <children>
+                                                            <FontIcon iconColor="#f97316" iconLiteral="mdi2a-arrow-bottom-right-thin" iconSize="30" layoutX="13.0" layoutY="36.0" text="󱦷" />
+                                                         </children>
+                                                      </Pane>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Fast Moving Items" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="15.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Frequently decreasing stock" textFill="#718096">
+                                                               <font>
+                                                                  <Font size="12.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Coconut Water" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Beverages" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="11.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Label text="2x" textFill="#C05621">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="used" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Instant Noodles" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Snacks" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="11.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Label text="3x" textFill="#C05621">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="used" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Vitamin D Capsules" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Personal Care" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="11.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Label text="5x" textFill="#C05621">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="used" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Laundry Detergent" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Cleaning" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="11.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Label text="8x" textFill="#C05621">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="used" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-border-color: #E2E8F0; -fx-border-width: 1; -fx-border-radius: 8;">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label text="Frozen Peas" textFill="#1A202C">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="Frozen" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="11.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                      <Pane HBox.hgrow="ALWAYS" />
+                                                      <VBox alignment="CENTER_RIGHT">
+                                                         <children>
+                                                            <Label text="9x" textFill="#C05621">
+                                                               <font>
+                                                                  <Font name="System Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label text="used" textFill="#A0AEC0">
+                                                               <font>
+                                                                  <Font size="10.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="465.0" prefWidth="1218.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                           <children>
+                              <VBox layoutX="20.0" layoutY="20.0" prefHeight="415.0" prefWidth="1170.0" spacing="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="1170.0" spacing="10.0">
+                                       <children>
+                                          <Pane prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #fff5f5; -fx-background-radius: 10;">
+                                             <children>
+                                                <FontIcon iconColor="#dd1818" iconLiteral="mdi2a-alert-outline" iconSize="30" layoutX="13.0" layoutY="34.0" />
+                                             </children>
+                                          </Pane>
+                                          <VBox>
+                                             <children>
+                                                <Label text="At Risk of Expiry" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox spacing="5.0">
+                                                   <children>
+                                                      <Label text="Items likely to expire soon — " textFill="#718096">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="take action" textFill="#3182CE">
+                                                         <font>
+                                                            <Font size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <GridPane hgap="15.0" prefHeight="366.0" prefWidth="1170.0" vgap="15.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;">
+                                             <children>
+                                                <Label text="Chicken Breast" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Produce • Freezer" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="1d left" textFill="#E53E3E">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label text="Organic Milk" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Dairy • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="2d left" textFill="#E53E3E">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="2">
+                                             <children>
+                                                <Label text="Greek Yogurt" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Dairy • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="3d left" textFill="#E53E3E">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="Canned Sardines" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Canned Goods • Pantry" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="3d left" textFill="#E53E3E">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="Whole Wheat Bread" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Pantry Staples • Pantry" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="4d left" textFill="#C05621">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox prefHeight="107.0" prefWidth="283.0" spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <children>
+                                                <Label text="Cheese Spread" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Dairy • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="5d left" textFill="#C05621">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="Orange Juice" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Beverages • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="6d left" textFill="#C05621">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="Eggs (dozen)" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Dairy • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="7d left" textFill="#C05621">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox prefHeight="75.0" prefWidth="176.0" spacing="4.0" style="-fx-background-color: #FFFDF5; -fx-background-radius: 8; -fx-border-color: #FEEBC8; -fx-border-radius: 8;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <children>
+                                                <Label text="Almond Milk" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Dairy • Refrigerator" textFill="#718096">
+                                                   <font>
+                                                      <Font size="11.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="9d left" textFill="#C05621">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="340.0" prefWidth="1218.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                           <children>
+                              <VBox layoutX="20.0" layoutY="20.0" prefHeight="306.0" prefWidth="1181.0" spacing="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="1181.0" spacing="10.0">
+                                       <children>
+                                          <Pane prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;">
+                                             <children>
+                                                <FontIcon iconColor="#16803c" iconLiteral="mdi2p-package-variant-closed" iconSize="30" layoutX="13.0" layoutY="37.0" strokeMiterLimit="1.0" strokeWidth="0.1" />
+                                             </children>
+                                          </Pane>
+                                          <VBox>
+                                             <children>
+                                                <Label text="Recommendations" textFill="#1A202C">
+                                                   <font>
+                                                      <Font name="System Bold" size="15.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Smart suggestions based on your stock patterns" textFill="#718096">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <GridPane hgap="15.0" prefWidth="1181.0" vgap="15.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="578.0" minWidth="10.0" prefWidth="578.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="591.0" minWidth="10.0" prefWidth="578.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Orange Juice" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Beverages" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Vitamin D Capsules" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Personal Care" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Coconut Water" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Beverages" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="White Rice" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Grains" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Coffee Beans" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Beverages" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Fuji Apples" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Produce" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="3">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Chicken Breast" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Produce" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.rowIndex="4">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Whole Wheat Bread" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Pantry Staples" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Organic Milk" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Dairy" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Label text="Laundry Detergent" textFill="#1A202C">
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Cleaning" textFill="#718096">
+                                                         <font>
+                                                            <Font size="11.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <Label style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </content>
+      </ScrollPane>
+      <Pane layoutX="171.0" prefHeight="85.0" prefWidth="1329.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow height="41.0" radius="20.0" spread="0.15" width="41.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Label layoutX="87.0" layoutY="48.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="429.0" text="Data-driven recommendations for your store" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="87.0" layoutY="18.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="471.0" text="Insights">
+               <font>
+                  <Font name="Segoe UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Pane layoutX="1147.0" layoutY="11.0" prefHeight="63.0" prefWidth="161.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 20;">
+               <effect>
+                  <DropShadow height="30.0" offsetY="1.0" radius="14.5" spread="0.15" width="30.0">
+                     <color>
+                        <Color opacity="0.15000000596046448" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <Circle fill="#26ab2a78" layoutX="34.0" layoutY="32.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Label layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="68.0" layoutY="11.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="Froilan">
+                     <font>
+                        <Font name="Segoe UI Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="70.0" layoutY="35.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="54.0" text="USER" textFill="#00000080">
+                     <font>
+                        <Font name="Segoe UI" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="1066.0" layoutY="18.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: #F9FAFB; -fx-background-radius: 20;">
+               <effect>
+                  <DropShadow height="30.0" offsetY="1.0" radius="14.5" spread="0.15" width="30.0">
+                     <color>
+                        <Color opacity="0.15000000596046448" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="950.0" prefWidth="222.0" style="-fx-background-color: #FFFFFF;">
+         <effect>
+            <DropShadow height="30.0" offsetY="8.0" radius="14.5" spread="0.15" width="30.0">
+               <color>
+                  <Color opacity="0.15000000596046448" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <VBox layoutX="10.0" layoutY="140.0" prefHeight="338.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#goToDashboard" prefHeight="45.0" prefWidth="204.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Dashboard    ">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToInventory" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory      ">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="218.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Insights         " textAlignment="JUSTIFY" textFill="#15803d">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#goToStockActivity" prefHeight="45.0" prefWidth="217.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Stock Activity">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#goToNotifications" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Notifications">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings        ">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox layoutX="14.0" layoutY="147.0" prefHeight="306.0" prefWidth="30.0" spacing="25.0">
+               <children>
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2h-home-outline" iconSize="30" />
+                  <FontIcon iconColor="#0000007f" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
+                  <FontIcon iconColor="#16a149" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
+               </children>
+            </VBox>
+            <Label layoutX="14.0" layoutY="110.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="107.0" text="NAVIGATION" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI Bold" size="12.0" />
+               </font>
+            </Label>
+            <Line endX="119.0" layoutX="103.0" layoutY="99.0" startX="-103.0" strokeWidth="0.2" />
+            <Label layoutX="59.0" layoutY="31.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="TindaTrack">
+               <font>
+                  <Font name="Segoe UI Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="55.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="92.0" text="SMART TRACKER" textFill="#00000080">
+               <font>
+                  <Font name="Segoe UI" size="11.5" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="4.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/TindaTrackLogo.png" />
+               </image>
+            </ImageView>
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" onAction="#setInsightsLogout" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <FontIcon iconColor="#00000097" iconLiteral="mdi2l-logout" iconSize="20" layoutX="168.0" layoutY="914.0" text="󰍃" />
+            <Line endX="119.0" layoutX="103.0" layoutY="867.0" startX="-103.0" strokeWidth="0.2" />
+            <Circle fill="#26ab2a78" layoutX="51.0" layoutY="906.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Label alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="26.0" />
+               </font>
+            </Label>
+            <VBox layoutX="82.0" layoutY="889.0" prefHeight="25.0" prefWidth="68.0">
+               <children>
+                  <Label lineSpacing="3.0" prefHeight="10.0" prefWidth="68.0" text="Froilan">
+                     <font>
+                        <Font name="Segoe UI Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="3.0" prefHeight="1.0" prefWidth="54.0" text="User" textFill="#00000080">
+                     <font>
+                        <Font name="Segoe UI" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane fx:id="unclickablePane" opacity="0.53" prefHeight="950.0" prefWidth="1500.0" style="-fx-background-color: #000000;" visible="false" />
+   </children>
+</Pane>
