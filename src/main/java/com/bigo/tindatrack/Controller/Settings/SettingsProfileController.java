@@ -14,6 +14,7 @@ public class SettingsProfileController {
 
 
     @FXML
+    //initialazation
     public void initialize() {
         displayUserData();
     }
@@ -28,7 +29,7 @@ public class SettingsProfileController {
             System.out.println("No active session found.");
         }
     }
-
+    // switches screen using util
     @FXML
     private void goToDashboard(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
