@@ -40,6 +40,10 @@ public class InventoryController {
     private TableColumn<Product, Pane> statusColumn;
     @FXML
     private TableColumn<Product, Product> actionColumn;
+    @FXML
+    private TextField searchTextField;
+    @FXML
+    private ComboBox<String> statusFilter;
 
     private InventoryPresenter presenter;
 
@@ -56,7 +60,19 @@ public class InventoryController {
        actionColumn.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue()));
        actionColumn.setCellFactory(column -> presenter.buildActionCell());
 
-        inventoryTableView.setSelectionModel(null);
+       statusFilter.getItems().addAll(
+               "All Status",
+               "Empty",
+               "Expired",
+               "Safe",
+               "Near Expiry",
+               "Low Stock"
+       );
+
+       statusFilter.setValue("All Status");
+
+       inventoryTableView.setSelectionModel(null);
+       presenter.setupMasterFilter(searchTextField, statusFilter, inventoryTableView);
     }
 
     @FXML
