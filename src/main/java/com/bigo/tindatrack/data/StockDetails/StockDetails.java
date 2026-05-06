@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import java.time.LocalDate;
 
 public class StockDetails {
+    private int id;
     private String productName;
     private int oldQty;
     private int newQty;
@@ -52,4 +53,12 @@ public class StockDetails {
     public Pane getChange() { return manager.getChange(); }
 
     public Pane getReasoning() { return manager.getReason(); }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = LocalDate.parse(date);
+    }
 }
