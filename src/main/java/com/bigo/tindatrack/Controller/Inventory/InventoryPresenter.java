@@ -4,6 +4,10 @@ import com.bigo.tindatrack.Controller.Inventory.AddProductController.AddProductC
 import com.bigo.tindatrack.Controller.Inventory.InventoryActionController.ActionController;
 import com.bigo.tindatrack.Controller.Inventory.ModifyProductController.ModifyProductController;
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesManagement;
+import com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserService;
+import com.bigo.tindatrack.data.models.User;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +83,19 @@ public class InventoryPresenter {
             Product modifiedProduct = modifyProductController.saveModifiedProduct();
 
             if (modifiedProduct != null) {
+
+                int oldQuantity = modifyProductController.getOld_quantity();
+                int newQuantity = modifiedProduct.getQuantity();
+
+                if(newQuantity < oldQuantity){
+                    int sold =  oldQuantity - newQuantity;
+
+                    SalesManagement.recordSale(SessionManager.loadUser().getID(), modifiedProduct.getId(), modifiedProduct.getProductName(), sold);
+
+                    System.out.println("Sold: " + sold + " Product ID: " + modifiedProduct.getId() + " Owner ID: " + SessionManager.loadUser().getID());
+                }
+
+
                 model.modifyProduct(modifiedProduct);
                 controller.hideAddPopOut();
                 modifyProductController.clearInputs();

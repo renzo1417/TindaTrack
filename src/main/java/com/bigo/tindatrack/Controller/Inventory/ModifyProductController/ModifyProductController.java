@@ -32,6 +32,8 @@ public class ModifyProductController {
 
     private ModifyProductPresenter presenter;
 
+    private int old_quantity;
+
     public Pane getModifyProductPane() { return ModifyProductPane; }
 
     public Button getExitButton() {
@@ -72,11 +74,17 @@ public class ModifyProductController {
         categoryComboBox.setValue(null);
     }
 
+    public Product getToBeModified() {
+        return toBemodified;
+    }
+
     public void loadProduct(Product product) {
         String productName = product.getProductName();
         LocalDate expiryDate = product.getLocalExpiryDate();
         String category = product.getCategory();
         int quantity = product.getQuantity();
+
+        old_quantity = quantity;
 
         productNameTextField.setText(productName);
         quantityTextFIeld.setText(quantity + "");
@@ -101,6 +109,10 @@ public class ModifyProductController {
         String quantity = quantityTextFIeld.getText();
 
         return presenter.modifyProduct(toBemodified, productName, quantity, expiryDate, category);
+    }
+
+    public int getOld_quantity() {
+        return old_quantity;
     }
 
 }

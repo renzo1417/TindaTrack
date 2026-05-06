@@ -5,8 +5,10 @@ import com.bigo.tindatrack.Controller.Notification.NotificationService;
 import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationDAO;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable;
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +35,7 @@ public class DashboardController {
     @FXML private VBox sellFirstList;
     @FXML private Button inventoryButton, insightButton,
             stockactivityButton, settingButton, viewAllerts;
+    @FXML private Label total_items, expiring_soon, low_stock;
 
     private User user = loadUser();
 
@@ -57,6 +60,12 @@ public class DashboardController {
 
         NotificationService.evaluateAllProducts();
         populateSellFirst();
+
+        int ownerId = getCurrentUserId();
+        ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
+        total_items.setText(products.size() + "");
+
+
     }
 
     //populate to sellfirst
@@ -337,6 +346,7 @@ public class DashboardController {
     }
 
     public void goToSettingButton(ActionEvent event) {
+        System.out.println("setting button");
         utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
     }
 
