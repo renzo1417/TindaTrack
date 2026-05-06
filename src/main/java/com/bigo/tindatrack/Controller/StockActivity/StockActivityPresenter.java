@@ -3,6 +3,12 @@ package com.bigo.tindatrack.Controller.StockActivity;
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+
+import java.awt.*;
 
 public class StockActivityPresenter {
     private StockActivityController controller;
@@ -13,13 +19,13 @@ public class StockActivityPresenter {
         model = new StockActivityModel();
     }
 
-    public void setupListener() {
-        model.getList().addListener((ListChangeListener<StockDetails>) change -> {
-            while (change.next()) {
-                updateActivityCount();
-            }
-        });
-    }
+//    public void setupListener() {
+//        model.getList().addListener((ListChangeListener<StockDetails>) change -> {
+//            while (change.next()) {
+//                updateActivityCount();
+//            }
+//        });
+//    }
 
     public void updateActivityCount() {
         controller.updateActivityCount(
@@ -27,6 +33,27 @@ public class StockActivityPresenter {
                 model.getTotalSold(),
                 model.getTotalActivities()
         );
+    }
+
+    public void provideFilter(TextField searchTextField, TableView<StockDetails> detailsTableView) {
+        FilteredList<StockDetails> filteredList = new FilteredList<>(model.getList(), p -> true);
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(action -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                return action.getProductName().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<StockDetails> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(detailsTableView.comparatorProperty());
+
+        detailsTableView.setItems(sortedList);
     }
 
     public ObservableList<StockDetails> getList() {
