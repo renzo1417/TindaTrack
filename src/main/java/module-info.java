@@ -9,7 +9,7 @@ module com.bigo.tindatrack {
     requires java.desktop;
     requires javafx.base;
     requires javafx.graphics;
-//    requires com.bigo.tindatrack;
+//    requires com.bigo.tindatrack;/
 
     opens com.bigo.tindatrack to javafx.fxml;
     exports com.bigo.tindatrack;
