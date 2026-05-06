@@ -35,7 +35,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="974.0" layoutY="24.0" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 0 10 0 12;">
                            <children>
-                              <TextField prefHeight="36.0" prefWidth="210.0" promptText=" Search acitivities" style="-fx-background-color: transparent;  -fx-border-color: transparent; -fx-font-size: 13px; -fx-text-fill: #374151; -fx-prompt-text-fill: #9ca3af; -fx-padding: 0 0 0 6;" />
+                              <TextField fx:id="searchTextField" prefHeight="36.0" prefWidth="210.0" promptText=" Search acitivities" style="-fx-background-color: transparent;  -fx-border-color: transparent; -fx-font-size: 13px; -fx-text-fill: #374151; -fx-prompt-text-fill: #9ca3af; -fx-padding: 0 0 0 6;" />
                            </children>
                         </HBox>
                         <Line endX="1120.0" layoutX="100.0" layoutY="86.0" opacity="0.2" startX="-100.0" strokeWidth="0.5" />

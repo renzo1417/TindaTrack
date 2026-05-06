@@ -89,4 +89,8 @@ public class Product {
             this.originalQuantity = originalQuantity;
         }
     }
+
+    public String getStatusString() {
+        return status.getStatus();
+    }
 }

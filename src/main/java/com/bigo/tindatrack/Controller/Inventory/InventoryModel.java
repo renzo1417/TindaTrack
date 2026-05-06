@@ -1,7 +1,9 @@
 package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.SQLite_Database.StockManagement.StockActivityManagement;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
+import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
 import javafx.collections.ObservableList;
 
@@ -12,7 +14,6 @@ public class InventoryModel {
     private InventoryList list = new InventoryList();
 
     public InventoryModel() {
-        list = new InventoryList();
         syncWithDatabase();
     }
 
@@ -23,8 +24,28 @@ public class InventoryModel {
     }
 
     public boolean saveNewProduct(Product newProduct) {
-        list.addNewProduct(newProduct);
+        StockDetails newStockDetails = list.addNewProduct(newProduct);
+        saveActivityToDB(newStockDetails);
         return saveProductToDB(newProduct);
+    }
+
+    private boolean saveActivityToDB(StockDetails newStockDetails) {
+        int ownerId = com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId();
+
+        String productName = newStockDetails.getProductName();
+        int newQty = newStockDetails.getNewQty();
+        int oldQty = newStockDetails.getOldQty();
+        String reason = newStockDetails.getReason();
+        String date = newStockDetails.getDate();
+
+        int generatedID = StockActivityManagement.addActivity(productName, oldQty, newQty, reason, date, ownerId);
+
+        if (generatedID != -1) {
+            newStockDetails.setId(generatedID);
+            return true;
+        }
+
+        return false;
     }
 
     private boolean saveProductToDB(Product newProduct) {

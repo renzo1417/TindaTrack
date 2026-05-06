@@ -9,12 +9,13 @@ import com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager;
 import com.bigo.tindatrack.SQLite_Database.userManagement.UserService;
 import com.bigo.tindatrack.data.models.User;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -25,6 +26,8 @@ public class InventoryPresenter {
     private InventoryModel model;
     private AddProductController addProductController;
     private ModifyProductController modifyProductController;
+
+    private FilteredList<Product> filteredList;
 
     public InventoryPresenter(InventoryController controller) {
         this.controller = controller;
@@ -161,6 +164,33 @@ public class InventoryPresenter {
                 }
             }
         };
+    }
+
+    public void setupMasterFilter(TextField searchTextField, ComboBox<String> statusFilter, TableView<Product> inventoryTableView) {
+        filteredList = new FilteredList<>(model.getProductList(), p -> true);
+
+        Runnable applyFilters = () -> {
+            String searchText = searchTextField.getText() == null ? "" : searchTextField.getText().toLowerCase();
+            String selectedStatus = statusFilter.getValue();
+
+            filteredList.setPredicate(product -> {
+                boolean matchesSearch = searchText.isEmpty() ||
+                        product.getProductName().toLowerCase().contains(searchText);
+
+                boolean matchesStatus = (selectedStatus == null || selectedStatus.equals("All Status")) ||
+                        product.getStatusString().equals(selectedStatus);
+
+                return matchesSearch && matchesStatus;
+            });
+        };
+
+        searchTextField.textProperty().addListener((obs, old, newVal) -> applyFilters.run());
+        statusFilter.valueProperty().addListener((obs, old, newVal) -> applyFilters.run());
+
+        SortedList<Product> sortedData = new SortedList<>(filteredList);
+        sortedData.comparatorProperty().bind(inventoryTableView.comparatorProperty());
+
+        inventoryTableView.setItems(sortedData);
     }
 
     public void addNewProduct(Pane addProductPane) {

@@ -5,9 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class StockDetailsList {
-    private static int totalSold = 0;
-    private static int totalRestocked = 0;
-    private static int totalActivities = 0;
+    private int totalSold = 0;
+    private int totalRestocked = 0;
+    private int totalActivities = 0;
     private static ObservableList<StockDetails> detailsList = FXCollections.observableArrayList();
 
     private void updateActivity(String reason) {
@@ -20,7 +20,7 @@ public class StockDetailsList {
         totalActivities = totalSold + totalRestocked;
     }
 
-    public void newStockActivity(Product product) {
+    public StockDetails newStockActivity(Product product) {
         StockDetails newStockDetails = new StockDetails(
                 product.getProductName(),
                 product.getQuantity(),
@@ -30,9 +30,11 @@ public class StockDetailsList {
 
         detailsList.add(0, newStockDetails);
         updateActivity(newStockDetails.getReason());
+
+        return newStockDetails;
     }
 
-    public void modifiedStockActivity(Product product, int oldQty, int newQty) {
+    public StockDetails modifiedStockActivity(Product product, int oldQty, int newQty) {
         String reason;
 
         if (oldQty > newQty) {
@@ -50,10 +52,22 @@ public class StockDetailsList {
 
         detailsList.add(0, newStockDetails);
         updateActivity(newStockDetails.getReason());
+
+        return newStockDetails;
     }
 
     public ObservableList<StockDetails> getDetailsList() {
         return detailsList;
+    }
+
+    public void resychActivities() {
+        this.totalSold = 0;
+        this.totalRestocked = 0;
+        this.totalActivities = 0;
+
+        for (StockDetails s : detailsList) {
+            updateActivity(s.getReason());
+        }
     }
 
     public int getTotalSold() {

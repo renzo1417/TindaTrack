@@ -36,10 +36,10 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="14.0" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 0 10 0 12;">
                            <children>
-                              <TextField prefHeight="36.0" prefWidth="210.0" promptText="Search products..." style="-fx-background-color: transparent;  -fx-border-color: transparent; -fx-font-size: 13px; -fx-text-fill: #374151; -fx-prompt-text-fill: #9ca3af; -fx-padding: 0 0 0 6;" />
+                              <TextField fx:id="searchTextField" prefHeight="36.0" prefWidth="210.0" promptText="Search products..." style="-fx-background-color: transparent;  -fx-border-color: transparent; -fx-font-size: 13px; -fx-text-fill: #374151; -fx-prompt-text-fill: #9ca3af; -fx-padding: 0 0 0 6;" />
                            </children>
                         </HBox>
-                        <ComboBox layoutX="272.0" layoutY="14.0" prefHeight="38.0" prefWidth="130.0" promptText="All Status" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #d1d5db;  -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #374151;" />
+                        <ComboBox fx:id="statusFilter" layoutX="272.0" layoutY="14.0" prefHeight="38.0" prefWidth="130.0" promptText="All Status" style="-fx-background-color: white;  -fx-background-radius: 8;  -fx-border-color: #d1d5db;  -fx-border-radius: 8; -fx-border-width: 1; -fx-font-size: 13px; -fx-text-fill: #374151;" />
                         <Button fx:id="addProductPopoutBtn" layoutX="1038.0" layoutY="14.0" onAction="#addNewProductPopout" prefHeight="38.0" prefWidth="148.0" style="-fx-background-color: linear-gradient(to bottom right, #1B5E20 0%, #2E7D32 45%, #43A047 100%); -fx-background-radius: 8; -fx-border-color: transparent; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: white; -fx-cursor: hand;" text="＋  Add Product">
                            <font>
                               <Font name="Segoe UI Bold" size="13.0" />

@@ -35,6 +35,8 @@ public class StockActivityController {
     private TableColumn<StockDetails, Pane> reasonColumn;
     @FXML
     private TableColumn<StockDetails, String> dateColumn;
+    @FXML
+    private TextField searchTextField;
 
     private StockActivityPresenter presenter;
 
@@ -52,7 +54,8 @@ public class StockActivityController {
 
         presenter.updateActivityCount();
 
-        presenter.setupListener();
+//        presenter.setupListener();
+        presenter.provideFilter(searchTextField, detailsTableView);
     }
 
     public void updateActivityCount(int totalRestocked, int totalSold, int totalActivities) {

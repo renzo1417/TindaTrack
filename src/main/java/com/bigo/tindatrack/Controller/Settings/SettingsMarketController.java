@@ -55,10 +55,12 @@ public class SettingsMarketController {
 
     public void goToProfileSettings(ActionEvent event) {
         System.out.println("Going to Profile Settings");
+        utility.switchScene(event,"/com/bigo/tindatrack/SettingsProfile-view.fxml");
     }
 
     public void goToNotificationsSettings(ActionEvent event) {
         System.out.println("Going to Notification Settings");
+        utility.switchScene(event,"/com/bigo/tindatrack/SettingsNotification-view.fxml");
     }
 
 
