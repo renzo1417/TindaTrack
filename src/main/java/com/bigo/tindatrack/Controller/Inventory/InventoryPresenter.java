@@ -117,6 +117,16 @@ public class InventoryPresenter {
         return model.getProductList();
     }
 
+    public static String getProductCategory(String name, ObservableList<Product> products) {
+        for (Product product : products) {
+            if (product.getProductName().equals(name)) {
+                return product.getCategory();
+            }
+        }
+
+        return "Unknown Category";
+    }
+
     public TableCell<Product, Product> buildActionCell() {
         return new TableCell<Product, Product>() {
             private Parent root;

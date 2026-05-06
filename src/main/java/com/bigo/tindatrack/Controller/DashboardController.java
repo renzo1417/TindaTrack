@@ -1,10 +1,13 @@
 package com.bigo.tindatrack.Controller;
 
+import com.bigo.tindatrack.Controller.Inventory.InventoryPresenter;
 import com.bigo.tindatrack.Controller.Notification.NotificationItem;
 import com.bigo.tindatrack.Controller.Notification.NotificationService;
 import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationDAO;
+import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesManagement;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable;
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.Sales.Sales;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
@@ -16,6 +19,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 
@@ -36,6 +40,12 @@ public class DashboardController {
     @FXML private Button inventoryButton, insightButton,
             stockactivityButton, settingButton, viewAllerts;
     @FXML private Label total_items, expiring_soon, low_stock;
+    @FXML private Label top_first_item, top_second_item, top_third_item;
+    @FXML private Label top_first_item_counter, top_second_item_counter, top_third_item_counter;
+    @FXML private ProgressBar top_first_item_progress, top_second_item_progress, top_third_item_progress;
+    @FXML private Label least_first_item, least_second_item, least_third_item;
+    @FXML private Label least_first_item_type, least_second_item_type, least_third_item_type;
+    @FXML private Label least_first_item_counter, least_second_item_counter, least_third_item_counter;
 
     private User user = loadUser();
 
@@ -56,7 +66,6 @@ public class DashboardController {
                 .getDisplayName(TextStyle.FULL, Locale.ENGLISH);
         String    formatted = today.format(
                 DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
-        dateField.setText(dayName + ", " + formatted + " - ");
 
         NotificationService.evaluateAllProducts();
         populateSellFirst();
@@ -64,8 +73,113 @@ public class DashboardController {
         int ownerId = getCurrentUserId();
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
         total_items.setText(products.size() + "");
+        dateField.setText(dayName + ", " + formatted + " - " + products.size() + " items tracked");
 
 
+        ObservableList<Sales> rawSalesHistory = SalesManagement.getSalesHistory(user.getID());
+
+        List<ProductTotal> combinedTotals = new ArrayList<>();
+        for (Sales sale : rawSalesHistory) {
+            boolean found = false;
+
+            for (ProductTotal pt : combinedTotals) {
+                if (pt.name.equals(sale.getName())) {
+                    pt.totalSold += sale.getQuantity();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                combinedTotals.add(new ProductTotal(sale.getName(), sale.getQuantity()));
+            }
+        }
+
+        combinedTotals.sort((item1, item2) -> Integer.compare(item2.totalSold, item1.totalSold));
+
+        int maxSales = combinedTotals.isEmpty() ? 1 : combinedTotals.get(0).totalSold;
+
+        if (combinedTotals.size() > 0) {
+            ProductTotal item1 = combinedTotals.get(0);
+            top_first_item.setText(item1.name);
+            top_first_item_counter.setText(item1.totalSold + "x");
+            top_first_item_progress.setProgress((double) item1.totalSold / maxSales);
+        } else {
+            top_first_item.setText("No sales yet");
+            top_first_item_progress.setProgress(0.0);
+        }
+
+        if (combinedTotals.size() > 1) {
+            ProductTotal item2 = combinedTotals.get(1);
+            top_second_item.setText(item2.name);
+            top_second_item_counter.setText(item2.totalSold + "x");
+            top_second_item_progress.setProgress((double) item2.totalSold / maxSales);
+        } else {
+            top_second_item.setText("—");
+            top_second_item_progress.setProgress(0.0);
+        }
+
+        if (combinedTotals.size() > 2) {
+            ProductTotal item3 = combinedTotals.get(2);
+            top_third_item.setText(item3.name);
+            top_third_item_counter.setText(item3.totalSold + "x");
+            top_third_item_progress.setProgress((double) item3.totalSold / maxSales);
+        } else {
+            top_third_item.setText("—");
+            top_third_item_progress.setProgress(0.0);
+            top_third_item_counter.setText("0");
+        }
+
+        //least items
+        int totalItems = combinedTotals.size();
+
+        if (combinedTotals.size() > 0) {
+            ProductTotal item1 = combinedTotals.get(totalItems - 1);
+            least_first_item.setText(item1.name);
+            least_first_item_counter.setText(item1.totalSold + "x");
+            least_first_item_type.setText(InventoryPresenter.getProductCategory(item1.name, products));
+        } else {
+            least_first_item.setText("No sales yet");
+            least_first_item_counter.setText("0x");
+            least_first_item_type.setText("—");
+        }
+
+        if (combinedTotals.size() > 1) {
+            ProductTotal item2= combinedTotals.get(totalItems - 2);
+            least_second_item.setText(item2.name);
+            least_second_item_counter.setText(item2.totalSold + "x");
+            least_second_item_type.setText(InventoryPresenter.getProductCategory(item2.name, products));
+        } else {
+            least_second_item.setText("No sales yet");
+            least_second_item_counter.setText("0x");
+            least_second_item_type.setText("—");
+        }
+
+        if (combinedTotals.size() > 2) {
+            ProductTotal item3= combinedTotals.get(totalItems - 3);
+            least_third_item.setText(item3.name);
+            least_third_item_counter.setText(item3.totalSold + "x");
+            least_third_item_type.setText(InventoryPresenter.getProductCategory(item3.name, products));
+        } else {
+            least_third_item.setText("—");
+            least_third_item_counter.setText("0x");
+            least_third_item_type.setText("—");
+        }
+
+
+
+
+    }
+
+    //helper para maka hold sa combined total sa product sales
+    class ProductTotal {
+        String name;
+        int totalSold;
+
+        public ProductTotal(String name, int totalSold) {
+            this.name = name;
+            this.totalSold = totalSold;
+        }
     }
 
     //populate to sellfirst

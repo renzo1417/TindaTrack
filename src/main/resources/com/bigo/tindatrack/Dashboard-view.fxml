@@ -564,12 +564,12 @@
                <children>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coconut Water">
+                        <Label fx:id="least_first_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coconut Water">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Beverages" textFill="#000000a9">
+                        <Label fx:id="least_first_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Beverages" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -578,12 +578,12 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Frozen Peas">
+                        <Label fx:id="least_second_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Frozen Peas">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Frozen" textFill="#000000a9">
+                        <Label fx:id="least_second_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Frozen" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -592,12 +592,12 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Instant Noodles">
+                        <Label fx:id="least_third_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Instant Noodles">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Snacks" textFill="#000000a9">
+                        <Label fx:id="least_third_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Snacks" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -608,17 +608,17 @@
             </VBox>
             <VBox layoutX="442.0" layoutY="49.0" prefHeight="119.0" prefWidth="34.0" spacing="24.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="3x" textFill="#f97316">
+                  <Label fx:id="least_first_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="3x" textFill="#f97316">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="5x" textFill="#f97316">
+                  <Label fx:id="least_second_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="5x" textFill="#f97316">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="8x" textFill="#f97316">
+                  <Label fx:id="least_third_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="8x" textFill="#f97316">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -643,22 +643,22 @@
          </effect>
          <children>
             <Line endX="465.0" layoutX="24.0" layoutY="37.0" startX="-25.0" stroke="#00000080" strokeWidth="0.2" />
-            <ProgressBar layoutX="16.0" layoutY="75.0" prefHeight="12.0" prefWidth="429.0" progress="0.88" />
-            <ProgressBar layoutX="16.0" layoutY="114.0" prefHeight="12.0" prefWidth="429.0" progress="0.72" />
-            <ProgressBar layoutX="16.0" layoutY="153.0" prefHeight="12.0" prefWidth="429.0" progress="0.67" />
+            <ProgressBar fx:id="top_first_item_progress" layoutX="16.0" layoutY="75.0" prefHeight="12.0" prefWidth="429.0" progress="0.88" />
+            <ProgressBar fx:id="top_second_item_progress" layoutX="16.0" layoutY="114.0" prefHeight="12.0" prefWidth="429.0" progress="0.72" />
+            <ProgressBar fx:id="top_third_item_progress" layoutX="16.0" layoutY="153.0" prefHeight="12.0" prefWidth="429.0" progress="0.67" />
             <VBox layoutX="442.0" layoutY="54.0" prefHeight="119.0" prefWidth="34.0" spacing="24.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="88x" textFill="#3b82f6">
+                  <Label fx:id="top_first_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="88x" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="72x" textFill="#3b82f6">
+                  <Label fx:id="top_second_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="72x" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="67x" textFill="#3b82f6">
+                  <Label fx:id="top_third_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="67x" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -667,17 +667,17 @@
             </VBox>
             <VBox layoutX="16.0" layoutY="49.0" prefHeight="102.0" prefWidth="136.0" spacing="20.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coffee Beans">
+                  <Label fx:id="top_first_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Coffee Beans">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
+                  <Label fx:id="top_second_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Protein Bars">
+                  <Label fx:id="top_third_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Protein Bars">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>

@@ -36,4 +36,14 @@ public class Sales {
         return saleDate;
     }
 
+    @Override
+    public String toString() {
+        return "Sales{" +
+                "id=" + id +
+                ", productId=" + productId +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", saleDate='" + saleDate + '\'' +
+                '}';
+    }
 }
