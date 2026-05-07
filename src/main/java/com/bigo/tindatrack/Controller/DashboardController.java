@@ -39,7 +39,7 @@ public class DashboardController {
     @FXML private VBox sellFirstList;
     @FXML private Button inventoryButton, insightButton,
             stockactivityButton, settingButton, viewAllerts;
-    @FXML private Label total_items, expiring_soon, low_stock;
+    @FXML private Label total_items, expiring_soon, low_stock, total_expireUnits;
     @FXML private Label top_first_item, top_second_item, top_third_item;
     @FXML private Label top_first_item_counter, top_second_item_counter, top_third_item_counter;
     @FXML private ProgressBar top_first_item_progress, top_second_item_progress, top_third_item_progress;
@@ -165,6 +165,43 @@ public class DashboardController {
             least_third_item_counter.setText("0x");
             least_third_item_type.setText("—");
         }
+
+// notification from data base
+        List<NotificationItem> allNotifs = NotificationDAO.getAll();
+
+//  logic ni for products expiring soon nga naa sa range of 7 days
+        int expiringSoonCount = 0;
+        for (Product p : products) {
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry != null) {
+                long daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), expiry);
+                if (daysLeft >= 0 && daysLeft <= 7) {
+                    expiringSoonCount++;
+                }
+            }
+        }
+        expiring_soon.setText(String.valueOf(expiringSoonCount));
+
+// logic ni for low or out of stock products
+// using hashSet
+        HashSet<Integer> uniqueLowStockIds = new HashSet<>();
+        for (NotificationItem n : allNotifs) {
+            if (n.message.contains("stock is low") || n.message.contains("out of stock")) {
+                uniqueLowStockIds.add(n.productId);
+            }
+        }
+        int lowStockCount = uniqueLowStockIds.size();
+        low_stock.setText(String.valueOf(lowStockCount));
+
+// logic ni for total expired units
+        int totalExpiredUnits = 0;
+        for (Product p : products) {
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry != null && expiry.isBefore(LocalDate.now())) {
+                totalExpiredUnits += p.getQuantity();
+            }
+        }
+        total_expireUnits.setText(String.valueOf(totalExpiredUnits));
 
 
 
@@ -475,10 +512,14 @@ public class DashboardController {
     public void goToNotifications(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
     }
+    public void viewAllGotoInventory(ActionEvent event){
+        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml");
+    }
 
     public void setLogout(ActionEvent event) {
         com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
         this.user = null;
         utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
+
 }
