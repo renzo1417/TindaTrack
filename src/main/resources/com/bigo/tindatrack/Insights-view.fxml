@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Inventory.InventoryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.InsightsController">
    <children>
       <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="1320.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
          <content>
@@ -64,32 +64,32 @@
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefWidth="490.0" spacing="10.0">
                                                    <children>
-                                                      <Label prefWidth="60.0" text="Coffee" textAlignment="RIGHT" textFill="#718096" />
-                                                      <ProgressBar prefHeight="25.0" prefWidth="380.0" progress="1.0" />
+                                                      <Label fx:id="item1Label" prefWidth="60.0" text="Coffee" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar fx:id="item1PB" prefHeight="25.0" prefWidth="380.0" progress="1.0" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
-                                                      <Label prefWidth="60.0" text="Fuji" textAlignment="RIGHT" textFill="#718096" />
-                                                      <ProgressBar prefHeight="25.0" prefWidth="310.0" progress="1.0" style="-fx-background-color: #90cdf4;" />
+                                                      <Label fx:id="item2Label" prefWidth="60.0" text="Fuji" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar fx:id="item2PB" prefHeight="25.0" prefWidth="310.0" progress="1.0" style="-fx-background-color: #90cdf4;" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
-                                                      <Label prefWidth="60.0" text="Protein" textAlignment="RIGHT" textFill="#718096" />
-                                                      <ProgressBar prefHeight="25.0" prefWidth="290.0" progress="1.0" />
+                                                      <Label fx:id="item3Label" prefWidth="60.0" text="Protein" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar fx:id="item3PB" prefHeight="25.0" prefWidth="290.0" progress="1.0" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
-                                                      <Label prefWidth="60.0" text="Orange" textAlignment="RIGHT" textFill="#718096" />
-                                                      <ProgressBar prefHeight="25.0" prefWidth="270.0" progress="1.0" />
+                                                      <Label fx:id="item4Label" prefWidth="60.0" text="Orange" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar fx:id="item4PB" prefHeight="25.0" prefWidth="270.0" progress="1.0" />
                                                    </children>
                                                 </HBox>
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
-                                                      <Label prefWidth="60.0" text="Chicken" textAlignment="RIGHT" textFill="#718096" />
-                                                      <ProgressBar prefHeight="25.0" prefWidth="240.0" progress="1.0" />
+                                                      <Label fx:id="item5Label" prefWidth="60.0" text="Chicken" textAlignment="RIGHT" textFill="#718096" />
+                                                      <ProgressBar fx:id="item5PB" prefHeight="25.0" prefWidth="240.0" progress="1.0" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -106,7 +106,7 @@
                                                             <Font size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Coffee Beans" textFill="#1A202C">
+                                                      <Label fx:id="item1FastLabel" text="Coffee Beans" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -122,7 +122,7 @@
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
                                                       <Label text="#2" textFill="#A0AEC0" />
-                                                      <Label text="Fuji Apples" textFill="#1A202C">
+                                                      <Label fx:id="item2FastLabel" text="Fuji Apples" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -138,7 +138,7 @@
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
                                                       <Label text="#3" textFill="#A0AEC0" />
-                                                      <Label text="Protein Bars" textFill="#1A202C">
+                                                      <Label fx:id="item4FastLabel" text="Protein Bars" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -154,7 +154,7 @@
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
                                                       <Label text="#4" textFill="#A0AEC0" />
-                                                      <Label text="Orange Juice" textFill="#1A202C">
+                                                      <Label fx:id="item5FastLabel" text="Orange Juice" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -191,12 +191,12 @@
                                                       </Pane>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Fast Moving Items" textFill="#1A202C">
+                                                            <Label text="Slow Moving Items" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="15.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Frequently decreasing stock" textFill="#718096">
+                                                            <Label text="Rarely changing stock" textFill="#718096">
                                                                <font>
                                                                   <Font size="12.0" />
                                                                </font>
