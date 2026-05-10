@@ -53,8 +53,8 @@ public class InventoryModel {
         String name = newProduct.getProductName();
         int quan = newProduct.getQuantity();
         String expiry = newProduct.getLocalExpiryDate() != null ? newProduct.getLocalExpiryDate().toString() : null;
-
-        int generatedId = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.addProduct(name, quan, expiry, ownerId);
+        String category = newProduct.getCategory();
+        int generatedId = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.addProduct(name, quan, expiry, ownerId, category);
 
         if (generatedId != -1) {
             newProduct.setId(generatedId);
