@@ -11,8 +11,8 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 public class ProductManagement {
 
     // changed from returning boolean to return the id
-    public static int addProduct(String name, int quantity, String expiry, int ownerId) {
-        String query = "INSERT INTO products(name, quantity, expiry_date, owner_id) VALUES (?,?,?,?)";
+    public static int addProduct(String name, int quantity, String expiry, int ownerId, String category) {
+        String query = "INSERT INTO products(name, quantity, expiry_date, owner_id, category) VALUES (?,?,?,?,?)";
 
         try (Connection connected = connect();
              PreparedStatement pstmt = connected.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -21,6 +21,7 @@ public class ProductManagement {
             pstmt.setInt(2, quantity);
             pstmt.setString(3, expiry);
             pstmt.setInt(4, ownerId);
+            pstmt.setString(5, category);
 
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();

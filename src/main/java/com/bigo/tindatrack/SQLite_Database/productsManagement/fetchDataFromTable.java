@@ -127,13 +127,14 @@ public class fetchDataFromTable {
         int       quantity   = rs.getInt("quantity");
         String    status     = rs.getString("status");
         String    expiryStr  = rs.getString("expiry_date");
+        String    category   = rs.getString("category");
         LocalDate expiryDate = null;
         if (expiryStr != null && !expiryStr.trim().isEmpty()) {
             // This will change all date formats to a unified YYYY-MM-DD(SQLite Requirement)
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
             expiryDate = LocalDate.parse(expiryStr, formatter);
         }
-        Product p = new Product(name, quantity, expiryDate, "general");
+        Product p = new Product(name, quantity, expiryDate, category);
         p.setId(id);         // make sure Product has setId()
         return p;
     }
