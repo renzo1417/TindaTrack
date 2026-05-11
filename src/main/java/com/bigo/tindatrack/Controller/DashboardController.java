@@ -46,6 +46,9 @@ public class DashboardController {
     @FXML private Label least_first_item, least_second_item, least_third_item;
     @FXML private Label least_first_item_type, least_second_item_type, least_third_item_type;
     @FXML private Label least_first_item_counter, least_second_item_counter, least_third_item_counter;
+    @FXML private Label wasted_first_item_type,  wasted_second_item_type, wasted_third_item_type;
+    @FXML private Label wasted_first_item, wasted_second_item, wasted_third_item;
+    @FXML private Label wasted_first_item_counter, wasted_second_item_counter, wasted_third_item_counter;
 
     private User user = loadUser();
 
@@ -164,6 +167,52 @@ public class DashboardController {
             least_third_item.setText("—");
             least_third_item_counter.setText("0x");
             least_third_item_type.setText("—");
+        }
+
+        // Recently wasted products
+
+        List<Product> expiredProducts = products.stream()
+                .filter(p -> {
+                    LocalDate expiry = p.getLocalExpiryDate();
+                    return expiry != null && expiry.isBefore(LocalDate.now());
+                })
+                .sorted((a, b) -> Integer.compare(b.getQuantity(), a.getQuantity()))
+                .collect(Collectors.toList());
+
+        if (expiredProducts.size() > 0) {
+            Product w1 = expiredProducts.get(0);
+            wasted_first_item.setText(w1.getProductName());
+            wasted_first_item_counter.setText(w1.getQuantity() + " wasted");
+            wasted_first_item_type.setText(
+                    InventoryPresenter.getProductCategory(w1.getProductName(), products));
+        } else {
+            wasted_first_item.setText("No wasted items");
+            wasted_first_item_counter.setText("—");
+            wasted_first_item_type.setText("—");
+        }
+
+        if (expiredProducts.size() > 1) {
+            Product w2 = expiredProducts.get(1);
+            wasted_second_item.setText(w2.getProductName());
+            wasted_second_item_counter.setText(w2.getQuantity() + " wasted");
+            wasted_second_item_type.setText(
+                    InventoryPresenter.getProductCategory(w2.getProductName(), products));
+        } else {
+            wasted_second_item.setText("—");
+            wasted_second_item_counter.setText("—");
+            wasted_second_item_type.setText("—");
+        }
+
+        if (expiredProducts.size() > 2) {
+            Product w3 = expiredProducts.get(2);
+            wasted_third_item.setText(w3.getProductName());
+            wasted_third_item_counter.setText(w3.getQuantity() + " wasted");
+            wasted_third_item_type.setText(
+                    InventoryPresenter.getProductCategory(w3.getProductName(), products));
+        } else {
+            wasted_third_item.setText("—");
+            wasted_third_item_counter.setText("—");
+            wasted_third_item_type.setText("—");
         }
 
 // notification from data base

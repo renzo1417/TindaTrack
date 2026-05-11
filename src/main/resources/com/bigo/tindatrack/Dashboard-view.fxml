@@ -357,12 +357,12 @@
                <children>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
+                        <Label fx:id="wasted_first_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Chicken Breast">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce" textFill="#000000a9">
+                        <Label fx:id="wasted_first_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -371,12 +371,12 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Greek Yogurt">
+                        <Label fx:id="wasted_second_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Greek Yogurt">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy" textFill="#000000a9">
+                        <Label fx:id="wasted_second_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Dairy" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -385,12 +385,12 @@
                   </VBox>
                   <VBox prefHeight="34.0" prefWidth="310.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Spinach">
+                        <Label fx:id="wasted_third_item" prefHeight="24.0" prefWidth="317.0" style="-fx-font-weight: 600;" text="Spinach">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce" textFill="#000000a9">
+                        <Label fx:id="wasted_third_item_type" lineSpacing="3.0" prefHeight="19.0" prefWidth="314.0" text="Produce" textFill="#000000a9">
                            <font>
                               <Font name="Segoe UI" size="11.0" />
                            </font>
@@ -401,17 +401,17 @@
             </VBox>
             <VBox layoutX="402.0" layoutY="56.0" prefHeight="119.0" prefWidth="68.0" spacing="24.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="5 wasted" textFill="#9333ea">
+                  <Label fx:id="wasted_first_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="5 wasted" textFill="#9333ea">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="3 wasted" textFill="#9333ea">
+                  <Label fx:id="wasted_second_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="3 wasted" textFill="#9333ea">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="1 wasted" textFill="#9333ea">
+                  <Label fx:id="wasted_third_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="1 wasted" textFill="#9333ea">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
