@@ -140,7 +140,7 @@ public class fetchDataFromTable {
     }
 
     private static final String BASE_QUERY =
-            "SELECT id, name, quantity, expiry_date, " +
+            "SELECT id, name, quantity, expiry_date, category, " +
                     "CASE " +
                     "  WHEN date(expiry_date) < date('now', 'localtime') THEN 'Expired' " +
                     "  WHEN date(expiry_date) <= date('now', '+7 days', 'localtime') THEN 'Near Expiry' " +
@@ -177,6 +177,7 @@ public class fetchDataFromTable {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+                    System.out.println(rs.getString("name"));
                     list.add(mapRow(rs));
                 }
             }
