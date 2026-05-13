@@ -43,7 +43,7 @@
                            <children>
                               <TableView fx:id="detailsTableView" prefHeight="865.0" prefWidth="1218.0" style="-fx-background-color: white;">
                                  <columns>
-                                    <TableColumn fx:id="productNameColumn" prefWidth="260.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #000000;" text="Product Name" />
+                                    <TableColumn fx:id="productNameColumn" prefWidth="260.0" style="-fx-background-color: white; -fx-font-weight: bold; -fx-text-fill: #FF; -fx-alignment: CENTER; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-text-fill: #999999;" text="Product Name" />
                                     <TableColumn fx:id="oldQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-font-family: 'Segoe UI'; -fx-alignment: CENTER;" text="Old Qty" />
                                     <TableColumn fx:id="newQtyColumn" prefWidth="170.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="New Qty" />
                                     <TableColumn fx:id="changeColumn" prefWidth="171.0" style="-fx-background-color: white; -fx-font-size: 13; -fx-alignment: CENTER;" text="Change" />

@@ -88,6 +88,8 @@ public class Product {
         if (originalQuantity > this.originalQuantity) {
             this.originalQuantity = originalQuantity;
         }
+
+        status.updateStatus(expiryDate, quantity, originalQuantity);
     }
 
     public String getStatusString() {

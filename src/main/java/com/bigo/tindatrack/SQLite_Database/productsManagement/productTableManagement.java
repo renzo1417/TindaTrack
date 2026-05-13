@@ -15,6 +15,7 @@ public class productTableManagement {
                 " quantity INTEGER NOT NULL DEFAULT 0," +
                 " expiry_date TEXT," +
                 " category TEXT DEFAULT 'Uncategorized'," +
+                " originalQty INTEGER NOT NULL," +
                 " FOREIGN KEY (owner_id) REFERENCES users(id)" +
                 ");";
 

@@ -128,6 +128,7 @@ public class fetchDataFromTable {
         String    status     = rs.getString("status");
         String    expiryStr  = rs.getString("expiry_date");
         String    category   = rs.getString("category");
+        int       originalQty = rs.getInt("originalQty");
         LocalDate expiryDate = null;
         if (expiryStr != null && !expiryStr.trim().isEmpty()) {
             // This will change all date formats to a unified YYYY-MM-DD(SQLite Requirement)
@@ -135,12 +136,13 @@ public class fetchDataFromTable {
             expiryDate = LocalDate.parse(expiryStr, formatter);
         }
         Product p = new Product(name, quantity, expiryDate, category);
+        p.setOriginalQuantity(originalQty);
         p.setId(id);         // make sure Product has setId()
         return p;
     }
 
     private static final String BASE_QUERY =
-            "SELECT id, name, quantity, expiry_date, category, " +
+            "SELECT id, name, quantity, expiry_date, category, originalQty, " +
                     "CASE " +
                     "  WHEN date(expiry_date) < date('now', 'localtime') THEN 'Expired' " +
                     "  WHEN date(expiry_date) <= date('now', '+7 days', 'localtime') THEN 'Near Expiry' " +

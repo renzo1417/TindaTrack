@@ -11,8 +11,8 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 public class ProductManagement {
 
     // changed from returning boolean to return the id
-    public static int addProduct(String name, int quantity, String expiry, int ownerId, String category) {
-        String query = "INSERT INTO products(name, quantity, expiry_date, owner_id, category) VALUES (?,?,?,?,?)";
+    public static int addProduct(String name, int quantity, String expiry, int ownerId, String category, int originalQty) {
+        String query = "INSERT INTO products(name, quantity, expiry_date, owner_id, category, originalQty) VALUES (?,?,?,?,?,?)";
 
         try (Connection connected = connect();
              PreparedStatement pstmt = connected.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -22,6 +22,7 @@ public class ProductManagement {
             pstmt.setString(3, expiry);
             pstmt.setInt(4, ownerId);
             pstmt.setString(5, category);
+            pstmt.setInt(6, originalQty);
 
             pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
@@ -49,13 +50,14 @@ public class ProductManagement {
     }
 
     public static boolean modifyProduct(Product product) {
-        String query = "UPDATE products SET name = ?, quantity = ?, expiry_date = ? WHERE id = ?";
+        String query = "UPDATE products SET name = ?, quantity = ?, expiry_date = ?, originalQty = ? WHERE id = ?";
 
         try (Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)) {
             pstmt.setString(1, product.getProductName());
             pstmt.setInt(2, product.getQuantity());
             pstmt.setString(3, product.getExpiryDate());
-            pstmt.setInt(4, product.getId());
+            pstmt.setInt(4, product.getOriginalQuantity());
+            pstmt.setInt(5, product.getId());
 
             pstmt.executeUpdate();
 
