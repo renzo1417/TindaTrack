@@ -8,6 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.*?>
+
 <!-- for push purposes -->
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Settings.SettingsProfileController">
@@ -46,7 +47,7 @@
                         <Font name="Segoe UI Bold" size="26.0" />
                      </font>
                   </Label>
-                  <Label layoutX="68.0" layoutY="11.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="Froilan">
+                  <Label fx:id="username_top" layoutX="68.0" layoutY="11.0" lineSpacing="3.0" prefHeight="28.0" prefWidth="120.0" text="Froilan">
                      <font>
                         <Font name="Segoe UI Bold" size="22.0" />
                      </font>
@@ -161,7 +162,7 @@
             </Label>
             <VBox layoutX="82.0" layoutY="889.0" prefHeight="25.0" prefWidth="68.0">
                <children>
-                  <Label lineSpacing="3.0" prefHeight="10.0" prefWidth="68.0" text="Froilan">
+                  <Label fx:id="username_bottom" lineSpacing="3.0" prefHeight="10.0" prefWidth="68.0" text="Froilan">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>

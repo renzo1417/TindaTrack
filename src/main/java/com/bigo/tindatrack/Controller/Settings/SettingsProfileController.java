@@ -5,18 +5,33 @@ import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class SettingsProfileController {
 
     @FXML
     private TextField fullName, username, emailAddress;
-
+    @FXML
+    private Label username_top, username_bottom;
+    private User user;
 
     @FXML
     //initialazation
     public void initialize() {
+        user = SessionManager.loadUser();
+
+        if (user == null) {
+            System.out.println("Error: No user found!");
+            return;
+        }
+
+        username_top.setText(user.getUsername());
+        username_bottom.setText(user.getUsername());
+
         displayUserData();
+
+
     }
 
     private void displayUserData() {

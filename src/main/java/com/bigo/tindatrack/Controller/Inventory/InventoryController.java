@@ -1,6 +1,8 @@
 package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.data.models.User;
+import com.bigo.tindatrack.utils.utility;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import java.io.IOException;
 
 import static com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable.getInventoryOrderedByStatus;
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId;
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
 public class InventoryController {
     @FXML
@@ -44,11 +47,24 @@ public class InventoryController {
     private TextField searchTextField;
     @FXML
     private ComboBox<String> statusFilter;
+    @FXML
+    private Label username_top, username_bottom;
 
     private InventoryPresenter presenter;
 
+    private User user = loadUser();
+
     @FXML
     public void initialize() {
+        if (user == null) {
+            System.out.println("Error: No user found!");
+            return;
+        }
+
+        username_top.setText(user.getUsername());
+        username_bottom.setText(user.getUsername());
+
+
         presenter = new InventoryPresenter(this);
 
        inventoryTableView.setItems(presenter.getProductList());
@@ -113,6 +129,9 @@ public class InventoryController {
 
     public void goToNotifications(ActionEvent event){
         switchScene(event,"/com/bigo/tindatrack/Notification-view.fxml");
+    }
+    public void goToInsightButton(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/insight-view.fxml");
     }
 
     //logout implementation

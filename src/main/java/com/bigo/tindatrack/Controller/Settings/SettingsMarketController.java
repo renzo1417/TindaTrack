@@ -5,6 +5,7 @@ import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
@@ -12,10 +13,20 @@ public class SettingsMarketController {
 
     @FXML
     private TextField storeNameTF, ownerNameTF, contactNumberTF, storeAddTF;
-
+    @FXML
+    private Label username_top, username_bottom;
+    private User user;
 
     public void initialize(){
         User user = SessionManager.loadUser();
+
+        if (user == null) {
+            System.out.println("Error: No user found!");
+            return;
+        }
+
+        username_top.setText(user.getUsername());
+        username_bottom.setText(user.getUsername());
 
         storeNameTF.setText(user.getStoreName());
         ownerNameTF.setText(user.getFullname());

@@ -538,7 +538,7 @@ public class DashboardController {
     }
 
     public void goToInsightButton(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/insight-view.fxml");
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
     }
 
     public void goToStockactivityButton(ActionEvent event) {

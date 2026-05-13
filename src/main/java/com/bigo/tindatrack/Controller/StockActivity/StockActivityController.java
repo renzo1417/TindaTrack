@@ -1,6 +1,7 @@
 package com.bigo.tindatrack.Controller.StockActivity;
 
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
+import com.bigo.tindatrack.data.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
 public class StockActivityController {
     @FXML
@@ -37,11 +40,25 @@ public class StockActivityController {
     private TableColumn<StockDetails, String> dateColumn;
     @FXML
     private TextField searchTextField;
+    @FXML
+    private Label username_top, username_bottom;
 
     private StockActivityPresenter presenter;
 
+    private User user = loadUser();
+
+
     @FXML
     public void initialize() {
+        if (user == null) {
+            System.out.println("Error: No user found!");
+            return;
+        }
+
+
+        username_top.setText(user.getUsername());
+        username_bottom.setText(user.getUsername());
+
         presenter = new StockActivityPresenter(this);
 
         detailsTableView.setItems(presenter.getList());
