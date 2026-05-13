@@ -5,10 +5,10 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="statusPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="95.0" style="-fx-background-color: #b0b0b0; -fx-background-radius: 50; -fx-border-radius: 50;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Product.ProductStatusController">
+<Pane fx:id="statusPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="95.0" style="-fx-background-color: #b0b0b0; -fx-background-radius: 50; -fx-border-radius: 50;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Product.ProductStatusController">
    <children>
-      <Circle fx:id="statusColor" fill="#8d8d8d" layoutX="8.0" layoutY="7.0" radius="4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Label fx:id="statusLabel" alignment="CENTER" layoutX="11.0" prefHeight="13.0" prefWidth="84.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold;" text="Status">
+      <Circle fx:id="statusColor" fill="#8d8d8d" layoutX="8.0" layoutY="9.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Label fx:id="statusLabel" alignment="CENTER" layoutX="12.0" layoutY="2.0" prefHeight="13.0" prefWidth="84.0" style="-fx-font-family: 'Segoe UI'; -fx-font-weight: bold;" text="Status">
          <font>
             <Font size="10.0" />
          </font>

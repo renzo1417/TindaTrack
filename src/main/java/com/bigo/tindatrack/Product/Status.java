@@ -80,7 +80,7 @@ public class Status {
         if (controller != null) {
             controller.getStatusPane().setStyle("-fx-background-color: " + paneColor + "; -fx-background-radius: 15;");
             controller.getStatusColor().setStyle("-fx-fill: " + circleColor + ";");
-            controller.getStatusLabel().setStyle("-fx-text-fill: " + labelColor + ";");
+            controller.getStatusLabel().setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: " + labelColor + ";");
             controller.getStatusLabel().setText(getStatus());
         }
     }

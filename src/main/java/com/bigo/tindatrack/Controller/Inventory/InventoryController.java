@@ -131,7 +131,7 @@ public class InventoryController {
         switchScene(event,"/com/bigo/tindatrack/Notification-view.fxml");
     }
     public void goToInsightButton(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/insight-view.fxml");
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
     }
 
     //logout implementation
