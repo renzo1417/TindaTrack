@@ -216,7 +216,7 @@
                                 <FontIcon iconColor="#16803c" iconLiteral="mdi2p-package-variant-closed" iconSize="25" layoutX="7.0" layoutY="29.0" strokeMiterLimit="1.0" strokeWidth="0.1" />
                             </children>
                         </Pane>
-                        <Label fx:id="total_items" layoutX="27.0" layoutY="57.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" text="12">
+                        <Label fx:id="total_items" layoutX="27.0" layoutY="57.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="215.0" text="12">
                             <font>
                                 <Font name="Segoe UI Bold" size="26.0" />
                             </font>
@@ -251,7 +251,7 @@
                                 <FontIcon iconColor="#f77016" iconLiteral="mdi2c-clock-time-five-outline" iconSize="20" layoutX="10.0" layoutY="28.0" text="󱑏" />
                             </children>
                         </Pane>
-                        <Label fx:id="expiring_soon" layoutX="26.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" text="5">
+                        <Label fx:id="expiring_soon" layoutX="26.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="204.0" text="5">
                             <font>
                                 <Font name="Segoe UI Bold" size="26.0" />
                             </font>
@@ -285,7 +285,7 @@
                         <FontIcon iconColor="#ef4444" iconLiteral="mdi2c-cart-outline" iconSize="20" layoutX="11.0" layoutY="28.0" />
                      </children>
                   </Pane>
-                  <Label fx:id="low_stock" layoutX="31.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" text="5">
+                  <Label fx:id="low_stock" layoutX="31.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="200.0" text="5">
                      <font>
                         <Font name="Segoe UI Bold" size="26.0" />
                      </font>
@@ -320,7 +320,7 @@
                         <FontIcon iconColor="#9333ea" iconLiteral="mdi2t-trash-can-outline" iconSize="20" layoutX="10.0" layoutY="28.0" text="󰩺" />
                      </children>
                   </Pane>
-                  <Label fx:id="total_expireUnits" layoutX="29.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" text="9">
+                  <Label fx:id="total_expireUnits" layoutX="29.0" layoutY="56.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="215.0" text="9">
                      <font>
                         <Font name="Segoe UI Bold" size="26.0" />
                      </font>
