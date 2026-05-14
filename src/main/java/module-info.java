@@ -9,6 +9,9 @@ module com.bigo.tindatrack {
     requires java.desktop;
     requires javafx.base;
     requires javafx.graphics;
+    requires jakarta.mail;
+    requires javafx.media;
+//    requires com.bigo.tindatrack;
 //    requires com.bigo.tindatrack;/
 
     opens com.bigo.tindatrack to javafx.fxml;

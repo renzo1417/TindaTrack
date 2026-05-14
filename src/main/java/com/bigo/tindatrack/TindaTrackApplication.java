@@ -1,5 +1,6 @@
 package com.bigo.tindatrack;
 
+import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationPreferencesDAO;
 import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesTableManagement;
 import com.bigo.tindatrack.SQLite_Database.StockManagement.StockTableManagement;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement;
@@ -33,6 +34,7 @@ public class TindaTrackApplication extends Application {
         productTableManagement.createProductTable();
         ProductManagement.createNotificationsTable();
         StockTableManagement.createStockTable();
+        NotificationPreferencesDAO.createTable();
     }
 }
 

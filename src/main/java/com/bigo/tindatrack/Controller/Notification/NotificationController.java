@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -165,6 +166,19 @@ public class NotificationController {
                 circle.getChildren().add(icon);
             } catch (Exception ex) {
                 System.err.println("Warning icon not found: " + ex.getMessage());
+            }
+        }
+
+        if(item.type == NotificationItem.Type.INFO){
+            try {
+                ImageView icon = new ImageView(new Image(getClass().getResourceAsStream("/com/bigo/tindatrack/icons/info.png")));
+                icon.setFitWidth(20);
+                icon.setFitHeight(20);
+                icon.setPreserveRatio(true);
+                circle.getChildren().add(icon);
+
+            }catch (Exception e){
+                System.err.println("Warning icon not found: " + e.getMessage());
             }
         }
         // ── Right: badge row + message + timestamp ────────────────────────

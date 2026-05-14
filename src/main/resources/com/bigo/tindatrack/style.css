@@ -1,0 +1,23 @@
+.root {
+    -knob-color: #ffffff;
+    -on-track-color: #2d7a27;
+    -off-track-color: #ced6e0;
+}
+
+.toggle-button {
+    -fx-background-color: -off-track-color, -knob-color;
+    -fx-background-radius: 50;
+    -fx-background-insets: 0, 2 32 2 2;
+
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 3, 0, 0, 1);
+
+    -fx-text-fill: transparent;
+    -fx-min-width: 50px;
+    -fx-min-height: 28px;
+    -fx-cursor: hand;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -on-track-color, -knob-color;
+    -fx-background-insets: 0, 2 2 2 32;
+}

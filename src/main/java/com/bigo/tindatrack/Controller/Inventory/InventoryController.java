@@ -119,19 +119,29 @@ public class InventoryController {
     }
 
     // these are function that switches screen from inventory more to add.
-    public void goToDashboard(ActionEvent event){
-        switchScene(event,"/com/bigo/tindatrack/Dashboard-view.fxml");
+    public void goToInventory(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
     }
 
-    public void goToStockActivity(ActionEvent event){
-        switchScene(event,"/com/bigo/tindatrack/StockActivity-view.fxml");
-    }
-
-    public void goToNotifications(ActionEvent event){
-        switchScene(event,"/com/bigo/tindatrack/Notification-view.fxml");
-    }
     public void goToInsightButton(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
+    }
+
+    public void goToStockActivity(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
+    }
+
+    public void goToSetting(ActionEvent event) {
+        System.out.println("setting button");
+        utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
+    }
+
+    public void goToDashboard(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    public void goToNotifications(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
     }
 
     //logout implementation

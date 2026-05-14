@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import org.kordamp.ikonli.javafx.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <!-- for push purposes -->
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Settings.SettingsProfileController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Settings.SettingsProfileController">
    <children>
       <Pane layoutX="171.0" prefHeight="85.0" prefWidth="1329.0" style="-fx-background-color: #FFFFFF;">
          <effect>
@@ -89,7 +96,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#goToInventoryActivity" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Inventory      " textFill="#15803d">
+                  <Button mnemonicParsing="false" onAction="#goToInventoryActivity" prefHeight="45.0" prefWidth="203.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Inventory      ">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -109,7 +116,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings        ">
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #DCFCE780; -fx-background-radius: 10;" text="Settings        " textFill="#15803d">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -119,11 +126,11 @@
             <VBox layoutX="14.0" layoutY="147.0" prefHeight="306.0" prefWidth="30.0" spacing="25.0">
                <children>
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2h-home-outline" iconSize="30" />
-                  <FontIcon iconColor="#16a34a80" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2p-package-variant-closed" iconSize="30" strokeMiterLimit="1.0" strokeWidth="0.1" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2c-chart-box-outline" iconSize="30" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2a-arrow-top-left" iconSize="30" />
                   <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="30" text="󰂜" />
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2c-cog-outline" iconSize="30" />
+                  <FontIcon iconColor="#16803c" iconLiteral="mdi2c-cog-outline" iconSize="30" />
                </children>
             </VBox>
             <Label layoutX="14.0" layoutY="110.0" lineSpacing="3.0" prefHeight="17.0" prefWidth="107.0" text="NAVIGATION" textFill="#00000080">
