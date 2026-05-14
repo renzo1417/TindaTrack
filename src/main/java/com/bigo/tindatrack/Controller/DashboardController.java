@@ -153,7 +153,7 @@ public class DashboardController {
             least_second_item_counter.setText(item2.totalSold + "x");
             least_second_item_type.setText(InventoryPresenter.getProductCategory(item2.name, products));
         } else {
-            least_second_item.setText("No sales yet");
+            least_second_item.setText("—");
             least_second_item_counter.setText("0x");
             least_second_item_type.setText("—");
         }

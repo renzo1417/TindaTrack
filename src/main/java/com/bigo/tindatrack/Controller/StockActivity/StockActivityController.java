@@ -2,6 +2,7 @@ package com.bigo.tindatrack.Controller.StockActivity;
 
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.models.User;
+import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,8 +98,40 @@ public class StockActivityController {
         }
     }
 
-    @FXML
-    public void switchToInventory(ActionEvent event) {
-        switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml");
+//    @FXML
+//    public void switchToInventory(ActionEvent event) {
+//        switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml");
+//    }
+
+    public void goToInventory(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
     }
+
+    public void goToInsight(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
+    }
+
+    public void goToStockActivity(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
+    }
+
+    public void goToSettings(ActionEvent event) {
+        System.out.println("setting button");
+        utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
+    }
+
+    public void goToDashboard(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    public void goToNotification(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
+    }
+
+    public void setLogout(ActionEvent event) {
+        com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
+        this.user = null;
+        utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
+    }
+
 }

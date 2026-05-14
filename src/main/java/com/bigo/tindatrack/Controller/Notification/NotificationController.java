@@ -12,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -324,22 +323,55 @@ public class NotificationController {
         };
     }
 
-    public void goToDashboard(ActionEvent event){
-        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
+//    public void goToDashboard(ActionEvent event){
+//        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
+//    }
+//
+//    public void goToInventory(ActionEvent event){
+//        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
+//    }
+//
+//    public void goToStockActivity(ActionEvent event){
+//        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
+//    }
+
+    public void goToInventory(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
     }
 
-    public void goToInventory(ActionEvent event){
-        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
+    public void goToInsight(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
     }
 
-    public void goToStockActivity(ActionEvent event){
+    public void goToStockActivity(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
     }
 
-    public void setNotificationsLogout(ActionEvent event){
+    public void goToSetting(ActionEvent event) {
+        System.out.println("setting button");
+        utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
+    }
+
+    public void goToDashboard(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
+    }
+
+    public void goToNotofication(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
+    }
+
+    public void setLogout(ActionEvent event) {
         com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
         this.user = null;
         utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
+
+//    public void setNotificationsLogout(ActionEvent event){
+//        com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
+//        this.user = null;
+//        utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
+//    }
+
+
 
 }
