@@ -254,6 +254,8 @@
                   <Label prefHeight="18.0" prefWidth="126.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-font-weight: 600; -fx-text-fill: #1a1a1a;" text="Store Address" />
                   <TextField fx:id="storeAddTF" disable="true" prefHeight="45.0" prefWidth="740.0" style="-fx-background-color: #f3f7f3; -fx-background-radius: 15; -fx-border-color: #dde8dd; -fx-border-radius: 15;" />
                </children>
+
+
             </VBox>
             <Line endX="676.0" layoutX="124.0" layoutY="71.0" startX="-113.0" stroke="#00000033" strokeWidth="0.5" />
          </children>

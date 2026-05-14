@@ -17,6 +17,8 @@ public class SettingsMarketController {
     private Label username_top, username_bottom;
     private User user;
 
+
+
     public void initialize(){
         User user = SessionManager.loadUser();
 
