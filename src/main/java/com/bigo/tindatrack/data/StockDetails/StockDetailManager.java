@@ -45,14 +45,14 @@ public class StockDetailManager {
 
         if ("Restocked".equalsIgnoreCase(reason)) {
             changeController.getChangePane().setStyle("-fx-background-color: #DFFCE6; -fx-background-radius: 5;");
-            changeController.getDetailLabel().setStyle("-fx-text-fill: #37a345;");
+            changeController.getDetailLabel().setStyle("-fx-font-weight: bold; -fx-text-fill: #37a345;");
 
             changeController.getIncreaseIcon().setVisible(true);
             changeController.getDecreaseIcon().setVisible(false);
 
         } else if ("Sold".equalsIgnoreCase(reason)) {
             changeController.getChangePane().setStyle("-fx-background-color: #FCE2E2; -fx-background-radius: 5;");
-            changeController.getDetailLabel().setStyle("-fx-text-fill: #d3221e;");
+            changeController.getDetailLabel().setStyle("-fx-font-weight: bold; -fx-text-fill: #d3221e;");
 
             changeController.getIncreaseIcon().setVisible(false);
             changeController.getDecreaseIcon().setVisible(true);
@@ -66,10 +66,10 @@ public class StockDetailManager {
 
         if ("Sold".equalsIgnoreCase(reason)) {
             reasonController.getReasonPane().setStyle("-fx-background-color: #FDF3C5; -fx-background-radius: 5;");
-            reasonController.getReasonLabel().setStyle("-fx-text-fill: #D57600;");
+            reasonController.getReasonLabel().setStyle("-fx-font-weight: bold; -fx-text-fill: #D57600;");
         } else if ("Restocked".equalsIgnoreCase(reason)) {
             reasonController.getReasonPane().setStyle("-fx-background-color: #DDEAFF; -fx-background-radius: 5;");
-            reasonController.getReasonLabel().setStyle("-fx-text-fill: #0056D2;");
+            reasonController.getReasonLabel().setStyle("-fx-font-weight: bold; -fx-text-fill: #0056D2;");
         }
 
         reasonController.getReasonLabel().setText(reason);

@@ -170,16 +170,17 @@ public class DashboardController {
         }
 
         // Recently wasted products
+        // changes using localExpiryDate and comapreTo to get the most recent expired products
 
         List<Product> expiredProducts = products.stream()
                 .filter(p -> {
                     LocalDate expiry = p.getLocalExpiryDate();
                     return expiry != null && expiry.isBefore(LocalDate.now());
                 })
-                .sorted((a, b) -> Integer.compare(b.getQuantity(), a.getQuantity()))
-                .collect(Collectors.toList());
+                .sorted((a, b) -> b.getLocalExpiryDate().compareTo(a.getLocalExpiryDate()))
+                .toList();
 
-        if (expiredProducts.size() > 0) {
+        if (!expiredProducts.isEmpty()) {
             Product w1 = expiredProducts.get(0);
             wasted_first_item.setText(w1.getProductName());
             wasted_first_item_counter.setText(w1.getQuantity() + " wasted");

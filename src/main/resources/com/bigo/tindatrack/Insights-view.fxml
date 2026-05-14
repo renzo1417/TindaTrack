@@ -22,7 +22,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.InsightsController">
    <children>
-      <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="1320.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
+         <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="1320.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
          <content>
             <Pane prefHeight="1321.0" prefWidth="1260.0" style="-fx-background-color: F8F9FA;">
                <children>
@@ -689,12 +689,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Orange Juice" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_3" text="Orange Juice" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Beverages" textFill="#718096">
+                                                      <Label fx:id="reco_Category_3" text="Beverages" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -702,7 +702,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                <Label fx:id="reco_Suggestion_3" style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -713,12 +713,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Vitamin D Capsules" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_4" text="Vitamin D Capsules" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Personal Care" textFill="#718096">
+                                                      <Label fx:id="reco_Category_4" text="Personal Care" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -726,7 +726,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                <Label fx:id="reco_Suggestion_4" style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -737,12 +737,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Coconut Water" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_5" text="Coconut Water" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Beverages" textFill="#718096">
+                                                      <Label fx:id="reco_Category_5" text="Beverages" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -750,7 +750,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
+                                                <Label fx:id="reco_Suggestion_5" style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -761,12 +761,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="White Rice" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_6" text="White Rice" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Grains" textFill="#718096">
+                                                      <Label fx:id="reco_Category_6" text="Grains" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -774,7 +774,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
+                                                <Label fx:id="reco_Suggestion_6" style="-fx-background-color: #E6FFFA; -fx-text-fill: #38A169; -fx-padding: 6 12; -fx-background-radius: 15;" text="Overstocked">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -785,12 +785,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Coffee Beans" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_1" text="Coffee Beans" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Beverages" textFill="#718096">
+                                                      <Label fx:id="reco_Category_1" text="Beverages" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -798,7 +798,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                <Label fx:id="reco_Suggestion_1" style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -809,12 +809,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Fuji Apples" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_2" text="Fuji Apples" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Produce" textFill="#718096">
+                                                      <Label fx:id="reco_Category_2" text="Produce" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -822,7 +822,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
+                                                <Label fx:id="reco_Suggestion_2" style="-fx-background-color: #E6F0FF; -fx-text-fill: #3182CE; -fx-padding: 6 12; -fx-background-radius: 15;" text="Restock Soon">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -833,12 +833,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Chicken Breast" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_7" text="Chicken Breast" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Produce" textFill="#718096">
+                                                      <Label fx:id="reco_Category_7" text="Produce" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -846,7 +846,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
+                                                <Label fx:id="reco_Suggestion_7" style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -857,12 +857,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Whole Wheat Bread" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_9" text="Whole Wheat Bread" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Pantry Staples" textFill="#718096">
+                                                      <Label fx:id="reco_Category_9" text="Pantry Staples" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -870,7 +870,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
+                                                <Label fx:id="reco_Suggestion_9" style="-fx-background-color: #FFF7ED; -fx-text-fill: #f97316; -fx-padding: 6 12; -fx-background-radius: 15;" text="Sell First">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -881,12 +881,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Organic Milk" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_8" text="Organic Milk" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Dairy" textFill="#718096">
+                                                      <Label fx:id="reco_Category_8" text="Dairy" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -894,7 +894,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
+                                                <Label fx:id="reco_Suggestion_8" style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -905,12 +905,12 @@
                                              <children>
                                                 <VBox>
                                                    <children>
-                                                      <Label text="Laundry Detergent" textFill="#1A202C">
+                                                      <Label fx:id="reco_ProductName_10" text="Laundry Detergent" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label text="Cleaning" textFill="#718096">
+                                                      <Label fx:id="reco_Category_10" text="Cleaning" textFill="#718096">
                                                          <font>
                                                             <Font size="11.0" />
                                                          </font>
@@ -918,7 +918,7 @@
                                                    </children>
                                                 </VBox>
                                                 <Pane HBox.hgrow="ALWAYS" />
-                                                <Label style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
+                                                <Label fx:id="reco_Suggestion_10" style="-fx-background-color: FDF4FF; -fx-text-fill: #9333ea; -fx-padding: 6 12; -fx-background-radius: 15;" text="Monitor">
                                                    <font>
                                                       <Font name="System Bold" size="11.0" />
                                                    </font>
@@ -1033,7 +1033,7 @@
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings        ">
+                  <Button mnemonicParsing="false" onAction="#goToSetting" prefHeight="45.0" prefWidth="229.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" text="Settings        ">
                      <font>
                         <Font name="Segoe UI Bold" size="16.0" />
                      </font>
@@ -1071,7 +1071,7 @@
                   <Image url="@Images/TindaTrackLogo.png" />
                </image>
             </ImageView>
-            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" onAction="#setInsightsLogout" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
+            <Button alignment="CENTER_RIGHT" layoutX="8.0" layoutY="873.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="204.0" style="-fx-background-color: F9FAFB;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
