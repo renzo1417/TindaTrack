@@ -235,11 +235,22 @@ public class DashboardController {
 // logic ni for low or out of stock products
 // using hashSet
         HashSet<Integer> uniqueLowStockIds = new HashSet<>();
+
         for (NotificationItem n : allNotifs) {
-            if (n.message.contains("stock is low") || n.message.contains("out of stock")) {
+            if (n.message.contains("out of stock")) {
                 uniqueLowStockIds.add(n.productId);
             }
         }
+
+        // 25% lower quantity
+        for (Product p : products) {
+            int current  = p.getQuantity();
+            int original = p.getOriginalQuantity();
+            if (original > 0 && current <= original * 0.25) {
+                uniqueLowStockIds.add(p.getId());
+            }
+        }
+
         int lowStockCount = uniqueLowStockIds.size();
         low_stock.setText(String.valueOf(lowStockCount));
 
