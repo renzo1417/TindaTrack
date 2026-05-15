@@ -1,15 +1,13 @@
-package com.bigo.tindatrack.Controller;
+package com.bigo.tindatrack.Controller.Insights;
 
 import com.bigo.tindatrack.Product.Product;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
-import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -22,6 +20,8 @@ import static com.bigo.tindatrack.utils.utility.switchScene;
 public class InsightsController {
     private InventoryList inventoryList = new InventoryList();
     private StockDetailsList detailsList = new StockDetailsList();
+
+    @FXML private GridPane expiryGrid;
 
     // ------------ Recommendation Fields - Densing ------------
     // Recommendation Product Names
@@ -86,8 +86,12 @@ public class InsightsController {
             recommendationCategories[i].setVisible(false);
             recommendationSuggestion[i].setVisible(false);
         }
+        InsightsExpiryController expiryController = new InsightsExpiryController();
+        expiryController.setExpiryGrid(expiryGrid); // we pass the grid directly
+        expiryController.loadExpiryGrid();
 
         updateRecommendations();
+        loadExpirySection();
     }
 
     // ------------ Recommendation Methods- DENSING ------------
@@ -150,6 +154,17 @@ public class InsightsController {
             recommendationSuggestion[i].setStyle("-fx-background-color: " + backgroundColor + "; -fx-text-fill: " + textColor + "; -fx-padding: 6 12; -fx-background-radius: 15");
         }
 
+    }
+    private void loadExpirySection() {
+        try {
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                    getClass().getResource(
+                            "/com/bigo/tindatrack/Insights-Expiry-view.fxml")
+            );
+            loader.load(); // loads and triggers InsightsExpiryController.initialize()
+        } catch (Exception e) {
+            System.err.println("Expiry section load error: " + e.getMessage());
+        }
     }
 
     private void checkForRestock(List<RecommendationInfo> infos) {
