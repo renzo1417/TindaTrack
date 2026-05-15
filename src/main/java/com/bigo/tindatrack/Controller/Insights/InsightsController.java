@@ -20,6 +20,12 @@ import static com.bigo.tindatrack.utils.utility.switchScene;
 public class InsightsController {
     private InventoryList inventoryList = new InventoryList();
     private StockDetailsList detailsList = new StockDetailsList();
+    // Slow Moving Items
+    @FXML Label slowMoving_category1, slowMoving_category2, slowMoving_category3, slowMoving_category4, slowMoving_category5;
+    @FXML Label slowMoving_Type1, slowMoving_Type2, slowMoving_Type3, slowMoving_Type4, slowMoving_Type5;
+    @FXML Label slowMoving_count1, slowMoving_count2, slowMoving_count3, slowMoving_count4, slowMoving_count5;
+    private SlowMovingItemsController slowMovingController;
+
 
     @FXML private GridPane expiryGrid;
 
@@ -86,6 +92,26 @@ public class InsightsController {
             recommendationCategories[i].setVisible(false);
             recommendationSuggestion[i].setVisible(false);
         }
+
+        // slowlyMovingItems
+        // Label
+        slowMovingController = new SlowMovingItemsController(
+                new Label[]{
+                        slowMoving_Type1, slowMoving_Type2, slowMoving_Type3,
+                        slowMoving_Type4, slowMoving_Type5
+                },
+                new Label[]{
+                        slowMoving_category1, slowMoving_category2, slowMoving_category3,
+                        slowMoving_category4, slowMoving_category5
+                },
+                new Label[]{
+                        slowMoving_count1, slowMoving_count2, slowMoving_count3,
+                        slowMoving_count4, slowMoving_count5
+                }
+        );
+        slowMovingController.load();
+
+
         InsightsExpiryController expiryController = new InsightsExpiryController();
         expiryController.setExpiryGrid(expiryGrid); // we pass the grid directly
         expiryController.loadExpiryGrid();

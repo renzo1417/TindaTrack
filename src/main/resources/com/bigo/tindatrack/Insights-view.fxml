@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Insights.InsightsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1443.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Insights.InsightsController">
    <children>
          <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="1320.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
          <content>
@@ -209,12 +199,12 @@
                                                    <children>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Coconut Water" textFill="#1A202C">
+                                                            <Label fx:id="slowMoving_Type1" text="Coconut Water" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Beverages" textFill="#A0AEC0">
+                                                            <Label fx:id="slowMoving_category1" text="Beverages" textFill="#A0AEC0">
                                                                <font>
                                                                   <Font size="11.0" />
                                                                </font>
@@ -224,7 +214,7 @@
                                                       <Pane HBox.hgrow="ALWAYS" />
                                                       <VBox alignment="CENTER_RIGHT">
                                                          <children>
-                                                            <Label text="2x" textFill="#C05621">
+                                                            <Label fx:id="slowMoving_count1" text="2x" textFill="#C05621">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
@@ -245,12 +235,12 @@
                                                    <children>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Instant Noodles" textFill="#1A202C">
+                                                            <Label fx:id="slowMoving_Type2" text="Instant Noodles" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Snacks" textFill="#A0AEC0">
+                                                            <Label fx:id="slowMoving_category2" text="Snacks" textFill="#A0AEC0">
                                                                <font>
                                                                   <Font size="11.0" />
                                                                </font>
@@ -260,7 +250,7 @@
                                                       <Pane HBox.hgrow="ALWAYS" />
                                                       <VBox alignment="CENTER_RIGHT">
                                                          <children>
-                                                            <Label text="3x" textFill="#C05621">
+                                                            <Label fx:id="slowMoving_count2" text="3x" textFill="#C05621">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
@@ -281,12 +271,12 @@
                                                    <children>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Vitamin D Capsules" textFill="#1A202C">
+                                                            <Label fx:id="slowMoving_Type3" text="Vitamin D Capsules" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Personal Care" textFill="#A0AEC0">
+                                                            <Label fx:id="slowMoving_category3" text="Personal Care" textFill="#A0AEC0">
                                                                <font>
                                                                   <Font size="11.0" />
                                                                </font>
@@ -296,7 +286,7 @@
                                                       <Pane HBox.hgrow="ALWAYS" />
                                                       <VBox alignment="CENTER_RIGHT">
                                                          <children>
-                                                            <Label text="5x" textFill="#C05621">
+                                                            <Label fx:id="slowMoving_count3" text="5x" textFill="#C05621">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
@@ -317,12 +307,12 @@
                                                    <children>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Laundry Detergent" textFill="#1A202C">
+                                                            <Label fx:id="slowMoving_Type4" text="Laundry Detergent" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Cleaning" textFill="#A0AEC0">
+                                                            <Label fx:id="slowMoving_category4" text="Cleaning" textFill="#A0AEC0">
                                                                <font>
                                                                   <Font size="11.0" />
                                                                </font>
@@ -332,7 +322,7 @@
                                                       <Pane HBox.hgrow="ALWAYS" />
                                                       <VBox alignment="CENTER_RIGHT">
                                                          <children>
-                                                            <Label text="8x" textFill="#C05621">
+                                                            <Label fx:id="slowMoving_count4" text="8x" textFill="#C05621">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
@@ -353,12 +343,12 @@
                                                    <children>
                                                       <VBox>
                                                          <children>
-                                                            <Label text="Frozen Peas" textFill="#1A202C">
+                                                            <Label fx:id="slowMoving_Type5" text="Frozen Peas" textFill="#1A202C">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label text="Frozen" textFill="#A0AEC0">
+                                                            <Label fx:id="slowMoving_category5" text="Frozen" textFill="#A0AEC0">
                                                                <font>
                                                                   <Font size="11.0" />
                                                                </font>
@@ -368,7 +358,7 @@
                                                       <Pane HBox.hgrow="ALWAYS" />
                                                       <VBox alignment="CENTER_RIGHT">
                                                          <children>
-                                                            <Label text="9x" textFill="#C05621">
+                                                            <Label fx:id="slowMoving_count5" text="9x" textFill="#C05621">
                                                                <font>
                                                                   <Font name="System Bold" size="13.0" />
                                                                </font>
