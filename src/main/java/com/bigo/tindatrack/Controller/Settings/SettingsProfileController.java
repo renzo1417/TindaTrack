@@ -85,4 +85,9 @@ public class SettingsProfileController {
     private void goToInventoryActivity(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
     }
+
+    public void goToInsight(ActionEvent event) {
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
+    }
+
 }

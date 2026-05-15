@@ -91,7 +91,7 @@ public class SettingsNotificationsController {
     }
 
     public void goToInsights(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/insight-view.fxml");
+        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
     }
 
     public void goToStockActivity(ActionEvent event) {
