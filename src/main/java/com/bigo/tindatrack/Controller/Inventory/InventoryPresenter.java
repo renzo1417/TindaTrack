@@ -2,6 +2,7 @@ package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Controller.Inventory.AddProductController.AddProductController;
 import com.bigo.tindatrack.Controller.Inventory.InventoryActionController.ActionController;
+import com.bigo.tindatrack.Controller.Inventory.InventorySellController.InventorySellController;
 import com.bigo.tindatrack.Controller.Inventory.ModifyProductController.ModifyProductController;
 import com.bigo.tindatrack.Product.Product;
 import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesManagement;
@@ -26,6 +27,7 @@ public class InventoryPresenter {
     private InventoryModel model;
     private AddProductController addProductController;
     private ModifyProductController modifyProductController;
+    private InventorySellController inventorySellController;
 
     private FilteredList<Product> filteredList;
 
@@ -36,12 +38,15 @@ public class InventoryPresenter {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/bigo/tindatrack/AddProduct-view.fxml"));
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/com/bigo/tindatrack/ModifyProduct-view.fxml"));
+            FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/com/bigo/tindatrack/InventorySell-view.fxml"));
 
             Parent root = loader.load();
             Parent root2 = loader2.load();
+            Parent root3 = loader3.load();
 
             addProductController = loader.getController();
             modifyProductController = loader2.getController();
+            inventorySellController = loader3.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,6 +110,23 @@ public class InventoryPresenter {
                 controller.refreshTable();
             }
         });
+
+        inventorySellController.getCancelButton().setOnAction(event -> {
+            controller.hideAddPopOut();
+            inventorySellController.restartFields();
+        });
+
+        inventorySellController.getCloseButton().setOnAction(event -> {
+            controller.hideAddPopOut();
+            inventorySellController.restartFields();
+        });
+
+        inventorySellController.getConfirmButtom().setOnAction(event -> {
+            if (inventorySellController.confirmSales()) {
+                controller.hideAddPopOut();
+                inventorySellController.restartFields();
+            }
+        });
     }
 
     public void remove(Product item) {
@@ -114,6 +136,19 @@ public class InventoryPresenter {
     public void modify(Product item) {
         controller.modifyProductPopout();
         modifyProductController.loadProduct(item);
+    }
+
+    public void replenish(Product item) {
+        int oldQty = item.getQuantity();
+        item.setQuantity(item.getOriginalQuantity());
+        item.getStatusController().updateStatus(item.getLocalExpiryDate(), item.getQuantity(), item.getOriginalQuantity());
+        model.replenishProduct(item, oldQty);
+        controller.refreshTable();
+    }
+
+    public void sell(Product item) {
+        controller.sellProductPopout();
+        inventorySellController.loadProductToSell(item, model.countTotalSales(item));
     }
 
     public ObservableList<Product> getProductList() {
@@ -159,6 +194,12 @@ public class InventoryPresenter {
                     actionController.getModifyButton().setOnAction(e -> {
                         modify(item);
                     });
+                    actionController.getQtyButton().setOnAction(e -> {
+                        replenish(item);
+                    });
+                    actionController.getSellButton().setOnAction(e -> {
+                        sell(item);
+                    });
 
                     setGraphic(root);
                 }
@@ -201,5 +242,12 @@ public class InventoryPresenter {
     public void showModifyProductPopout(Pane addProductPane) {
         addProductPane.getChildren().clear();
         addProductPane.getChildren().add(modifyProductController.getModifyProductPane());
+    }
+
+    public void showSellPopout(Pane addProductPane) {
+        addProductPane.getChildren().clear();
+        inventorySellController.getSellProductPane().setLayoutX((460 - 335) / 2);
+        inventorySellController.getSellProductPane().setLayoutY((483 - 335) / 2);
+        addProductPane.getChildren().add(inventorySellController.getSellProductPane());
     }
 }
