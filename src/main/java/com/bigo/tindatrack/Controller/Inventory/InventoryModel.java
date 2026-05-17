@@ -90,6 +90,20 @@ public class InventoryModel {
         return modifyProductInDB(item);
     }
 
+    public boolean replenishProduct(Product item, int oldQty) {
+        list.modifyProduct(item);
+
+        saveActivityToDB(list.replenishedProduct(item, oldQty, item.getQuantity()));
+
+        return modifyProductInDB(item);
+    }
+
+    public int countTotalSales(Product item) {
+        int ownerId = com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId();
+
+        return com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable.countTotalSales(item, ownerId);
+    }
+
     public boolean modifyProductInDB(Product item) {
         boolean isModifiedFromDB = com.bigo.tindatrack.SQLite_Database.productsManagement.ProductManagement.modifyProduct(item);
 

@@ -12,6 +12,10 @@ public class ActionController {
     private Button trashButton;
     @FXML
     private Button modifyButton;
+    @FXML
+    private Button qtyButton;
+    @FXML
+    private Button sellButton;
 
     public Pane getActionPane() {
         return actionPane;
@@ -24,4 +28,8 @@ public class ActionController {
     public Button getModifyButton() {
         return modifyButton;
     }
+
+    public Button getQtyButton() { return qtyButton; }
+
+    public Button getSellButton() { return sellButton; }
 }
