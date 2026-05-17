@@ -58,6 +58,7 @@ public class DashboardController {
     @FXML private Label wasted_first_item_type,  wasted_second_item_type, wasted_third_item_type;
     @FXML private Label wasted_first_item, wasted_second_item, wasted_third_item;
     @FXML private Label wasted_first_item_counter, wasted_second_item_counter, wasted_third_item_counter;
+    @FXML private Label expired_label, out_of_stock_label, items_wasted_label;
 
     private User user = loadUser();
     private SlowMovingItemsController slowMovingController;
@@ -231,11 +232,76 @@ public class DashboardController {
                 totalExpiredUnits += p.getQuantity();
             }
         }
+
         total_expireUnits.setText(String.valueOf(totalExpiredUnits));
+        setExpiredLabel();
 
 
 
 
+    }
+
+    public void setExpiredLabel() {
+
+        int ownerId = getCurrentUserId();
+
+        ObservableList<Product> products =
+                fetchDataFromTable.getAllProducts(ownerId);
+
+        LocalDate today = LocalDate.now();
+        LocalDate sevenDaysAgo = today.minusDays(7);
+        LocalDate sevenDaysAhead = today.plusDays(7);
+
+        // UNIQUE SETS (fix duplicates in DB)
+        Set<String> expiringSoonSet = new HashSet<>();
+        Set<String> outOfStockSet = new HashSet<>();
+        Set<String> wastedSet = new HashSet<>();
+
+        for (Product p : products) {
+
+            String name = p.getProductName();
+            LocalDate expiry = p.getLocalExpiryDate();
+
+            // expiring soon
+            if (expiry != null &&
+                    !expiry.isBefore(today) &&
+                    !expiry.isAfter(sevenDaysAhead)) {
+
+                expiringSoonSet.add(name);
+            }
+
+            //out of stock (unique items)
+            if (p.getQuantity() <= 0) {
+                outOfStockSet.add(name);
+            }
+
+            // 3. WASTED (expired in past 7 days)
+            if (expiry != null &&
+                    !expiry.isBefore(sevenDaysAgo) &&
+                    expiry.isBefore(today)) {
+
+                wastedSet.add(name);
+            }
+        }
+
+        set_expired_label(expiringSoonSet.size());
+        set_out_of_stock_label(outOfStockSet.size());
+        set_item_wasted_label(wastedSet.size());
+    }
+
+    public void set_expired_label(int data){
+
+        expired_label.setText(data + " expiring items");
+    }
+
+    public void set_out_of_stock_label(int data){
+
+        out_of_stock_label.setText(data + " out of stock");
+    }
+
+    public void set_item_wasted_label(int data){
+
+        items_wasted_label.setText(data + (data == 1 ? " item" : " items ") + " wasted this past 7 days");
     }
 
     //helper para maka hold sa combined total sa product sales
