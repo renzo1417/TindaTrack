@@ -251,4 +251,10 @@ public class InventoryPresenter {
         inventorySellController.getSellProductPane().setLayoutY((483 - 335) / 2);
         addProductPane.getChildren().add(inventorySellController.getSellProductPane());
     }
+
+    public void syncWithDatabase() {
+        if (model != null) {
+            model.syncWithDatabase();
+        }
+    }
 }
