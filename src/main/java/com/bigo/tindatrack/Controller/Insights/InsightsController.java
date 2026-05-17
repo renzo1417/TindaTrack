@@ -7,6 +7,7 @@ import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
@@ -25,6 +26,13 @@ public class InsightsController {
     @FXML Label slowMoving_Type1, slowMoving_Type2, slowMoving_Type3, slowMoving_Type4, slowMoving_Type5;
     @FXML Label slowMoving_count1, slowMoving_count2, slowMoving_count3, slowMoving_count4, slowMoving_count5;
     private SlowMovingItemsController slowMovingController;
+    // Fast Moving Items
+    @FXML ProgressBar item1PB, item2PB, item3PB, item4PB, item5PB;
+    @FXML Label item1Label, item2Label, item3Label, item4Label, item5Label;
+    // under Fast Moving Items
+    @FXML Label item1FastLabel, item2FastLabel, item3FastLabel, item4FastLabel;
+    @FXML Label item1_count_Label, item2_count_Label, item3_count_Label, item4_count_Label;
+
 
 
     @FXML private GridPane expiryGrid;
@@ -110,6 +118,16 @@ public class InsightsController {
                 }
         );
         slowMovingController.load();
+
+        // Fast Moving Items
+        // Fast Moving Items
+        FastMovingItemsController fastMovingController = new FastMovingItemsController(
+                new ProgressBar[]{ item1PB, item2PB, item3PB, item4PB, item5PB },
+                new Label[]{ item1Label, item2Label, item3Label, item4Label, item5Label },
+                new Label[]{ item1FastLabel, item2FastLabel, item3FastLabel, item4FastLabel },
+                new Label[]{ item1_count_Label, item2_count_Label, item3_count_Label, item4_count_Label }
+        );
+        fastMovingController.load();
 
 
         InsightsExpiryController expiryController = new InsightsExpiryController();
