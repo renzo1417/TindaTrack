@@ -2,6 +2,7 @@ package com.bigo.tindatrack.Controller.Settings;
 
 import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationPreferencesDAO;
 import com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.models.NotificationPreferences;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
@@ -10,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
 
 public class SettingsNotificationsController {
@@ -26,7 +29,7 @@ public class SettingsNotificationsController {
     @FXML
     private ToggleButton TButton5;
     @FXML
-    private Label username_top, username_bottom;
+    private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
     private User user;
     private NotificationPreferences prefs;
 
@@ -38,8 +41,13 @@ public class SettingsNotificationsController {
             return;
         }
 
-        username_top.setText(user.getUsername());
-        username_bottom.setText(user.getUsername());
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
         prefs = NotificationPreferencesDAO.load(user.getId());
         applyPrefsToToggles();

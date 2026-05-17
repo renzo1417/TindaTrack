@@ -7,6 +7,7 @@ import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationDA
 import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesManagement;
 import com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable;
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.Sales.Sales;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.models.User;
@@ -39,7 +40,8 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class DashboardController {
 
-    @FXML private Label welcomeField, username_top, username_bottom, dateField;
+    @FXML private Label welcomeField, dateField;
+    @FXML private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
     @FXML private VBox sellFirstList;
     @FXML private Button inventoryButton, insightButton,
             stockactivityButton, settingButton, viewAllerts;
@@ -65,8 +67,14 @@ public class DashboardController {
 
         welcomeField.setText("Hello " + user.getUsername()
                 + "! - Here's your inventory overview");
-        username_top.setText(user.getUsername());
-        username_bottom.setText(user.getUsername());
+
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
         LocalDate today     = LocalDate.now();
         String    dayName   = today.getDayOfWeek()

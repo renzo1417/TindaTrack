@@ -1,6 +1,7 @@
 package com.bigo.tindatrack.Controller.Settings;
 
 import com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
@@ -8,15 +9,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
+
 
 public class SettingsMarketController {
 
     @FXML
     private TextField storeNameTF, ownerNameTF, contactNumberTF, storeAddTF;
     @FXML
-    private Label username_top, username_bottom;
-    private User user;
-
+    private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
 
 
     public void initialize(){
@@ -27,8 +28,13 @@ public class SettingsMarketController {
             return;
         }
 
-        username_top.setText(user.getUsername());
-        username_bottom.setText(user.getUsername());
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
         storeNameTF.setText(user.getStoreName());
         ownerNameTF.setText(user.getFullname());

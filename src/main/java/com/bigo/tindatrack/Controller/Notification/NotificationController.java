@@ -1,6 +1,7 @@
 package com.bigo.tindatrack.Controller.Notification;
 
 import com.bigo.tindatrack.SQLite_Database.NotificationManagement.NotificationDAO;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
@@ -28,6 +29,7 @@ public class NotificationController {
     @FXML private ToggleButton filterCritical;
     @FXML private ToggleButton filterWarning;
     @FXML private ToggleButton filterInfo;
+    @FXML private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
 
     private List<NotificationItem> allItems;
     private String currentFilter = "ALL";
@@ -48,6 +50,20 @@ public class NotificationController {
         refreshUnreadCount();
         setupFilterButtons();
         markAllReadButton.setOnAction(e -> handleMarkAllRead());
+
+        setupUsername();
+    }
+
+    public void setupUsername(){
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
+
     }
 
     // ── Call this from InventoryController after add / edit / delete ──────

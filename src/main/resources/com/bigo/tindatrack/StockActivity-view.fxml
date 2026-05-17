@@ -167,7 +167,7 @@
                </effect>
                <children>
                   <Circle fill="#26ab2a78" layoutX="34.0" layoutY="32.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                  <Label layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+                  <Label fx:id="username_top_initial" layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="26.0" />
                      </font>
@@ -280,7 +280,7 @@
             <FontIcon iconColor="#00000097" iconLiteral="mdi2l-logout" iconSize="20" layoutX="168.0" layoutY="914.0" text="󰍃" />
             <Line endX="119.0" layoutX="103.0" layoutY="867.0" startX="-103.0" strokeWidth="0.2" />
             <Circle fill="#26ab2a78" layoutX="51.0" layoutY="906.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-            <Label alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+            <Label fx:id="username_bottom_initial" alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="26.0" />
                </font>

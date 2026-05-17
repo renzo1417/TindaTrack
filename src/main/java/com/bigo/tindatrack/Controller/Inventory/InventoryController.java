@@ -1,6 +1,7 @@
 package com.bigo.tindatrack.Controller.Inventory;
 
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -48,7 +49,7 @@ public class InventoryController {
     @FXML
     private ComboBox<String> statusFilter;
     @FXML
-    private Label username_top, username_bottom;
+    private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
 
     private InventoryPresenter presenter;
 
@@ -61,8 +62,13 @@ public class InventoryController {
             return;
         }
 
-        username_top.setText(user.getUsername());
-        username_bottom.setText(user.getUsername());
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
 
         presenter = new InventoryPresenter(this);

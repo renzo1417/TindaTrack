@@ -1,5 +1,6 @@
 package com.bigo.tindatrack.Controller.StockActivity;
 
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
@@ -42,7 +43,7 @@ public class StockActivityController {
     @FXML
     private TextField searchTextField;
     @FXML
-    private Label username_top, username_bottom;
+    private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
 
     private StockActivityPresenter presenter;
 
@@ -57,8 +58,13 @@ public class StockActivityController {
         }
 
 
-        username_top.setText(user.getUsername());
-        username_bottom.setText(user.getUsername());
+//        username_top.setText(user.getUsername());
+//        username_bottom.setText(user.getUsername());
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
         presenter = new StockActivityPresenter(this);
 

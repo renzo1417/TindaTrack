@@ -42,7 +42,7 @@
                </effect>
                <children>
                   <Circle fill="#26ab2a78" layoutX="34.0" layoutY="32.0" radius="23.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-                  <Label layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+                  <Label fx:id="username_top_initial" layoutX="17.0" layoutY="15.0" lineSpacing="3.0" prefHeight="34.0" prefWidth="34.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="26.0" />
                      </font>
@@ -155,7 +155,7 @@
             <FontIcon iconColor="#00000097" iconLiteral="mdi2l-logout" iconSize="20" layoutX="168.0" layoutY="914.0" text="󰍃" />
             <Line endX="119.0" layoutX="103.0" layoutY="867.0" startX="-103.0" strokeWidth="0.2" />
             <Circle fill="#26ab2a78" layoutX="51.0" layoutY="906.0" radius="20.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-            <Label alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
+            <Label fx:id="username_bottom_initial" alignment="CENTER" layoutX="31.0" layoutY="890.0" lineSpacing="3.0" prefHeight="30.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="F" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="26.0" />
                </font>
@@ -250,13 +250,13 @@
             <Line endX="676.0" layoutX="128.0" layoutY="72.0" startX="-113.0" stroke="#00000033" strokeWidth="0.5" />
             <VBox layoutX="125.0" layoutY="100.0" prefHeight="51.0" prefWidth="303.0" spacing="1.0">
                <children>
-                  <Label prefHeight="19.0" prefWidth="259.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Froilan Cando" />
+                  <Label fx:id="username_middle" prefHeight="19.0" prefWidth="259.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1a1a1a;" text="Froilan Cando" />
                   <Label fx:id="unreadCountLabel1" prefHeight="15.0" prefWidth="272.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 15; -fx-text-fill: #888888;" text="Store Owner" />
                </children>
             </VBox>
             <StackPane fx:id="bellIconContainer1" layoutX="23.0" layoutY="88.0" minHeight="42.0" minWidth="43.0" prefHeight="75.0" prefWidth="90.0" style="-fx-background-color: #2e8b2e; -fx-background-radius: 15;">
                <children>
-                  <Label prefHeight="28.0" prefWidth="11.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #FFFFF;" text="F" textFill="WHITE" />
+                  <Label fx:id="username_middle_initial" prefHeight="28.0" prefWidth="11.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #FFFFF;" text="F" textFill="WHITE" />
                </children>
             </StackPane>
          </children>

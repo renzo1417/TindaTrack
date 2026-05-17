@@ -1,6 +1,7 @@
 package com.bigo.tindatrack.Controller.Insights;
 
 import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
@@ -15,6 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.List;
 
+import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 import static com.bigo.tindatrack.utils.utility.switchScene;
 
 
@@ -32,6 +34,7 @@ public class InsightsController {
     // under Fast Moving Items
     @FXML Label item1FastLabel, item2FastLabel, item3FastLabel, item4FastLabel;
     @FXML Label item1_count_Label, item2_count_Label, item3_count_Label, item4_count_Label;
+    @FXML private Label username_top, username_bottom, username_top_initial, username_bottom_initial;
 
 
 
@@ -133,6 +136,12 @@ public class InsightsController {
         InsightsExpiryController expiryController = new InsightsExpiryController();
         expiryController.setExpiryGrid(expiryGrid); // we pass the grid directly
         expiryController.loadExpiryGrid();
+
+        UserUIHelper.setupUserUI(username_top_initial,
+                username_bottom_initial,
+                username_top,
+                username_bottom,
+                loadUser());
 
         updateRecommendations();
         loadExpirySection();
