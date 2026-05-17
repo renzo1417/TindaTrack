@@ -5,6 +5,7 @@ import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import static com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable.getInventoryOrderedByStatus;
 
 
 public class InventoryList {
@@ -21,6 +22,10 @@ public class InventoryList {
         productList.remove(item);
     }
 
+    public StockDetails replenishedProduct(Product item, int oldQty, int newQty) {
+        return detailsList.modifiedStockActivity(item, oldQty, newQty);
+    }
+
     public void modifyProduct(Product item) {
         productList.remove(item);
         productList.add(0, item);
@@ -28,5 +33,11 @@ public class InventoryList {
 
     public ObservableList<Product> getProductList() {
         return productList;
+    }
+
+    public void loadItems() {
+        int ownerId = com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId();
+        ObservableList<Product> freshData = getInventoryOrderedByStatus(ownerId);
+        productList.setAll(freshData);
     }
 }

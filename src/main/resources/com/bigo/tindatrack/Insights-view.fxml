@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Insights.InsightsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bigo.tindatrack.Controller.Insights.InsightsController">
    <children>
          <ScrollPane layoutX="222.0" layoutY="85.0" prefHeight="865.0" prefWidth="1277.0" style="-fx-background-color: #F8F9FA;">
          <content>
@@ -112,7 +102,7 @@
                                                          </font>
                                                       </Label>
                                                       <Pane prefHeight="19.0" prefWidth="300.0" HBox.hgrow="ALWAYS" />
-                                                      <Label text="88x" textFill="#3182CE">
+                                                      <Label fx:id="item1_count_Label" text="88x" textFill="#3182CE">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -128,7 +118,7 @@
                                                          </font>
                                                       </Label>
                                                       <Pane prefHeight="19.0" prefWidth="73.0" HBox.hgrow="ALWAYS" />
-                                                      <Label text="72x" textFill="#3182CE">
+                                                      <Label fx:id="item2_count_Label" text="72x" textFill="#3182CE">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -138,13 +128,13 @@
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
                                                       <Label text="#3" textFill="#A0AEC0" />
-                                                      <Label fx:id="item4FastLabel" text="Protein Bars" textFill="#1A202C">
+                                                      <Label fx:id="item3FastLabel" text="Protein Bars" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
                                                       <Pane HBox.hgrow="ALWAYS" />
-                                                      <Label text="67x" textFill="#3182CE">
+                                                      <Label fx:id="item3_count_Label" text="67x" textFill="#3182CE">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -154,13 +144,13 @@
                                                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                                                    <children>
                                                       <Label text="#4" textFill="#A0AEC0" />
-                                                      <Label fx:id="item5FastLabel" text="Orange Juice" textFill="#1A202C">
+                                                      <Label fx:id="item4FastLabel" text="Orange Juice" textFill="#1A202C">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
                                                       </Label>
                                                       <Pane prefHeight="19.0" prefWidth="264.0" HBox.hgrow="ALWAYS" />
-                                                      <Label text="67x" textFill="#3182CE">
+                                                      <Label fx:id="item4_count_Label" text="67x" textFill="#3182CE">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>

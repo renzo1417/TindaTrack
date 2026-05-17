@@ -104,6 +104,12 @@ public class InventoryController {
         addProductPane.setVisible(true);
     }
 
+    public void sellProductPopout() {
+        unclickablePane.setVisible(true);
+        presenter.showSellPopout(addProductPane);
+        addProductPane.setVisible(true);
+    }
+
     //this is helper function for switching screens
     private void switchScene(ActionEvent event, String fxmlPath) {
         try {

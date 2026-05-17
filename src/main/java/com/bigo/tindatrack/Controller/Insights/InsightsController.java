@@ -7,6 +7,7 @@ import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
@@ -25,6 +26,13 @@ public class InsightsController {
     @FXML Label slowMoving_Type1, slowMoving_Type2, slowMoving_Type3, slowMoving_Type4, slowMoving_Type5;
     @FXML Label slowMoving_count1, slowMoving_count2, slowMoving_count3, slowMoving_count4, slowMoving_count5;
     private SlowMovingItemsController slowMovingController;
+    // Fast Moving Items
+    @FXML ProgressBar item1PB, item2PB, item3PB, item4PB, item5PB;
+    @FXML Label item1Label, item2Label, item3Label, item4Label, item5Label;
+    // under Fast Moving Items
+    @FXML Label item1FastLabel, item2FastLabel, item3FastLabel, item4FastLabel;
+    @FXML Label item1_count_Label, item2_count_Label, item3_count_Label, item4_count_Label;
+
 
 
     @FXML private GridPane expiryGrid;
@@ -111,6 +119,16 @@ public class InsightsController {
         );
         slowMovingController.load();
 
+        // Fast Moving Items
+        // Fast Moving Items
+        FastMovingItemsController fastMovingController = new FastMovingItemsController(
+                new ProgressBar[]{ item1PB, item2PB, item3PB, item4PB, item5PB },
+                new Label[]{ item1Label, item2Label, item3Label, item4Label, item5Label },
+                new Label[]{ item1FastLabel, item2FastLabel, item3FastLabel, item4FastLabel },
+                new Label[]{ item1_count_Label, item2_count_Label, item3_count_Label, item4_count_Label }
+        );
+        fastMovingController.load();
+
 
         InsightsExpiryController expiryController = new InsightsExpiryController();
         expiryController.setExpiryGrid(expiryGrid); // we pass the grid directly
@@ -194,51 +212,62 @@ public class InsightsController {
     }
 
     private void checkForRestock(List<RecommendationInfo> infos) {
+        if (inventoryList.getProductList().isEmpty()) {
+            inventoryList.loadItems();
+        }
         for (Product p : inventoryList.getProductList()) {
+            if (infos.size() >= 10) break;
+
+            if (isAlreadyFlagged(infos, p.getProductName())) {
+                continue;
+            }
+
             if (p.getQuantity() > 0 && (
                     (p.getQuantity() <= 0.10 * p.getOriginalQuantity()) ||
                             (p.getOriginalQuantity() <= 10 && p.getQuantity() < 5)
             )) {
-                if (infos.size() < 10) {
-                    infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Restock Soon"));
-                }
+                infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Restock Soon"));
             }
         }
     }
 
     private void checkForSellFirst(List<RecommendationInfo> infos) {
+        if (inventoryList.getProductList().isEmpty()) {
+            inventoryList.loadItems();
+        }
         LocalDate today = LocalDate.now();
         for (Product p : inventoryList.getProductList()) {
+            if (infos.size() >= 10) break;
+
             long daysRemaining = ChronoUnit.DAYS.between(today, p.getLocalExpiryDate());
 
             if (daysRemaining <= 3 && daysRemaining >= 0) {
-                if (infos.size() < 10) {
-                    infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Sell First"));
-                }
+                infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Sell First"));
             }
         }
     }
 
     private void checkForOverStock(List<RecommendationInfo> infos) {
-        // 1. Group logs by Product Name to analyze history per item
         Map<String, List<StockDetails>> logsByProduct = new HashMap<>();
         for (StockDetails detail : detailsList.getDetailsList()) {
             logsByProduct.computeIfAbsent(detail.getProductName(), k -> new ArrayList<>()).add(detail);
         }
 
         for (Map.Entry<String, List<StockDetails>> entry : logsByProduct.entrySet()) {
-            // Stop if we've already reached the limit of 10 recommendations
             if (infos.size() >= 10) break;
 
             String name = entry.getKey();
+
+            if (isAlreadyFlagged(infos, name)) {
+                continue;
+            }
+
             List<StockDetails> history = entry.getValue();
 
-            // Ensure chronological order
             history.sort(Comparator.comparing(d -> LocalDate.parse(d.getDate())));
 
             if (history.size() < 2) continue;
 
-            // 2. Identify the two most recent "Stock In" events
             StockDetails latestRestock = null;
             StockDetails previousRestock = null;
             int latestIdx = -1;
@@ -246,7 +275,6 @@ public class InsightsController {
 
             for (int i = history.size() - 1; i >= 0; i--) {
                 StockDetails current = history.get(i);
-                // Check for quantity increase
                 if (current.getNewQty() > current.getOldQty()) {
                     if (latestRestock == null) {
                         latestRestock = current;
@@ -259,7 +287,6 @@ public class InsightsController {
                 }
             }
 
-            // 3. Perform Analysis if two restock points exist
             if (latestRestock != null && previousRestock != null) {
                 int totalSold = 0;
                 // Sum sales logs between the restocks
@@ -275,30 +302,26 @@ public class InsightsController {
                         LocalDate.parse(latestRestock.getDate())
                 );
 
-                // 4. Criteria: 1.5x growth, 30+ days gap, and low sales (< 10% of previous stock)
                 if (latestRestock.getNewQty() >= previousRestock.getOldQty() * 1.5
                         && daysBetween >= 30
                         && totalSold < (previousRestock.getNewQty() * 0.10)) {
 
-                    // 5. Priority Check: Only add if product isn't already flagged for something more urgent
-                    boolean alreadyFlagged = false;
-                    for (RecommendationInfo info : infos) {
-                        if (info.productName.equalsIgnoreCase(name)) {
-                            alreadyFlagged = true;
-                            break;
-                        }
-                    }
+                    String category = "General";
 
-                    if (!alreadyFlagged && infos.size() < 10) {
-                        // Fetch category (placeholder logic—replace with your actual category source)
-                        String category = "General";
-
-                        // Strictly suggest only "Overstocked" as requested
-                        infos.add(createInfoRecommendation(name, category, "Overstocked"));
-                    }
+                    infos.add(createInfoRecommendation(name, category, "Overstocked"));
                 }
             }
         }
+    }
+
+    // HELPER METHOD: Adds clean deduplication logic to keep code clean
+    private boolean isAlreadyFlagged(List<RecommendationInfo> infos, String productName) {
+        for (RecommendationInfo info : infos) {
+            if (info.getProductName().equalsIgnoreCase(productName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private RecommendationInfo createInfoRecommendation(String name, String category, String suggestion) {

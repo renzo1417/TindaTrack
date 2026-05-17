@@ -188,4 +188,26 @@ public class fetchDataFromTable {
         }
         return list;
     }
+
+    public static int countTotalSales(Product item, int owner_id) {
+        int totalSales = 0;
+        String query = "SELECT quantity, name FROM sales WHERE owner_id = ? AND name = ?";
+
+        try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(query) ) {
+            ps.setInt(1, owner_id);
+            ps.setString(2, item.getProductName());
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println("Product Name: " + rs.getString("name") + " | Sold: " + rs.getInt("quantity"));
+                totalSales += rs.getInt("quantity");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in retrieving total sales of " + item.getProductName());
+        }
+
+        return totalSales;
+    }
 }
