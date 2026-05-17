@@ -1,5 +1,7 @@
 package com.bigo.tindatrack.Controller;
 
+import com.bigo.tindatrack.Controller.Insights.FastMovingItemsController;
+import com.bigo.tindatrack.Controller.Insights.SlowMovingItemsController;
 import com.bigo.tindatrack.Controller.Inventory.InventoryPresenter;
 import com.bigo.tindatrack.Controller.Notification.NotificationItem;
 import com.bigo.tindatrack.Controller.Notification.NotificationService;
@@ -48,6 +50,7 @@ public class DashboardController {
     @FXML private Label total_items, expiring_soon, low_stock, total_expireUnits;
     @FXML private Label top_first_item, top_second_item, top_third_item;
     @FXML private Label top_first_item_counter, top_second_item_counter, top_third_item_counter;
+
     @FXML private ProgressBar top_first_item_progress, top_second_item_progress, top_third_item_progress;
     @FXML private Label least_first_item, least_second_item, least_third_item;
     @FXML private Label least_first_item_type, least_second_item_type, least_third_item_type;
@@ -57,6 +60,8 @@ public class DashboardController {
     @FXML private Label wasted_first_item_counter, wasted_second_item_counter, wasted_third_item_counter;
 
     private User user = loadUser();
+    private SlowMovingItemsController slowMovingController;
+    private FastMovingItemsController  fastMovingController;
 
     @FXML
     public void initialize() {
@@ -68,8 +73,6 @@ public class DashboardController {
         welcomeField.setText("Hello " + user.getUsername()
                 + "! - Here's your inventory overview");
 
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,
@@ -89,6 +92,7 @@ public class DashboardController {
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
         total_items.setText(products.size() + "");
         dateField.setText(dayName + ", " + formatted + " - " + products.size() + " items tracked");
+
         // this set is for active non - expired products
         Set<String> activeProductNames = new HashSet<>();
         for (Product p : products) {
@@ -98,176 +102,39 @@ public class DashboardController {
             }
         }
 
-        ObservableList<Sales> rawSalesHistory = SalesManagement.getSalesHistory(user.getID());
-
-        List<ProductTotal> combinedTotals = new ArrayList<>();
-        for (Sales sale : rawSalesHistory) {
-
-            if (!activeProductNames.contains(sale.getName())) continue;
-
-            boolean found = false;
-
-            for (ProductTotal pt : combinedTotals) {
-                if (pt.name.equals(sale.getName())) {
-                    pt.totalSold += sale.getQuantity();
-                    found = true;
-                    break;
+        fastMovingController = new FastMovingItemsController(
+                new ProgressBar[]{
+                        top_first_item_progress, top_second_item_progress, top_third_item_progress
+                },
+                new Label[]{
+                        top_first_item, top_second_item, top_third_item
+                },
+                new Label[]{
+                        top_first_item, top_second_item, top_third_item
+                },
+                new Label[]{
+                        top_first_item_counter, top_second_item_counter, top_third_item_counter
                 }
-            }
-
-            if (!found) {
-                combinedTotals.add(new ProductTotal(sale.getName(), sale.getQuantity()));
-            }
-        }
+        );
+        fastMovingController.load();
 
 
+        slowMovingController = new SlowMovingItemsController(
+                new Label[]{
+                        least_first_item, least_second_item, least_third_item
+                },
+                new Label[]{
+                        least_first_item_type, least_second_item_type, least_third_item_type
+                },
+                new Label[]{
+                        least_first_item_counter, least_second_item_counter, least_third_item_counter
+                }
+        );
 
-
-        // top used
-        // push purpose
-
-        ObservableList<StockDetails> allActivities = StockFetchFromTable.getActivitiesFromDB(ownerId);
-        Collections.reverse(allActivities);
-
-        // linkedHashMap and  added insertionOrderList
-        Map<String, LocalDate> addedDates = new LinkedHashMap<>();
-        List<String> insertionOrderList = new ArrayList<>();
-
-        for (StockDetails sd : allActivities) {
-            // !addedDates.containsKey() guard and insertionOrderList tracking
-            if (sd.getOldQty() == 0 && !addedDates.containsKey(sd.getProductName())) {
-                addedDates.put(sd.getProductName(), LocalDate.parse(sd.getDate()));
-                insertionOrderList.add(sd.getProductName());
-            }
-        }
-
-        //  added insertionOrder assignment alongside dateAdded
-        for (ProductTotal pt : combinedTotals) {
-            pt.dateAdded = addedDates.get(pt.name);
-            int idx = insertionOrderList.indexOf(pt.name);
-            pt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
-        }
-
-        combinedTotals.removeIf(pt -> !activeProductNames.contains(pt.name));
+        slowMovingController.load();
 
 
 
-        Set<String> alreadyInTotals = new HashSet<>();
-        for (ProductTotal pt : combinedTotals) {
-            alreadyInTotals.add(pt.name);
-        }
-
-        for (Product p : products) {
-
-            LocalDate expiry = p.getLocalExpiryDate();
-            if (expiry != null && expiry.isBefore(LocalDate.now())) continue; // skip expired
-
-            if (!alreadyInTotals.contains(p.getProductName())) {
-                ProductTotal zeroPt = new ProductTotal(p.getProductName(), 0);
-                zeroPt.dateAdded = addedDates.get(p.getProductName());
-                // assign insertionOrder for zero sales products too
-                int idx = insertionOrderList.indexOf(p.getProductName());
-                zeroPt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
-                combinedTotals.add(zeroPt);
-            }
-        }
-
-        boolean hasAnySales = combinedTotals.stream().anyMatch(pt -> pt.totalSold > 0);
-
-        //  both sort branches now use insertionOrder as tiebreaker
-        if (hasAnySales) {
-            combinedTotals.sort((a, b) -> {
-                int rateCompare = Double.compare(b.getSalesRate(), a.getSalesRate());
-                if (rateCompare != 0) return rateCompare;
-                return Integer.compare(a.insertionOrder, b.insertionOrder); // oldest added = top on tie
-            });
-        } else {
-            combinedTotals.sort((a, b) -> {
-                // if no sales it will be newest added first oldest ends up last and  first in Least Used
-                int orderCompare = Integer.compare(b.insertionOrder, a.insertionOrder);
-                if (orderCompare != 0) return orderCompare;
-                return 0;
-            });
-        }
-
-        double maxRate = combinedTotals.isEmpty() ? 1.0 : combinedTotals.get(0).getSalesRate();
-        if (maxRate == 0) maxRate = 1.0;
-
-        if (combinedTotals.size() > 0) {
-            ProductTotal item1 = combinedTotals.get(0);
-            top_first_item.setText(item1.name);
-            top_first_item_counter.setText(item1.totalSold + "x");
-            top_first_item_progress.setProgress(item1.getSalesRate() / maxRate);
-        } else {
-            top_first_item.setText("No sales yet");
-            top_first_item_progress.setProgress(0.0);
-        }
-
-        if (combinedTotals.size() > 1) {
-            ProductTotal item2 = combinedTotals.get(1);
-            top_second_item.setText(item2.name);
-            top_second_item_counter.setText(item2.totalSold + "x");
-            top_second_item_progress.setProgress(item2.getSalesRate() / maxRate);
-        } else {
-            top_second_item.setText("—");
-            top_second_item_progress.setProgress(0.0);
-        }
-
-        if (combinedTotals.size() > 2) {
-            ProductTotal item3 = combinedTotals.get(2);
-            top_third_item.setText(item3.name);
-            top_third_item_counter.setText(item3.totalSold + "x");
-            top_third_item_progress.setProgress(item3.getSalesRate() / maxRate);
-        } else {
-            top_third_item.setText("—");
-            top_third_item_progress.setProgress(0.0);
-            top_third_item_counter.setText("0");
-        }
-
-     // least used
-
-        List<ProductTotal> leastSorted = new ArrayList<>(combinedTotals);
-        leastSorted.sort((a, b) -> {
-            int rateCompare = Double.compare(a.getSalesRate(), b.getSalesRate());
-            if (rateCompare != 0) return rateCompare;
-            return Integer.compare(a.insertionOrder, b.insertionOrder);
-        });
-
-
-        // least used logic
-
-        if (leastSorted.size() > 0) {
-            ProductTotal item1 = leastSorted.get(0);
-            least_first_item.setText(item1.name);
-            least_first_item_counter.setText(item1.totalSold + "x");
-            least_first_item_type.setText(InventoryPresenter.getProductCategory(item1.name, products));
-        } else {
-            least_first_item.setText("No sales yet");
-            least_first_item_counter.setText("0x");
-            least_first_item_type.setText("—");
-        }
-
-        if (leastSorted.size() > 1) {
-            ProductTotal item2 = leastSorted.get(1);
-            least_second_item.setText(item2.name);
-            least_second_item_counter.setText(item2.totalSold + "x");
-            least_second_item_type.setText(InventoryPresenter.getProductCategory(item2.name, products));
-        } else {
-            least_second_item.setText("—");
-            least_second_item_counter.setText("0x");
-            least_second_item_type.setText("—");
-        }
-
-        if (leastSorted.size() > 2) {
-            ProductTotal item3 = leastSorted.get(2);
-            least_third_item.setText(item3.name);
-            least_third_item_counter.setText(item3.totalSold + "x");
-            least_third_item_type.setText(InventoryPresenter.getProductCategory(item3.name, products));
-        } else {
-            least_third_item.setText("—");
-            least_third_item_counter.setText("0x");
-            least_third_item_type.setText("—");
-        }
 
 
 
@@ -398,8 +265,6 @@ public class DashboardController {
             return (double) totalSold / daysActive; // unchanged
         }
     }
-
-
 
     //populate to sellfirst
     private void populateSellFirst() {

@@ -1,17 +1,22 @@
 package com.bigo.tindatrack.Controller.Insights;
 
-import com.bigo.tindatrack.data.StockDetails.StockDetails;
+import com.bigo.tindatrack.Product.Product;
+import com.bigo.tindatrack.Sales.Sales;
+import com.bigo.tindatrack.SQLite_Database.SalesManagement.SalesManagement;
 import com.bigo.tindatrack.SQLite_Database.StockManagement.StockFetchFromTable;
+import com.bigo.tindatrack.SQLite_Database.productsManagement.fetchDataFromTable;
+import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId;
 
-public class SlowMovingItemsController {
-    //  labels from InsightsController
+public class SlowMovingItemsController { // same ra sa fast ang logic
+
     private Label[] nameLabels;
     private Label[] categoryLabels;
     private Label[] countLabels;
@@ -21,15 +26,13 @@ public class SlowMovingItemsController {
             Label[] categoryLabels,
             Label[] countLabels
     ) {
-        this.nameLabels    = nameLabels;
+        this.nameLabels     = nameLabels;
         this.categoryLabels = categoryLabels;
-        this.countLabels   = countLabels;
+        this.countLabels    = countLabels;
     }
 
     public void load() {
-        int ownerId = getCurrentUserId();
-
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < nameLabels.length; i++) {
             nameLabels[i].setVisible(false);
             nameLabels[i].setManaged(false);
             categoryLabels[i].setVisible(false);
@@ -38,72 +41,133 @@ public class SlowMovingItemsController {
             countLabels[i].setManaged(false);
         }
 
+        int ownerId = getCurrentUserId();
         if (ownerId == -1) return;
-        // stock activity logs from DB
-        // ObservableList
 
-        ObservableList<StockDetails> logs = StockFetchFromTable.getActivitiesFromDB(ownerId);
-        if (logs.isEmpty()) return;
+        ObservableList<Product> products           = fetchDataFromTable.getAllProducts(ownerId);
+        ObservableList<Sales> rawSales             = SalesManagement.getSalesHistory(ownerId);
+        ObservableList<StockDetails> allActivities = StockFetchFromTable.getActivitiesFromDB(ownerId);
 
-        // count total stock change events per product name
-        // Used HashMap for the logic
-        Map<String, String> categoryMap = buildCategoryMap(ownerId);
+        if (products.isEmpty()) return;
 
-
-        Map<String, Integer> movementCount = new LinkedHashMap<>();
-        for (StockDetails s : logs) {
-            String name = s.getProductName();
-
-            if (!categoryMap.containsKey(name)) continue;
-            movementCount.put(name, movementCount.getOrDefault(name, 0) + 1);
+        //para sa category ni
+        Map<String, String> categoryLookup = new HashMap<>();
+        for (Product p : products) {
+            categoryLookup.put(p.getProductName(), p.getCategory());
         }
-        //  sorted to ascending by movement count the fewest changes = slowest moving
-        List<Map.Entry<String, Integer>> sorted = new ArrayList<>(movementCount.entrySet());
-        sorted.sort(Comparator.comparingInt(Map.Entry::getValue));
 
-        // top 5 slowest
-        int limit = Math.min(5, sorted.size());
-        if (limit == 0) return;
+        //total sales combined or unique item sales
+        List<ProductTotal> combinedTotals = new ArrayList<>();
+        for (Sales sale : rawSales) {
+            boolean found = false;
+            for (ProductTotal pt : combinedTotals) {
+                if (pt.name.equals(sale.getName())) {
+                    pt.totalSold += sale.getQuantity();
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                combinedTotals.add(new ProductTotal(sale.getName(), sale.getQuantity()));
+            }
+        }
 
-        // category for building a name category map from the logs
-        //  items for labels
-        for (int i = 0; i < limit; i++) {
-            String productName = sorted.get(i).getKey();
-            int    count       = sorted.get(i).getValue();
-            String category    = categoryMap.getOrDefault(productName, "—");
+        // Date added logic
+        Collections.reverse(allActivities);
+        Map<String, LocalDate> addedDates = new LinkedHashMap<>();
+        List<String> insertionOrderList   = new ArrayList<>();
+        for (StockDetails sd : allActivities) {
+            if (sd.getOldQty() == 0 && !addedDates.containsKey(sd.getProductName())) {
+                addedDates.put(sd.getProductName(), LocalDate.parse(sd.getDate()));
+                insertionOrderList.add(sd.getProductName());
+            }
+        }
 
-            nameLabels[i].setText(productName);
-            categoryLabels[i].setText(category);
-            countLabels[i].setText(count + "x");
+        for (ProductTotal pt : combinedTotals) {
+            pt.dateAdded      = addedDates.get(pt.name);
+            pt.category       = categoryLookup.getOrDefault(pt.name, "—");
+            int idx           = insertionOrderList.indexOf(pt.name);
+            pt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
+        }
 
+        // para dili expired products
+        Set<String> activeNames = new HashSet<>();
+        for (Product p : products) {
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry == null || !expiry.isBefore(LocalDate.now())) {
+                activeNames.add(p.getProductName());
+            }
+        }
+        combinedTotals.removeIf(pt -> !activeNames.contains(pt.name));
+
+
+        Set<String> alreadyInTotals = new HashSet<>();
+        for (ProductTotal pt : combinedTotals) alreadyInTotals.add(pt.name);
+        for (Product p : products) {
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry != null && expiry.isBefore(LocalDate.now())) continue;
+            if (!alreadyInTotals.contains(p.getProductName())) {
+                ProductTotal zeroPt   = new ProductTotal(p.getProductName(), 0);
+                zeroPt.dateAdded      = addedDates.get(p.getProductName());
+                zeroPt.category       = categoryLookup.getOrDefault(p.getProductName(), "—");
+                int idx               = insertionOrderList.indexOf(p.getProductName());
+                zeroPt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
+                combinedTotals.add(zeroPt);
+            }
+        }
+
+        // walay apil 0
+        combinedTotals.removeIf(pt -> pt.totalSold == 0);
+        if (combinedTotals.isEmpty()) return;
+
+        // sort
+        combinedTotals.sort((a, b) -> {
+            int cmp = Double.compare(a.getSalesRate(), b.getSalesRate());
+            return cmp != 0 ? cmp : Integer.compare(b.insertionOrder, a.insertionOrder);
+        });
+
+        // Take bottom 5 then reverse so highest of slow group shows first
+        int take = Math.min(nameLabels.length, combinedTotals.size());
+        List<ProductTotal> slowest = new ArrayList<>(combinedTotals.subList(0, take));
+        Collections.reverse(slowest);
+
+        for (int i = 0; i < slowest.size(); i++) {
+            ProductTotal pt = slowest.get(i);
+
+            nameLabels[i].setText(pt.name);
             nameLabels[i].setVisible(true);
             nameLabels[i].setManaged(true);
+
+            categoryLabels[i].setText(pt.category);
             categoryLabels[i].setVisible(true);
             categoryLabels[i].setManaged(true);
+
+            countLabels[i].setText(pt.totalSold + "x");
             countLabels[i].setVisible(true);
             countLabels[i].setManaged(true);
         }
     }
-    // builds the productName by category lookup from the table for product
-    // this will exclude all the expired items
-    private Map<String, String> buildCategoryMap(int ownerId) {
-        Map<String, String> map = new HashMap<>();
-        LocalDate today = LocalDate.now();
 
-        ObservableList<com.bigo.tindatrack.Product.Product> products =
-                com.bigo.tindatrack.SQLite_Database.productsManagement
-                        .fetchDataFromTable.getAllProducts(ownerId);
+    private static class ProductTotal {
+        String    name;
+        String    category;
+        int       totalSold;
+        LocalDate dateAdded;
+        int       insertionOrder;
 
-        for (com.bigo.tindatrack.Product.Product p : products) {
-            LocalDate expiry = p.getLocalExpiryDate();
-
-            // this skip product that are already expired
-            if (expiry != null && expiry.isBefore(today)) continue;
-
-            //  only active the non-expired products put into the map
-            map.put(p.getProductName(), p.getCategory());
+        ProductTotal(String name, int totalSold) {
+            this.name           = name;
+            this.category       = "—";
+            this.totalSold      = totalSold;
+            this.dateAdded      = null;
+            this.insertionOrder = Integer.MAX_VALUE;
         }
 
-        return map;
+        double getSalesRate() {
+            if (dateAdded == null) return totalSold == 0 ? -0.0001 : totalSold;
+            long daysActive = ChronoUnit.DAYS.between(dateAdded, LocalDate.now());
+            if (daysActive <= 0) daysActive = 1;
+            return totalSold == 0 ? -daysActive : (double) totalSold / daysActive;
+        }
     }
 }
