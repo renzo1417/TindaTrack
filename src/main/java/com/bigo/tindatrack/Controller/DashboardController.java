@@ -11,6 +11,10 @@ import com.bigo.tindatrack.Sales.Sales;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.models.User;
 import com.bigo.tindatrack.utils.utility;
+// --
+import com.bigo.tindatrack.data.StockDetails.StockDetails;
+import com.bigo.tindatrack.SQLite_Database.StockManagement.StockFetchFromTable;
+// --
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -98,15 +102,80 @@ public class DashboardController {
             }
         }
 
-        combinedTotals.sort((item1, item2) -> Integer.compare(item2.totalSold, item1.totalSold));
 
-        int maxSales = combinedTotals.isEmpty() ? 1 : combinedTotals.get(0).totalSold;
+
+
+        // top used
+
+        ObservableList<StockDetails> allActivities = StockFetchFromTable.getActivitiesFromDB(ownerId);
+        Collections.reverse(allActivities);
+
+        // linkedHashMap and  added insertionOrderList
+        Map<String, LocalDate> addedDates = new LinkedHashMap<>();
+        List<String> insertionOrderList = new ArrayList<>();
+
+        for (StockDetails sd : allActivities) {
+            // !addedDates.containsKey() guard and insertionOrderList tracking
+            if (sd.getOldQty() == 0 && !addedDates.containsKey(sd.getProductName())) {
+                addedDates.put(sd.getProductName(), LocalDate.parse(sd.getDate()));
+                insertionOrderList.add(sd.getProductName());
+            }
+        }
+
+        //  added insertionOrder assignment alongside dateAdded
+        for (ProductTotal pt : combinedTotals) {
+            pt.dateAdded = addedDates.get(pt.name);
+            int idx = insertionOrderList.indexOf(pt.name);
+            pt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
+        }
+
+        Set<String> activeProductNames = new HashSet<>();
+        for (Product p : products) {
+            activeProductNames.add(p.getProductName());
+        }
+        combinedTotals.removeIf(pt -> !activeProductNames.contains(pt.name));
+
+        Set<String> alreadyInTotals = new HashSet<>();
+        for (ProductTotal pt : combinedTotals) {
+            alreadyInTotals.add(pt.name);
+        }
+        for (Product p : products) {
+            if (!alreadyInTotals.contains(p.getProductName())) {
+                ProductTotal zeroPt = new ProductTotal(p.getProductName(), 0);
+                zeroPt.dateAdded = addedDates.get(p.getProductName());
+                // assign insertionOrder for zero sales products too
+                int idx = insertionOrderList.indexOf(p.getProductName());
+                zeroPt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
+                combinedTotals.add(zeroPt);
+            }
+        }
+
+        boolean hasAnySales = combinedTotals.stream().anyMatch(pt -> pt.totalSold > 0);
+
+        //  both sort branches now use insertionOrder as tiebreaker
+        if (hasAnySales) {
+            combinedTotals.sort((a, b) -> {
+                int rateCompare = Double.compare(b.getSalesRate(), a.getSalesRate());
+                if (rateCompare != 0) return rateCompare;
+                return Integer.compare(a.insertionOrder, b.insertionOrder); // oldest added = top on tie
+            });
+        } else {
+            combinedTotals.sort((a, b) -> {
+                // if no sales it will be newest added first oldest ends up last and  first in Least Used
+                int orderCompare = Integer.compare(b.insertionOrder, a.insertionOrder);
+                if (orderCompare != 0) return orderCompare;
+                return 0;
+            });
+        }
+
+        double maxRate = combinedTotals.isEmpty() ? 1.0 : combinedTotals.get(0).getSalesRate();
+        if (maxRate == 0) maxRate = 1.0;
 
         if (combinedTotals.size() > 0) {
             ProductTotal item1 = combinedTotals.get(0);
             top_first_item.setText(item1.name);
             top_first_item_counter.setText(item1.totalSold + "x");
-            top_first_item_progress.setProgress((double) item1.totalSold / maxSales);
+            top_first_item_progress.setProgress(item1.getSalesRate() / maxRate);
         } else {
             top_first_item.setText("No sales yet");
             top_first_item_progress.setProgress(0.0);
@@ -116,7 +185,7 @@ public class DashboardController {
             ProductTotal item2 = combinedTotals.get(1);
             top_second_item.setText(item2.name);
             top_second_item_counter.setText(item2.totalSold + "x");
-            top_second_item_progress.setProgress((double) item2.totalSold / maxSales);
+            top_second_item_progress.setProgress(item2.getSalesRate() / maxRate);
         } else {
             top_second_item.setText("—");
             top_second_item_progress.setProgress(0.0);
@@ -126,18 +195,27 @@ public class DashboardController {
             ProductTotal item3 = combinedTotals.get(2);
             top_third_item.setText(item3.name);
             top_third_item_counter.setText(item3.totalSold + "x");
-            top_third_item_progress.setProgress((double) item3.totalSold / maxSales);
+            top_third_item_progress.setProgress(item3.getSalesRate() / maxRate);
         } else {
             top_third_item.setText("—");
             top_third_item_progress.setProgress(0.0);
             top_third_item_counter.setText("0");
         }
 
-        //least items
-        int totalItems = combinedTotals.size();
+     // least used
 
-        if (combinedTotals.size() > 0) {
-            ProductTotal item1 = combinedTotals.get(totalItems - 1);
+        List<ProductTotal> leastSorted = new ArrayList<>(combinedTotals);
+        leastSorted.sort((a, b) -> {
+            int rateCompare = Double.compare(a.getSalesRate(), b.getSalesRate());
+            if (rateCompare != 0) return rateCompare;
+            return Integer.compare(a.insertionOrder, b.insertionOrder);
+        });
+
+
+        // least used logic
+
+        if (leastSorted.size() > 0) {
+            ProductTotal item1 = leastSorted.get(0);
             least_first_item.setText(item1.name);
             least_first_item_counter.setText(item1.totalSold + "x");
             least_first_item_type.setText(InventoryPresenter.getProductCategory(item1.name, products));
@@ -147,8 +225,8 @@ public class DashboardController {
             least_first_item_type.setText("—");
         }
 
-        if (combinedTotals.size() > 1) {
-            ProductTotal item2= combinedTotals.get(totalItems - 2);
+        if (leastSorted.size() > 1) {
+            ProductTotal item2 = leastSorted.get(1);
             least_second_item.setText(item2.name);
             least_second_item_counter.setText(item2.totalSold + "x");
             least_second_item_type.setText(InventoryPresenter.getProductCategory(item2.name, products));
@@ -158,8 +236,8 @@ public class DashboardController {
             least_second_item_type.setText("—");
         }
 
-        if (combinedTotals.size() > 2) {
-            ProductTotal item3= combinedTotals.get(totalItems - 3);
+        if (leastSorted.size() > 2) {
+            ProductTotal item3 = leastSorted.get(2);
             least_third_item.setText(item3.name);
             least_third_item_counter.setText(item3.totalSold + "x");
             least_third_item_type.setText(InventoryPresenter.getProductCategory(item3.name, products));
@@ -168,6 +246,8 @@ public class DashboardController {
             least_third_item_counter.setText("0x");
             least_third_item_type.setText("—");
         }
+
+
 
         // Recently wasted products
         // changes using localExpiryDate and comapreTo to get the most recent expired products
@@ -270,15 +350,34 @@ public class DashboardController {
     }
 
     //helper para maka hold sa combined total sa product sales
+    // modified for the date added
     class ProductTotal {
         String name;
         int totalSold;
+        LocalDate dateAdded;
+        int insertionOrder; // ✅ NEW
 
         public ProductTotal(String name, int totalSold) {
             this.name = name;
             this.totalSold = totalSold;
+            this.dateAdded = null;
+            this.insertionOrder = Integer.MAX_VALUE; // ✅ NEW
+        }
+
+        public double getSalesRate() {
+            if (dateAdded == null) return totalSold == 0 ? -0.0001 : totalSold;
+            long daysActive = ChronoUnit.DAYS.between(dateAdded, LocalDate.now());
+            if (daysActive <= 0) daysActive = 1;
+
+            if (totalSold == 0) {
+                return -daysActive; // unchanged
+            }
+
+            return (double) totalSold / daysActive; // unchanged
         }
     }
+
+
 
     //populate to sellfirst
     private void populateSellFirst() {
