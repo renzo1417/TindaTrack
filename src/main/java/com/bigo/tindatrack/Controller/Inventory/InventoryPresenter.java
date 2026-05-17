@@ -125,6 +125,7 @@ public class InventoryPresenter {
             if (inventorySellController.confirmSales()) {
                 controller.hideAddPopOut();
                 inventorySellController.restartFields();
+                controller.refreshTable();
             }
         });
     }
