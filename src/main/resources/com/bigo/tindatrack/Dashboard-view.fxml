@@ -471,7 +471,7 @@
                                     <Font name="Segoe UI Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="expired1_category" lineSpacing="3.0" prefHeight="14.0" prefWidth="306.0" text="Produce · Freezer" textFill="#000000a9">
+                              <Label fx:id="expired1_category" lineSpacing="3.0" prefHeight="14.0" prefWidth="306.0" text="Produce · Freezer" textFill="#000000a8">
                                  <font>
                                     <Font name="Segoe UI" size="12.0" />
                                  </font>
@@ -633,7 +633,7 @@
                   </Label>
                </children>
             </VBox>
-            <Label layoutX="47.0" prefHeight="40.0" prefWidth="136.0" text="Least Used">
+            <Label layoutX="47.0" prefHeight="40.0" prefWidth="169.0" text="Slow Moving Items">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -656,17 +656,17 @@
             <ProgressBar fx:id="top_third_item_progress" layoutX="16.0" layoutY="153.0" prefHeight="12.0" prefWidth="429.0" progress="0.67" />
             <VBox layoutX="442.0" layoutY="54.0" prefHeight="119.0" prefWidth="34.0" spacing="24.0">
                <children>
-                  <Label fx:id="top_first_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="88x" textFill="#3b82f6">
+                  <Label fx:id="top_first_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="0" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="top_second_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="72x" textFill="#3b82f6">
+                  <Label fx:id="top_second_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="0" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="top_third_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="67x" textFill="#3b82f6">
+                  <Label fx:id="top_third_item_counter" prefHeight="20.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="0" textFill="#3b82f6">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -692,7 +692,7 @@
                   </Label>
                </children>
             </VBox>
-            <Label layoutX="43.0" prefHeight="40.0" prefWidth="136.0" text="Top Used">
+            <Label layoutX="43.0" prefHeight="40.0" prefWidth="200.0" text="Fast Moving Items">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
