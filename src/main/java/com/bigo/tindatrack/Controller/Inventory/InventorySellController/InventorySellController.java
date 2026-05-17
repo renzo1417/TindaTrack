@@ -71,6 +71,7 @@ public class InventorySellController {
         productNameLabel.setText("Product Name");
         productCategoryLabel.setText("Category");
         stockDetailsLabel.setText("Available stock: --- units · Total sold: --- units");
+        inputSoldTextField.clear();
     }
 
     public void showAlert(String message) {
