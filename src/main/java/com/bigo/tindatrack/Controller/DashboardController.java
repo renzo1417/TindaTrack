@@ -106,6 +106,7 @@ public class DashboardController {
 
 
         // top used
+        // push purpose
 
         ObservableList<StockDetails> allActivities = StockFetchFromTable.getActivitiesFromDB(ownerId);
         Collections.reverse(allActivities);
