@@ -81,12 +81,22 @@ public class DashboardController {
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
         total_items.setText(products.size() + "");
         dateField.setText(dayName + ", " + formatted + " - " + products.size() + " items tracked");
-
+        // this set is for active non - expired products
+        Set<String> activeProductNames = new HashSet<>();
+        for (Product p : products) {
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry == null || !expiry.isBefore(LocalDate.now())) {
+                activeProductNames.add(p.getProductName());
+            }
+        }
 
         ObservableList<Sales> rawSalesHistory = SalesManagement.getSalesHistory(user.getID());
 
         List<ProductTotal> combinedTotals = new ArrayList<>();
         for (Sales sale : rawSalesHistory) {
+
+            if (!activeProductNames.contains(sale.getName())) continue;
+
             boolean found = false;
 
             for (ProductTotal pt : combinedTotals) {
@@ -130,17 +140,20 @@ public class DashboardController {
             pt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
         }
 
-        Set<String> activeProductNames = new HashSet<>();
-        for (Product p : products) {
-            activeProductNames.add(p.getProductName());
-        }
         combinedTotals.removeIf(pt -> !activeProductNames.contains(pt.name));
+
+
 
         Set<String> alreadyInTotals = new HashSet<>();
         for (ProductTotal pt : combinedTotals) {
             alreadyInTotals.add(pt.name);
         }
+
         for (Product p : products) {
+
+            LocalDate expiry = p.getLocalExpiryDate();
+            if (expiry != null && expiry.isBefore(LocalDate.now())) continue; // skip expired
+
             if (!alreadyInTotals.contains(p.getProductName())) {
                 ProductTotal zeroPt = new ProductTotal(p.getProductName(), 0);
                 zeroPt.dateAdded = addedDates.get(p.getProductName());
