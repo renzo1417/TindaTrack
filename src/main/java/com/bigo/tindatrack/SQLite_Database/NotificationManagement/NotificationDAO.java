@@ -10,10 +10,8 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class NotificationDAO {
 
-    // ── Insert a new notification ─────────────────────────────────────────
     public static boolean insert(int ownerId, Integer productId, String type,
                                  String message, String timestamp) {
-        // 1. Added owner_id to the columns and values list
         String query =
                 "INSERT INTO notifications (owner_id, product_id, type, message, timestamp, is_read)" +
                         " VALUES (?, ?, ?, ?, ?, 0)";
@@ -42,27 +40,28 @@ public class NotificationDAO {
         }
     }
 
-    // ── Get all notifications, newest first ───────────────────────────────
-    public static List<NotificationItem> getAll() {
+    public static List<NotificationItem> getAll(int ownerId) {
         List<NotificationItem> list = new ArrayList<>();
         String query =
                 "SELECT id, product_id, type, message, timestamp, is_read" +
-                        " FROM notifications ORDER BY id DESC";
+                        " FROM notifications WHERE owner_id = ? ORDER BY id DESC";
 
         try (Connection conn = connect();
-             PreparedStatement ps = conn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(query)) {
 
-            while (rs.next()) {
-                NotificationItem item = new NotificationItem(
-                        NotificationItem.Type.valueOf(rs.getString("type")),
-                        rs.getString("message"),
-                        rs.getString("timestamp"),
-                        rs.getInt("product_id")
-                );
-                item.id     = rs.getInt("id");
-                item.isRead = rs.getInt("is_read") == 1;
-                list.add(item);
+            ps.setInt(1, ownerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    NotificationItem item = new NotificationItem(
+                            NotificationItem.Type.valueOf(rs.getString("type")),
+                            rs.getString("message"),
+                            rs.getString("timestamp"),
+                            rs.getInt("product_id")
+                    );
+                    item.id     = rs.getInt("id");
+                    item.isRead = rs.getInt("is_read") == 1;
+                    list.add(item);
+                }
             }
         } catch (SQLException e) {
             System.err.println("ERROR FETCHING NOTIFICATIONS: " + e.getMessage());
@@ -70,7 +69,6 @@ public class NotificationDAO {
         return list;
     }
 
-    // ── Mark one as read ──────────────────────────────────────────────────
     public static boolean markAsRead(int notificationId) {
         String query = "UPDATE notifications SET is_read = 1 WHERE id = ?";
         try (Connection conn = connect();
@@ -84,11 +82,12 @@ public class NotificationDAO {
         }
     }
 
-    // ── Mark ALL as read ──────────────────────────────────────────────────
-    public static boolean markAllAsRead() {
-        String query = "UPDATE notifications SET is_read = 1";
+
+    public static boolean markAllAsRead(int ownerId) {
+        String query = "UPDATE notifications SET is_read = 1 WHERE owner_id = ?";
         try (Connection conn = connect();
              PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, ownerId);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -111,32 +110,34 @@ public class NotificationDAO {
         }
     }
 
-    // ── Prevent duplicate alerts for same product + type ─────────────────
-    public static boolean exists(int productId, String type) {
+    // ── FIX: Check duplicate alerts matching product, type, AND user ───────
+    public static boolean exists(int ownerId, int productId, String type) {
         String query =
                 "SELECT COUNT(*) FROM notifications" +
-                        " WHERE product_id = ? AND type = ?";
+                        " WHERE owner_id = ? AND product_id = ? AND type = ?";
         try (Connection conn = connect();
              PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, productId);
-            ps.setString(2, type);
-            ResultSet rs = ps.executeQuery();
-            return rs.next() && rs.getInt(1) > 0;
+            ps.setInt(1, ownerId);
+            ps.setInt(2, productId);
+            ps.setString(3, type);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() && rs.getInt(1) > 0;
+            }
         } catch (SQLException e) {
             System.err.println("ERROR CHECKING DUPLICATE: " + e.getMessage());
             return false;
         }
     }
 
-
-
-    // ── Count unread ──────────────────────────────────────────────────────
-    public static int countUnread() {
-        String query = "SELECT COUNT(*) FROM notifications WHERE is_read = 0";
+    // ── FIX: Count unread notifications ONLY for this specific user ────────
+    public static int countUnread(int ownerId) {
+        String query = "SELECT COUNT(*) FROM notifications WHERE is_read = 0 AND owner_id = ?";
         try (Connection conn = connect();
-             PreparedStatement ps = conn.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) return rs.getInt(1);
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, ownerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) return rs.getInt(1);
+            }
         } catch (SQLException e) {
             System.err.println("ERROR COUNTING UNREAD: " + e.getMessage());
         }

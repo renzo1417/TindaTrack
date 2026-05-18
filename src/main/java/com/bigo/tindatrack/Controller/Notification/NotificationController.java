@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
@@ -21,7 +19,6 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class NotificationController {
 
-    // ── FXML injections — match your fx:id names in NotificationCenter.fxml
     @FXML private VBox         notificationList;
     @FXML private Label        unreadCountLabel;
     @FXML private Button       markAllReadButton;
@@ -36,17 +33,16 @@ public class NotificationController {
     private String currentFilter = "ALL";
     private User user = loadUser();
 
-    // ─────────────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
-        // Step 1: Run rules against all products in DB
-        //         so expired/low-stock alerts are always up to date
         NotificationService.evaluateAllProducts();
 
-        // Step 2: Load everything from SQLite
-        allItems = NotificationDAO.getAll();
+        if (user != null) {
+            allItems = NotificationDAO.getAll(user.getId());
+        } else {
+            allItems = List.of();
+        }
 
-        // Step 3: Render UI
         renderList(allItems);
         refreshUnreadCount();
         setupFilterButtons();
@@ -56,27 +52,21 @@ public class NotificationController {
     }
 
     public void setupUsername(){
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
-
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,
                 username_bottom,
                 loadUser());
-
     }
 
-    // ── Call this from InventoryController after add / edit / delete ──────
     public void refresh() {
-        allItems = NotificationDAO.getAll();
+        if (user != null) {
+            allItems = NotificationDAO.getAll(user.getId());
+        }
         renderList(getCurrentFilteredList());
         refreshUnreadCount();
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // FILTER
-    // ─────────────────────────────────────────────────────────────────────
     private void setupFilterButtons() {
         filterAll.setOnAction(e      -> applyFilter("ALL"));
         filterUnread.setOnAction(e   -> applyFilter("UNREAD"));
@@ -109,19 +99,15 @@ public class NotificationController {
         };
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // MARK AS READ
-    // ─────────────────────────────────────────────────────────────────────
     private void handleMarkAllRead() {
-        NotificationDAO.markAllAsRead();
-        allItems.forEach(n -> n.isRead = true);
-        renderList(getCurrentFilteredList());
-        refreshUnreadCount();
+        if (user != null) {
+            NotificationDAO.markAllAsRead(user.getId());
+            allItems.forEach(n -> n.isRead = true);
+            renderList(getCurrentFilteredList());
+            refreshUnreadCount();
+        }
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // RENDER
-    // ─────────────────────────────────────────────────────────────────────
     private void renderList(List<NotificationItem> items) {
         notificationList.getChildren().clear();
 
@@ -141,52 +127,30 @@ public class NotificationController {
         empty.setPrefHeight(220);
 
         Label msg = new Label("No notifications.");
-        msg.setStyle(
-                "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 14;" +
-                        "-fx-text-fill: #aaaaaa;"
-        );
+        msg.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 14; -fx-text-fill: #aaaaaa;");
         empty.getChildren().add(msg);
         notificationList.getChildren().add(empty);
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // BUILD ROW — matches your FXML mockup exactly
-    // ─────────────────────────────────────────────────────────────────────
     private HBox buildRow(NotificationItem item) {
-
-        // ── Outer row ────────────────────────────────────────────────────
         HBox row = new HBox(20);
         row.setAlignment(Pos.TOP_LEFT);
         row.setPadding(new Insets(20, 32, 20, 32));
         setRowStyle(row, item);
 
-        // ── Left: colored circle (icon placeholder) ───────────────────────
         StackPane circle = new StackPane();
         circle.setPrefSize(40, 40);
         circle.setMinSize(40, 40);
         circle.setMaxSize(40, 40);
-        circle.setStyle(
-                "-fx-background-color: " + bgColor(item.type) + ";" +
-                        "-fx-background-radius: 20;"
-        );
-        // To add your icon image inside the circle:
+        circle.setStyle("-fx-background-color: " + bgColor(item.type) + "; -fx-background-radius: 20;");
 
         if (item.type == NotificationItem.Type.CRITICAL || item.type == NotificationItem.Type.WARNING) {
             try {
                 javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
                 svgIcon.setContent("M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z");
-
                 svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
-
                 svgIcon.setStrokeWidth(1.5);
-
-                if (item.type == NotificationItem.Type.CRITICAL) {
-                    svgIcon.setStroke(javafx.scene.paint.Color.RED);
-                } else {
-                    svgIcon.setStroke(javafx.scene.paint.Color.ORANGE);
-                }
-
+                svgIcon.setStroke(item.type == NotificationItem.Type.CRITICAL ? javafx.scene.paint.Color.RED : javafx.scene.paint.Color.ORANGE);
                 circle.getChildren().add(svgIcon);
             } catch (Exception ex) {
                 System.err.println("Error rendering SVG path: " + ex.getMessage());
@@ -197,72 +161,43 @@ public class NotificationController {
             try {
                 javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
                 svgIcon.setContent("M12 7.01001V7.00002M12 17L12 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
-
                 svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
                 svgIcon.setStrokeWidth(1.5);
-
                 svgIcon.setStroke(javafx.scene.paint.Color.DODGERBLUE);
-
                 circle.getChildren().add(svgIcon);
             } catch (Exception ex) {
                 System.err.println("Error rendering SVG path: " + ex.getMessage());
             }
         }
-        // ── Right: badge row + message + timestamp ────────────────────────
+
         VBox content = new VBox(6);
         HBox.setHgrow(content, Priority.ALWAYS);
 
-        // Badge + unread dot
         HBox badgeRow = new HBox(8);
         badgeRow.setAlignment(Pos.CENTER_LEFT);
 
         Label badge = new Label(item.type.name());
-        badge.setStyle(
-                "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 10;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-text-fill: " + textColor(item.type) + ";" +
-                        "-fx-background-color: " + bgColor(item.type) + ";" +
-                        "-fx-background-radius: 5;" +
-                        "-fx-padding: 3 9 3 9;"
-        );
+        badge.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: " + textColor(item.type) + "; -fx-background-color: " + bgColor(item.type) + "; -fx-background-radius: 5; -fx-padding: 3 9 3 9;");
         badgeRow.getChildren().add(badge);
 
-        // Unread dot — only shown if not yet read
         if (!item.isRead) {
             StackPane dot = new StackPane();
             dot.setPrefSize(8, 8);
             dot.setMaxSize(8, 8);
-            dot.setStyle(
-                    "-fx-background-color: " + textColor(item.type) + ";" +
-                            "-fx-background-radius: 4;"
-            );
+            dot.setStyle("-fx-background-color: " + textColor(item.type) + "; -fx-background-radius: 4;");
             badgeRow.getChildren().add(dot);
         }
 
-        // Message
         Label message = new Label(item.message);
         message.setWrapText(true);
-        message.setStyle(
-                "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 13.5;" +
-                        (item.isRead
-                                ? "-fx-text-fill: #444444;"
-                                : "-fx-font-weight: bold; -fx-text-fill: #1a1a1a;")
-        );
+        message.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 13.5;" + (item.isRead ? "-fx-text-fill: #444444;" : "-fx-font-weight: bold; -fx-text-fill: #1a1a1a;"));
 
-        // Timestamp
         Label timestamp = new Label(item.timestamp);
-        timestamp.setStyle(
-                "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 11.5;" +
-                        "-fx-text-fill: #aaaaaa;"
-        );
+        timestamp.setStyle("-fx-font-family: 'Segoe UI'; -fx-font-size: 11.5; -fx-text-fill: #aaaaaa;");
 
         content.getChildren().addAll(badgeRow, message, timestamp);
         row.getChildren().addAll(circle, content);
 
-        // ── Click: mark this row as read ──────────────────────────────────
         row.setOnMouseClicked(e -> {
             if (!item.isRead) {
                 item.isRead = true;
@@ -272,30 +207,14 @@ public class NotificationController {
             }
         });
 
-        // ── Hover effect ──────────────────────────────────────────────────
-        row.setOnMouseEntered(e -> row.setStyle(
-                "-fx-background-color: #f5f5f5;" +
-                        "-fx-border-color: transparent transparent #eeeeee transparent;" +
-                        "-fx-border-width: 0 0 1 0;" +
-                        "-fx-cursor: hand;"
-        ));
+        row.setOnMouseEntered(e -> row.setStyle("-fx-background-color: #f5f5f5; -fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;"));
         row.setOnMouseExited(e -> setRowStyle(row, item));
 
         return row;
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // HELPERS
-    // ─────────────────────────────────────────────────────────────────────
     private void setRowStyle(HBox row, NotificationItem item) {
-        row.setStyle(
-                (item.isRead
-                        ? "-fx-background-color: #fafafa;"
-                        : "-fx-background-color: white;") +
-                        "-fx-border-color: transparent transparent #eeeeee transparent;" +
-                        "-fx-border-width: 0 0 1 0;" +
-                        "-fx-cursor: hand;"
-        );
+        row.setStyle((item.isRead ? "-fx-background-color: #fafafa;" : "-fx-background-color: white;") + "-fx-border-color: transparent transparent #eeeeee transparent; -fx-border-width: 0 0 1 0; -fx-cursor: hand;");
     }
 
     private void refreshUnreadCount() {
@@ -305,28 +224,8 @@ public class NotificationController {
     }
 
     private void styleFilterButtons(String active) {
-        String on =
-                "-fx-background-color: #2e8b2e;" +
-                        "-fx-background-radius: 20;" +
-                        "-fx-text-fill: white;" +
-                        "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 13;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-cursor: hand;" +
-                        "-fx-padding: 6 22 6 22;" +
-                        "-fx-border-color: transparent;";
-
-        String off =
-                "-fx-background-color: transparent;" +
-                        "-fx-background-radius: 20;" +
-                        "-fx-text-fill: #444444;" +
-                        "-fx-font-family: 'Segoe UI';" +
-                        "-fx-font-size: 13;" +
-                        "-fx-cursor: hand;" +
-                        "-fx-padding: 6 22 6 22;" +
-                        "-fx-border-color: #d0d0d0;" +
-                        "-fx-border-radius: 20;" +
-                        "-fx-border-width: 1;";
+        String on = "-fx-background-color: #2e8b2e; -fx-background-radius: 20; -fx-text-fill: white; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 6 22 6 22; -fx-border-color: transparent;";
+        String off = "-fx-background-color: transparent; -fx-background-radius: 20; -fx-text-fill: #444444; -fx-font-family: 'Segoe UI'; -fx-font-size: 13; -fx-cursor: hand; -fx-padding: 6 22 6 22; -fx-border-color: #d0d0d0; -fx-border-radius: 20; -fx-border-width: 1;";
 
         filterAll.setStyle(active.equals("ALL")      ? on : off);
         filterUnread.setStyle(active.equals("UNREAD")    ? on : off);
@@ -351,59 +250,17 @@ public class NotificationController {
         };
     }
 
-//    public void goToDashboard(ActionEvent event){
-//        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
-//    }
-//
-//    public void goToInventory(ActionEvent event){
-//        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
-//    }
-//
-//    public void goToStockActivity(ActionEvent event){
-//        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
-//    }
-
-    public void onNotificationIconClick(MouseEvent mouseEvent) {
-        utility.switchToNotification(mouseEvent);
-    }
-
-    public void goToInventory(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");
-    }
-
-    public void goToInsight(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml");
-    }
-
-    public void goToStockActivity(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
-    }
-
-    public void goToSetting(ActionEvent event) {
-        System.out.println("setting button");
-        utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml");
-    }
-
-    public void goToDashboard(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
-    }
-
-    public void goToNotofication(ActionEvent event) {
-        utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml");
-    }
+    public void onNotificationIconClick(MouseEvent mouseEvent) { utility.switchToNotification(mouseEvent); }
+    public void goToInventory(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml"); }
+    public void goToInsight(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml"); }
+    public void goToStockActivity(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml"); }
+    public void goToSetting(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/SettingsMarket-view.fxml"); }
+    public void goToDashboard(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml"); }
+    public void goToNotofication(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Notification-view.fxml"); }
 
     public void setLogout(ActionEvent event) {
         com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
         this.user = null;
         utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
-
-//    public void setNotificationsLogout(ActionEvent event){
-//        com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
-//        this.user = null;
-//        utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
-//    }
-
-
-
 }
