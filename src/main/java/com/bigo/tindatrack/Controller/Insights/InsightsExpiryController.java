@@ -49,7 +49,7 @@ public class InsightsExpiryController {
         }
 
         int col = 0, row = 0;
-        int maxItems = 6;
+        int maxItems = 9;
         int count = 0;
 
         for (Product p : atRisk) {
