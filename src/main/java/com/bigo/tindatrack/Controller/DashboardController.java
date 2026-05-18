@@ -441,11 +441,66 @@ public class DashboardController {
                 "-fx-background-color: " + iconBgColor(item.type) + ";" +
                         "-fx-background-radius: 10;"
         );
-        Circle dot = new Circle(5);
-        dot.setStyle("-fx-fill: " + textColor(item.type) + ";");
-        dot.setLayoutX(20);
-        dot.setLayoutY(20);
-        iconPane.getChildren().add(dot);
+//        Circle dot = new Circle(5);
+//        dot.setStyle("-fx-fill: " + textColor(item.type) + ";");
+//        dot.setLayoutX(20);
+//        dot.setLayoutY(20);
+//        iconPane.getChildren().add(dot);
+        try {
+
+            javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
+
+
+            svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            svgIcon.setStrokeWidth(1.5);
+
+            boolean validShape = true;
+            switch (item.type) {
+                case CRITICAL:
+                    svgIcon.setContent("M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
+                    svgIcon.setStroke(javafx.scene.paint.Color.RED);
+                    break;
+
+                case WARNING:
+                    svgIcon.setContent("M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
+                    svgIcon.setStroke(javafx.scene.paint.Color.ORANGE);
+                    break;
+
+                case INFO:
+                    svgIcon.setContent("M12 7.01001V7.00002M12 17L12 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
+                    svgIcon.setStroke(javafx.scene.paint.Color.DODGERBLUE);
+                    break;
+
+                default:
+                    validShape = false;
+                    break;
+            }
+
+
+            if (validShape) {
+
+                double width = svgIcon.getBoundsInLocal().getWidth();
+                double height = svgIcon.getBoundsInLocal().getHeight();
+
+                if (width > 0 && height > 0) {
+                    double scaleX = 20.0 / width;
+                    double scaleY = 20.0 / height;
+                    double scale = Math.min(scaleX, scaleY);
+                    svgIcon.setScaleX(scale);
+                    svgIcon.setScaleY(scale);
+                }
+
+
+                svgIcon.setLayoutX(10);
+                svgIcon.setLayoutY(10);
+
+
+                iconPane.getChildren().add(svgIcon);
+            }
+
+        } catch (Exception ex) {
+            System.err.println("Error rendering SVG path: " + ex.getMessage());
+        }
 
         // for the name and the category
         VBox textContent = new VBox(3);
