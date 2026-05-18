@@ -171,30 +171,41 @@ public class NotificationController {
                         "-fx-background-radius: 20;"
         );
         // To add your icon image inside the circle:
+
         if (item.type == NotificationItem.Type.CRITICAL || item.type == NotificationItem.Type.WARNING) {
             try {
-                ImageView icon = new ImageView(new Image(
-                        getClass().getResourceAsStream("/com/bigo/tindatrack/icons/warning.png")
-                ));
-                icon.setFitWidth(20);
-                icon.setFitHeight(20);
-                icon.setPreserveRatio(true);
-                circle.getChildren().add(icon);
+                javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
+                svgIcon.setContent("M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z");
+
+                svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+                svgIcon.setStrokeWidth(1.5);
+
+                if (item.type == NotificationItem.Type.CRITICAL) {
+                    svgIcon.setStroke(javafx.scene.paint.Color.RED);
+                } else {
+                    svgIcon.setStroke(javafx.scene.paint.Color.ORANGE);
+                }
+
+                circle.getChildren().add(svgIcon);
             } catch (Exception ex) {
-                System.err.println("Warning icon not found: " + ex.getMessage());
+                System.err.println("Error rendering SVG path: " + ex.getMessage());
             }
         }
 
-        if(item.type == NotificationItem.Type.INFO){
+        if (item.type == NotificationItem.Type.INFO) {
             try {
-                ImageView icon = new ImageView(new Image(getClass().getResourceAsStream("/com/bigo/tindatrack/icons/info.png")));
-                icon.setFitWidth(20);
-                icon.setFitHeight(20);
-                icon.setPreserveRatio(true);
-                circle.getChildren().add(icon);
+                javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
+                svgIcon.setContent("M12 7.01001V7.00002M12 17L12 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
 
-            }catch (Exception e){
-                System.err.println("Warning icon not found: " + e.getMessage());
+                svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
+                svgIcon.setStrokeWidth(1.5);
+
+                svgIcon.setStroke(javafx.scene.paint.Color.DODGERBLUE);
+
+                circle.getChildren().add(svgIcon);
+            } catch (Exception ex) {
+                System.err.println("Error rendering SVG path: " + ex.getMessage());
             }
         }
         // ── Right: badge row + message + timestamp ────────────────────────
