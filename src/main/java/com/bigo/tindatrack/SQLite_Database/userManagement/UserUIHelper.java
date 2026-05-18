@@ -22,6 +22,7 @@ public class UserUIHelper {
         initial_top.setText(firstLetter.toUpperCase());
         initial_bottom.setText(firstLetter.toUpperCase());
 
-
     }
+
+
 }

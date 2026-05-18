@@ -68,7 +68,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" onMouseClicked="#onNotificationIconClick" strokeMiterLimit="1.0" strokeWidth="0.5" />
                </children>
             </Pane>
          </children>
@@ -256,7 +256,7 @@
             </VBox>
             <StackPane fx:id="bellIconContainer1" layoutX="23.0" layoutY="88.0" minHeight="42.0" minWidth="43.0" prefHeight="75.0" prefWidth="90.0" style="-fx-background-color: #2e8b2e; -fx-background-radius: 15;">
                <children>
-                  <Label fx:id="username_middle_initial" prefHeight="28.0" prefWidth="11.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #FFFFF;" text="F" textFill="WHITE" />
+                  <Label fx:id="username_middle_initial" prefHeight="50.0" prefWidth="44.0" style="-fx-font-family: 'Segoe UI'; -fx-font-size: 40; -fx-font-weight: bold; -fx-text-fill: #FFFFF;" text=" F" textFill="WHITE" />
                </children>
             </StackPane>
          </children>

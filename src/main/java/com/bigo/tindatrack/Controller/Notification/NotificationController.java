@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.util.List;
@@ -350,6 +351,10 @@ public class NotificationController {
 //    public void goToStockActivity(ActionEvent event){
 //        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
 //    }
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
+    }
 
     public void goToInventory(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");

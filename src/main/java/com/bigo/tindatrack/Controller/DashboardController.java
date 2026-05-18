@@ -27,8 +27,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
+import org.eclipse.angus.mail.imap.Utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -595,6 +597,10 @@ public class DashboardController {
     public void refreshSellFirst() {
         NotificationService.evaluateAllProducts();
         populateSellFirst();
+    }
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
     }
     // navigation
     public void goToInventory(ActionEvent event) {

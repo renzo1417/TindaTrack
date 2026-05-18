@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
@@ -92,6 +93,10 @@ public class SettingsNotificationsController {
                 ? "Your notification preferences have been saved!"
                 : "Something went wrong. Please try again.");
         alert.showAndWait();
+    }
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
     }
 
     public void goToInventory(ActionEvent event) {
