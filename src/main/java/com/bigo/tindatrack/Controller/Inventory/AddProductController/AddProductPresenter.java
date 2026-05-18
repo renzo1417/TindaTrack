@@ -13,7 +13,7 @@ public class AddProductPresenter {
 
     public Product createProduct(String productName, String quantity, LocalDate expiryDate, String category) {
         Product newProduct = null;
-        if (productName.trim().isEmpty() || quantity.trim().isEmpty() || category.trim().isEmpty()) {
+        if (productName.trim().isEmpty() || quantity.trim().isEmpty() || category.trim().isEmpty() || expiryDate == null) {
             controller.showAlert("All fields must be filled except for Expiry Date (Optional)!");
         } else if (!quantity.matches("\\d+")) {
             controller.showAlert("Invalid quantity input!");
