@@ -112,7 +112,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" strokeMiterLimit="1.0" strokeWidth="0.5" />
+                  <FontIcon iconColor="#00000080" iconLiteral="mdi2b-bell-outline" iconSize="25" layoutX="20.0" layoutY="34.0" onMouseClicked="#onNotificationIconClick" strokeMiterLimit="1.0" strokeWidth="0.5" />
                </children>
             </Pane>
          </children>

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import javafx.scene.layout.Pane;
@@ -128,6 +129,10 @@ public class InventoryController {
             System.err.println("Error loading scene: " + fxmlPath);
             e.printStackTrace();
         }
+    }
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
     }
 
     // these are function that switches screen from inventory more to add.
