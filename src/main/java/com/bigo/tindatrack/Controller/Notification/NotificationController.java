@@ -21,7 +21,7 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class NotificationController {
 
-    // ── FXML injections — match your fx:id names in NotificationCenter.fxml
+    // ── FXML injections
     @FXML private VBox         notificationList;
     @FXML private Label        unreadCountLabel;
     @FXML private Button       markAllReadButton;
@@ -40,11 +40,12 @@ public class NotificationController {
     @FXML
     public void initialize() {
         // Step 1: Run rules against all products in DB
-        //         so expired/low-stock alerts are always up to date
         NotificationService.evaluateAllProducts();
 
-        // Step 2: Load everything from SQLite
-        allItems = NotificationDAO.getAll();
+        // Step 2: Load everything from SQLite filtered by current user
+        if (user != null) {
+            allItems = NotificationDAO.getAll(user.getID());
+        }
 
         // Step 3: Render UI
         renderList(allItems);
@@ -56,20 +57,18 @@ public class NotificationController {
     }
 
     public void setupUsername(){
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
-
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,
                 username_bottom,
                 loadUser());
-
     }
 
     // ── Call this from InventoryController after add / edit / delete ──────
     public void refresh() {
-        allItems = NotificationDAO.getAll();
+        if (user != null) {
+            allItems = NotificationDAO.getAll(user.getID());
+        }
         renderList(getCurrentFilteredList());
         refreshUnreadCount();
     }
@@ -92,6 +91,8 @@ public class NotificationController {
     }
 
     private List<NotificationItem> getCurrentFilteredList() {
+        if (allItems == null) return List.of();
+
         return switch (currentFilter) {
             case "UNREAD"   -> allItems.stream()
                     .filter(n -> !n.isRead)
@@ -113,8 +114,12 @@ public class NotificationController {
     // MARK AS READ
     // ─────────────────────────────────────────────────────────────────────
     private void handleMarkAllRead() {
-        NotificationDAO.markAllAsRead();
-        allItems.forEach(n -> n.isRead = true);
+        if (user != null) {
+            NotificationDAO.markAllAsRead(user.getID());
+        }
+        if (allItems != null) {
+            allItems.forEach(n -> n.isRead = true);
+        }
         renderList(getCurrentFilteredList());
         refreshUnreadCount();
     }
@@ -151,7 +156,7 @@ public class NotificationController {
     }
 
     // ─────────────────────────────────────────────────────────────────────
-    // BUILD ROW — matches your FXML mockup exactly
+    // BUILD ROW
     // ─────────────────────────────────────────────────────────────────────
     private HBox buildRow(NotificationItem item) {
 
@@ -161,7 +166,7 @@ public class NotificationController {
         row.setPadding(new Insets(20, 32, 20, 32));
         setRowStyle(row, item);
 
-        // ── Left: colored circle (icon placeholder) ───────────────────────
+        // ── Left: colored circle ───────────────────────
         StackPane circle = new StackPane();
         circle.setPrefSize(40, 40);
         circle.setMinSize(40, 40);
@@ -170,23 +175,18 @@ public class NotificationController {
                 "-fx-background-color: " + bgColor(item.type) + ";" +
                         "-fx-background-radius: 20;"
         );
-        // To add your icon image inside the circle:
 
         if (item.type == NotificationItem.Type.CRITICAL || item.type == NotificationItem.Type.WARNING) {
             try {
                 javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
                 svgIcon.setContent("M12 15H12.01M12 12V9M4.98207 19H19.0179C20.5615 19 21.5233 17.3256 20.7455 15.9923L13.7276 3.96153C12.9558 2.63852 11.0442 2.63852 10.2724 3.96153L3.25452 15.9923C2.47675 17.3256 3.43849 19 4.98207 19Z");
-
                 svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
-
                 svgIcon.setStrokeWidth(1.5);
-
                 if (item.type == NotificationItem.Type.CRITICAL) {
                     svgIcon.setStroke(javafx.scene.paint.Color.RED);
                 } else {
                     svgIcon.setStroke(javafx.scene.paint.Color.ORANGE);
                 }
-
                 circle.getChildren().add(svgIcon);
             } catch (Exception ex) {
                 System.err.println("Error rendering SVG path: " + ex.getMessage());
@@ -197,22 +197,19 @@ public class NotificationController {
             try {
                 javafx.scene.shape.SVGPath svgIcon = new javafx.scene.shape.SVGPath();
                 svgIcon.setContent("M12 7.01001V7.00002M12 17L12 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z");
-
                 svgIcon.setFill(javafx.scene.paint.Color.TRANSPARENT);
                 svgIcon.setStrokeWidth(1.5);
-
                 svgIcon.setStroke(javafx.scene.paint.Color.DODGERBLUE);
-
                 circle.getChildren().add(svgIcon);
             } catch (Exception ex) {
                 System.err.println("Error rendering SVG path: " + ex.getMessage());
             }
         }
+
         // ── Right: badge row + message + timestamp ────────────────────────
         VBox content = new VBox(6);
         HBox.setHgrow(content, Priority.ALWAYS);
 
-        // Badge + unread dot
         HBox badgeRow = new HBox(8);
         badgeRow.setAlignment(Pos.CENTER_LEFT);
 
@@ -228,7 +225,6 @@ public class NotificationController {
         );
         badgeRow.getChildren().add(badge);
 
-        // Unread dot — only shown if not yet read
         if (!item.isRead) {
             StackPane dot = new StackPane();
             dot.setPrefSize(8, 8);
@@ -240,7 +236,6 @@ public class NotificationController {
             badgeRow.getChildren().add(dot);
         }
 
-        // Message
         Label message = new Label(item.message);
         message.setWrapText(true);
         message.setStyle(
@@ -251,7 +246,6 @@ public class NotificationController {
                                 : "-fx-font-weight: bold; -fx-text-fill: #1a1a1a;")
         );
 
-        // Timestamp
         Label timestamp = new Label(item.timestamp);
         timestamp.setStyle(
                 "-fx-font-family: 'Segoe UI';" +
@@ -264,9 +258,9 @@ public class NotificationController {
 
         // ── Click: mark this row as read ──────────────────────────────────
         row.setOnMouseClicked(e -> {
-            if (!item.isRead) {
+            if (!item.isRead && user != null) {
                 item.isRead = true;
-                NotificationDAO.markAsRead(item.id);
+                NotificationDAO.markAsRead(item.id, user.getID()); // Passed user.getID() here
                 renderList(getCurrentFilteredList());
                 refreshUnreadCount();
             }
@@ -299,6 +293,7 @@ public class NotificationController {
     }
 
     private void refreshUnreadCount() {
+        if (allItems == null) return;
         long count = allItems.stream().filter(n -> !n.isRead).count();
         unreadCountLabel.setText(count + " unread alert" + (count == 1 ? "" : "s"));
         filterUnread.setText("Unread (" + count + ")");
@@ -351,18 +346,6 @@ public class NotificationController {
         };
     }
 
-//    public void goToDashboard(ActionEvent event){
-//        utility.switchScene(event, "/com/bigo/tindatrack/Dashboard-view.fxml");
-//    }
-//
-//    public void goToInventory(ActionEvent event){
-//        utility.switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml" );
-//    }
-//
-//    public void goToStockActivity(ActionEvent event){
-//        utility.switchScene(event, "/com/bigo/tindatrack/StockActivity-view.fxml");
-//    }
-
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);
     }
@@ -397,13 +380,4 @@ public class NotificationController {
         this.user = null;
         utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
     }
-
-//    public void setNotificationsLogout(ActionEvent event){
-//        com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.clearSession();
-//        this.user = null;
-//        utility.switchScene(event, "/com/bigo/tindatrack/Login-view.fxml");
-//    }
-
-
-
 }

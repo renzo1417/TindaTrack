@@ -65,13 +65,17 @@ public class NotificationService {
         if (ownerId == -1) return;
 
         NotificationPreferences prefs = NotificationPreferencesDAO.load(ownerId);
-        NotificationDAO.deleteByProductId(p.getId());
+        // FIXED: Added ownerId to deleteByProductId
+        NotificationDAO.deleteByProductId(p.getId(), ownerId);
         evaluateProduct(p, prefs);
     }
 
     // ── Called after removeProduct() succeeds ─────────────────────────────
     public static void onProductDeleted(int productId) {
-        NotificationDAO.deleteByProductId(productId);
+        int ownerId = getCurrentUserId();
+        if (ownerId == -1) return;
+        // FIXED: Fetched ownerId and passed it here
+        NotificationDAO.deleteByProductId(productId, ownerId);
     }
 
     // ── Core rule engine — now receives prefs ─────────────────────────────
@@ -90,7 +94,8 @@ public class NotificationService {
                 long daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), expiry);
 
                 if (daysLeft < 0) {
-                    if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+                    // FIXED: Added ownerId to exists()
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                         NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                                 name + " has expired! Remove from stock immediately.", ts);
                         soundPlayed = true;
@@ -105,7 +110,8 @@ public class NotificationService {
                         }
                     }
                 } else if (daysLeft <= 1) {
-                    if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+                    // FIXED: Added ownerId to exists()
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                         NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                                 name + " expires in 1 day. Use or sell first!", ts);
                         soundPlayed = true;
@@ -119,7 +125,8 @@ public class NotificationService {
                         }
                     }
                 } else if (daysLeft <= 7) {
-                    if (!NotificationDAO.exists(p.getId(), "WARNING")) {
+                    // FIXED: Added ownerId to exists()
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "WARNING")) {
                         NotificationDAO.insert(ownerId, p.getId(), "WARNING",
                                 name + " is nearing expiry — " + daysLeft + " days remaining.", ts);
                         soundPlayed = true;
@@ -140,7 +147,8 @@ public class NotificationService {
         int qty = p.getQuantity();
 
         if (qty <= 0 && prefs.isLowStockAlerts()) {
-            if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+            // FIXED: Added ownerId to exists()
+            if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                 NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                         name + " is out of stock!", ts);
                 soundPlayed = true;
@@ -154,7 +162,8 @@ public class NotificationService {
                 }
             }
         } else if (qty < 10 && prefs.isLowStockAlerts()) {
-            if (!NotificationDAO.exists(p.getId(), "WARNING")) {
+            // FIXED: Added ownerId to exists()
+            if (!NotificationDAO.exists(ownerId, p.getId(), "WARNING")) {
                 NotificationDAO.insert(ownerId, p.getId(), "WARNING",
                         name + " stock is low (" + qty + " units). Consider restocking.", ts);
                 soundPlayed = true;

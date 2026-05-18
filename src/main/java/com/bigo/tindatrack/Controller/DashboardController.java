@@ -188,8 +188,8 @@ public class DashboardController {
             wasted_third_item_type.setText("—");
         }
 
-// notification from data base
-        List<NotificationItem> allNotifs = NotificationDAO.getAll();
+        // FIXED: notification from data base, now filtered by ownerId
+        List<NotificationItem> allNotifs = NotificationDAO.getAll(ownerId);
 
 //  logic ni for products expiring soon nga naa sa range of 7 days
         int expiringSoonCount = 0;
@@ -338,8 +338,9 @@ public class DashboardController {
     private void populateSellFirst() {
         sellFirstList.getChildren().clear();
 
-        List<NotificationItem> all = NotificationDAO.getAll();
+        // FIXED: Fetched ownerId first, then passed it to getAll()
         int ownerId = getCurrentUserId();
+        List<NotificationItem> all = NotificationDAO.getAll(ownerId);
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
 
         // helper using Hashmap to  get expiry date of a product by productId for sorting
