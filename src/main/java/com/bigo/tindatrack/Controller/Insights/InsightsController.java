@@ -234,7 +234,7 @@ public class InsightsController {
             }
 
             if (p.getQuantity() > 0 && (
-                    (p.getQuantity() <= 0.10 * p.getOriginalQuantity()) ||
+                    (p.getQuantity() <= 0.25 * p.getOriginalQuantity()) ||
                             (p.getOriginalQuantity() <= 10 && p.getQuantity() < 5)
             )) {
                 infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Restock Soon"));

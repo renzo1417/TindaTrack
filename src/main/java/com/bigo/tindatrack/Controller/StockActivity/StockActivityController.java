@@ -81,6 +81,7 @@ public class StockActivityController {
 
 //        presenter.setupListener();
         presenter.provideFilter(searchTextField, detailsTableView);
+        detailsTableView.setSelectionModel(null);
     }
 
     public void updateActivityCount(int totalRestocked, int totalSold, int totalActivities) {
