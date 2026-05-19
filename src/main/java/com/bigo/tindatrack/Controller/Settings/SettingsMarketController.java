@@ -44,6 +44,7 @@ public class SettingsMarketController {
 
     }
 
+
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);
     }

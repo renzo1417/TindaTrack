@@ -131,6 +131,7 @@ public class InventoryController {
         }
     }
 
+
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);
     }

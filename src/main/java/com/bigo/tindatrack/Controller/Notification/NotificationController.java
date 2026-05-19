@@ -51,6 +51,7 @@ public class NotificationController {
         setupUsername();
     }
 
+
     public void setupUsername(){
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,

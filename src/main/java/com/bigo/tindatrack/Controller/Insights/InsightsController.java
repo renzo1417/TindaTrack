@@ -178,6 +178,7 @@ public class InsightsController {
     public void updateRecommendations() {
         List<RecommendationInfo> infos = new ArrayList<>();
 
+
         // sell first is priority #1
         checkForSellFirst(infos);
         checkForRestock(infos);

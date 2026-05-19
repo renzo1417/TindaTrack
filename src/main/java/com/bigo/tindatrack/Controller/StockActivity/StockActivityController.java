@@ -112,6 +112,7 @@ public class StockActivityController {
 //    }
 
 
+
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);
     }

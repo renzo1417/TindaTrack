@@ -498,6 +498,7 @@ public class DashboardController {
         populateSellFirst(getCurrentUserId());
     }
 
+
     public void onNotificationIconClick(MouseEvent mouseEvent) { utility.switchToNotification(mouseEvent); }
     public void goToInventory(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml"); }
     public void goToInsightButton(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Insights-view.fxml"); }

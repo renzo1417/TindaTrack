@@ -95,6 +95,7 @@ public class SettingsNotificationsController {
         alert.showAndWait();
     }
 
+
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);
     }

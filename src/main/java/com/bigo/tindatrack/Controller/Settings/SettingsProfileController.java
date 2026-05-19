@@ -51,6 +51,7 @@ public class SettingsProfileController {
 
     }
 
+
     private void displayUserData() {
         User currentUser = SessionManager.loadUser();
         if (currentUser != null) {
