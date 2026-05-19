@@ -15,7 +15,7 @@ import java.util.*;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.getCurrentUserId;
 
-public class SlowMovingItemsController { // same ra sa fast ang logic
+public class SlowMovingItemsController {
 
     private Label[] nameLabels;
     private Label[] categoryLabels;
@@ -50,13 +50,13 @@ public class SlowMovingItemsController { // same ra sa fast ang logic
 
         if (products.isEmpty()) return;
 
-        //para sa category ni
+        // Category lookup
         Map<String, String> categoryLookup = new HashMap<>();
         for (Product p : products) {
             categoryLookup.put(p.getProductName(), p.getCategory());
         }
 
-        //total sales combined or unique item sales
+        // Build combined sales totals
         List<ProductTotal> combinedTotals = new ArrayList<>();
         for (Sales sale : rawSales) {
             boolean found = false;
@@ -90,7 +90,7 @@ public class SlowMovingItemsController { // same ra sa fast ang logic
             pt.insertionOrder = (idx == -1) ? Integer.MAX_VALUE : idx;
         }
 
-        // para dili expired products
+        // Only active non-expired products
         Set<String> activeNames = new HashSet<>();
         for (Product p : products) {
             LocalDate expiry = p.getLocalExpiryDate();
@@ -100,7 +100,7 @@ public class SlowMovingItemsController { // same ra sa fast ang logic
         }
         combinedTotals.removeIf(pt -> !activeNames.contains(pt.name));
 
-
+        // Seed 0-sold active products
         Set<String> alreadyInTotals = new HashSet<>();
         for (ProductTotal pt : combinedTotals) alreadyInTotals.add(pt.name);
         for (Product p : products) {
@@ -116,20 +116,30 @@ public class SlowMovingItemsController { // same ra sa fast ang logic
             }
         }
 
-        // walay apil 0
+        // Remove 0-sold AFTER seeding so none slip through
         combinedTotals.removeIf(pt -> pt.totalSold == 0);
         if (combinedTotals.isEmpty()) return;
 
-        // sort
+        // Sort descending by sales rate — same order as FastMovingItemsController
         combinedTotals.sort((a, b) -> {
-            int cmp = Double.compare(a.getSalesRate(), b.getSalesRate());
-            return cmp != 0 ? cmp : Integer.compare(b.insertionOrder, a.insertionOrder);
+            int cmp = Double.compare(b.getSalesRate(), a.getSalesRate());
+            return cmp != 0 ? cmp : Integer.compare(a.insertionOrder, b.insertionOrder);
         });
 
-        // Take bottom 5 then reverse so highest of slow group shows first
-        int take = Math.min(nameLabels.length, combinedTotals.size());
-        List<ProductTotal> slowest = new ArrayList<>(combinedTotals.subList(0, take));
-        Collections.reverse(slowest);
+        // Skip the fast moving slice (top n), take from the bottom of what's left
+        int fastCount = nameLabels.length;
+        int total     = combinedTotals.size();
+
+        if (fastCount >= total) return;
+
+        List<ProductTotal> slowGroup  = combinedTotals.subList(fastCount, total);
+        int takeFromEnd               = Math.min(nameLabels.length, slowGroup.size());
+
+        // Take from the bottom of slowGroup, reverse so highest of slow group shows first
+        List<ProductTotal> slowest = new ArrayList<>(
+                slowGroup.subList(slowGroup.size() - takeFromEnd, slowGroup.size())
+        );
+
 
         for (int i = 0; i < slowest.size(); i++) {
             ProductTotal pt = slowest.get(i);
