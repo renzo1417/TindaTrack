@@ -49,11 +49,24 @@ public class InsightsExpiryController {
         }
 
         int col = 0, row = 0;
+        int maxItems = 9;
+        int count = 0;
+
         for (Product p : atRisk) {
+            if(count >= maxItems) break;
             long daysLeft = ChronoUnit.DAYS.between(today, p.getLocalExpiryDate());
             expiryGrid.add(buildCard(p, daysLeft), col, row);
             col++;
+            count++;
             if (col == 3) { col = 0; row++; }
+        }
+        if (atRisk.size() > maxItems) {
+            int remaining = atRisk.size() - maxItems;
+            Label more = new Label("+ " + remaining + " more item(s) expiring soon");
+            more.setTextFill(Color.web("#C05621"));
+            more.setFont(Font.font("System Bold", 11));
+            GridPane.setColumnSpan(more, 3);
+            expiryGrid.add(more, 0, row + (col > 0 ? 1 : 0));
         }
     }
     public void setExpiryGrid(GridPane grid) {

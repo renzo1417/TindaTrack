@@ -5,10 +5,12 @@ import com.bigo.tindatrack.SQLite_Database.userManagement.UserUIHelper;
 import com.bigo.tindatrack.data.InventoryList.InventoryList;
 import com.bigo.tindatrack.data.StockDetails.StockDetails;
 import com.bigo.tindatrack.data.StockDetails.StockDetailsList;
+import com.bigo.tindatrack.utils.utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 import java.time.LocalDate;
@@ -176,6 +178,7 @@ public class InsightsController {
     public void updateRecommendations() {
         List<RecommendationInfo> infos = new ArrayList<>();
 
+
         // sell first is priority #1
         checkForSellFirst(infos);
         checkForRestock(infos);
@@ -232,7 +235,7 @@ public class InsightsController {
             }
 
             if (p.getQuantity() > 0 && (
-                    (p.getQuantity() <= 0.10 * p.getOriginalQuantity()) ||
+                    (p.getQuantity() <= 0.25 * p.getOriginalQuantity()) ||
                             (p.getOriginalQuantity() <= 10 && p.getQuantity() < 5)
             )) {
                 infos.add(createInfoRecommendation(p.getProductName(), p.getCategory(), "Restock Soon"));
@@ -338,6 +341,10 @@ public class InsightsController {
     }
 
     // ------------ NAVIGATION METHODS ----------------
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
+    }
 
     public void goToInventory(ActionEvent event) {
         switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");

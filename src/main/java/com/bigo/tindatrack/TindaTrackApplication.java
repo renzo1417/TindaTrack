@@ -27,6 +27,7 @@ public class TindaTrackApplication extends Application {
         stage.show();
 
     }
+
     // creates the table
     private void initDatabase() {
         SalesTableManagement.createSalesTable();

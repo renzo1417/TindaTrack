@@ -11,6 +11,7 @@ module com.bigo.tindatrack {
     requires javafx.graphics;
     requires jakarta.mail;
     requires javafx.media;
+    requires org.eclipse.angus.mail;
 //    requires com.bigo.tindatrack;
 //    requires com.bigo.tindatrack;/
 

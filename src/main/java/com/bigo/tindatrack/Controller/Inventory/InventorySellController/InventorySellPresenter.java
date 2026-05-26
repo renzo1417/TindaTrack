@@ -19,7 +19,13 @@ public class InventorySellPresenter {
         } else {
             int sold = Integer.parseInt(quantity);
 
-            item.setQuantity(item.getQuantity() - sold);
+            int newQty = item.getQuantity() - sold;
+            if (newQty < 0) {
+                newQty = 0;
+                sold = item.getQuantity();
+            }
+            item.setQuantity(newQty);
+
             item.getStatusController().updateStatus(item.getLocalExpiryDate(), item.getQuantity(), item.getOriginalQuantity());
             model.modifyProduct(item, sold);
             return true;

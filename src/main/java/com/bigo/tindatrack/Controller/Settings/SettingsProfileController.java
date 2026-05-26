@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
@@ -41,13 +42,15 @@ public class SettingsProfileController {
 
         String firstLetter = user.getUsername().charAt(0) + "";
 
-        username_middle_initial.setText(firstLetter.toUpperCase());
+        username_middle_initial.setText(" " + firstLetter.toUpperCase());
+
 
 
         displayUserData();
 
 
     }
+
 
     private void displayUserData() {
         User currentUser = SessionManager.loadUser();
@@ -59,6 +62,11 @@ public class SettingsProfileController {
             System.out.println("No active session found.");
         }
     }
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
+    }
+
     // switches screen using util
     @FXML
     private void goToDashboard(ActionEvent event) {

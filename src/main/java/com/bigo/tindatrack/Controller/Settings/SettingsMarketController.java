@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.loadUser;
 
@@ -41,6 +42,11 @@ public class SettingsMarketController {
         contactNumberTF.setText(user.getPhoneNumber());
         storeAddTF.setText(user.getEmail());
 
+    }
+
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
     }
 
     public void goToInventory(ActionEvent event) {

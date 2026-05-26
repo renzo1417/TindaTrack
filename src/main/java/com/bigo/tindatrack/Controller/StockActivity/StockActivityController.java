@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -80,6 +81,7 @@ public class StockActivityController {
 
 //        presenter.setupListener();
         presenter.provideFilter(searchTextField, detailsTableView);
+        detailsTableView.setSelectionModel(null);
     }
 
     public void updateActivityCount(int totalRestocked, int totalSold, int totalActivities) {
@@ -108,6 +110,12 @@ public class StockActivityController {
 //    public void switchToInventory(ActionEvent event) {
 //        switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml");
 //    }
+
+
+
+    public void onNotificationIconClick(MouseEvent mouseEvent) {
+        utility.switchToNotification(mouseEvent);
+    }
 
     public void goToInventory(ActionEvent event) {
         utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml");

@@ -19,12 +19,10 @@ public class NotificationService {
     private static final DateTimeFormatter FMT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    // ── Called on app startup ─────────────────────────────────────────────
     public static void evaluateAllProducts() {
         int ownerId = getCurrentUserId();
         if (ownerId == -1) return;
 
-        // Load this user's notification preferences once
         NotificationPreferences prefs = NotificationPreferencesDAO.load(ownerId);
 
         ObservableList<Product> products = fetchDataFromTable.getAllProducts(ownerId);
@@ -33,7 +31,7 @@ public class NotificationService {
         }
     }
 
-    // ── Called after addProduct() succeeds ────────────────────────────────
+
     public static void onProductAdded(Product p) {
         int ownerId = getCurrentUserId();
         if (ownerId == -1) return;
@@ -41,7 +39,6 @@ public class NotificationService {
         String ts = LocalDateTime.now().format(FMT);
         NotificationPreferences prefs = NotificationPreferencesDAO.load(ownerId);
 
-        // INFO alert for new product is always inserted regardless of prefs
         NotificationDAO.insert(
                 ownerId,
                 p.getId(),
@@ -51,7 +48,6 @@ public class NotificationService {
                 ts
         );
 
-        // Play sound if enabled
         if (prefs.isNotificationSound()) {
             NotificationSoundPlayer.play();
         }
@@ -59,7 +55,7 @@ public class NotificationService {
         evaluateProduct(p, prefs);
     }
 
-    // ── Called after editProduct() / restock succeeds ─────────────────────
+
     public static void onProductUpdated(Product p) {
         int ownerId = getCurrentUserId();
         if (ownerId == -1) return;
@@ -69,12 +65,10 @@ public class NotificationService {
         evaluateProduct(p, prefs);
     }
 
-    // ── Called after removeProduct() succeeds ─────────────────────────────
     public static void onProductDeleted(int productId) {
         NotificationDAO.deleteByProductId(productId);
     }
 
-    // ── Core rule engine — now receives prefs ─────────────────────────────
     private static void evaluateProduct(Product p, NotificationPreferences prefs) {
         if (p.getId() <= 0) return;
 
@@ -83,19 +77,17 @@ public class NotificationService {
         String name    = p.getProductName();
         boolean soundPlayed = false;
 
-        // ── Expiry rules (gated by expiryAlerts pref) ─────────────────────
         if (prefs.isExpiryAlerts()) {
             LocalDate expiry = p.getLocalExpiryDate();
             if (expiry != null) {
                 long daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), expiry);
 
                 if (daysLeft < 0) {
-                    if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                         NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                                 name + " has expired! Remove from stock immediately.", ts);
                         soundPlayed = true;
 
-                        // Send email if enabled
                         if (prefs.isEmailNotifications()) {
                             NotificationEmailSender.send(
                                     ownerId,
@@ -105,7 +97,7 @@ public class NotificationService {
                         }
                     }
                 } else if (daysLeft <= 1) {
-                    if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                         NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                                 name + " expires in 1 day. Use or sell first!", ts);
                         soundPlayed = true;
@@ -119,7 +111,7 @@ public class NotificationService {
                         }
                     }
                 } else if (daysLeft <= 7) {
-                    if (!NotificationDAO.exists(p.getId(), "WARNING")) {
+                    if (!NotificationDAO.exists(ownerId, p.getId(), "WARNING")) {
                         NotificationDAO.insert(ownerId, p.getId(), "WARNING",
                                 name + " is nearing expiry — " + daysLeft + " days remaining.", ts);
                         soundPlayed = true;
@@ -136,11 +128,10 @@ public class NotificationService {
             }
         }
 
-        // ── Stock rules (gated by lowStockAlerts + restockReminders) ──────
         int qty = p.getQuantity();
 
         if (qty <= 0 && prefs.isLowStockAlerts()) {
-            if (!NotificationDAO.exists(p.getId(), "CRITICAL")) {
+            if (!NotificationDAO.exists(ownerId, p.getId(), "CRITICAL")) {
                 NotificationDAO.insert(ownerId, p.getId(), "CRITICAL",
                         name + " is out of stock!", ts);
                 soundPlayed = true;
@@ -154,7 +145,7 @@ public class NotificationService {
                 }
             }
         } else if (qty < 10 && prefs.isLowStockAlerts()) {
-            if (!NotificationDAO.exists(p.getId(), "WARNING")) {
+            if (!NotificationDAO.exists(ownerId, p.getId(), "WARNING")) {
                 NotificationDAO.insert(ownerId, p.getId(), "WARNING",
                         name + " stock is low (" + qty + " units). Consider restocking.", ts);
                 soundPlayed = true;
@@ -170,7 +161,6 @@ public class NotificationService {
             }
         }
 
-        // ── Play sound once per product evaluation if anything was inserted
         if (soundPlayed && prefs.isNotificationSound()) {
             NotificationSoundPlayer.play();
         }
