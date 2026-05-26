@@ -28,9 +28,6 @@ public class SettingsMarketController {
             System.out.println("Error: No user found!");
             return;
         }
-
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,

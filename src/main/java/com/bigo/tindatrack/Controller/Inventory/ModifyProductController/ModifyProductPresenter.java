@@ -30,8 +30,6 @@ public class ModifyProductPresenter {
             product.setOriginalQuantity(Integer.parseInt(quantity));
             product.setQuantity(Integer.parseInt(quantity));
             product.getStatusController().updateStatus(product.getLocalExpiryDate(), product.getQuantity(), product.getOriginalQuantity());
-
-
         }
 
         return product;

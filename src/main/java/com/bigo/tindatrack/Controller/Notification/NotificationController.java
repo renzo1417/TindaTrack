@@ -42,7 +42,6 @@ public class NotificationController {
         } else {
             allItems = List.of();
         }
-
         renderList(allItems);
         refreshUnreadCount();
         setupFilterButtons();
@@ -58,14 +57,6 @@ public class NotificationController {
                 username_top,
                 username_bottom,
                 loadUser());
-    }
-
-    public void refresh() {
-        if (user != null) {
-            allItems = NotificationDAO.getAll(user.getId());
-        }
-        renderList(getCurrentFilteredList());
-        refreshUnreadCount();
     }
 
     private void setupFilterButtons() {

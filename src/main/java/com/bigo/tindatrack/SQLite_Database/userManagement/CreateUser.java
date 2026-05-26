@@ -9,8 +9,6 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class CreateUser {
 
-    // 1username, 2fullname, 3password, 4email, 5phoneNumber, 6storeName
-
     public static boolean createUser(String username, String fullname, String password, String email, String phoneNumber, String storeName){
         String query = "INSERT INTO users(username,fullname,password,email,phoneNumber,storeName) VALUES(?,?,?,?,?,?)";
         try(Connection connected = connect(); PreparedStatement pstmt = connected.prepareStatement(query)){
@@ -21,8 +19,6 @@ public class CreateUser {
             pstmt.setString(4,email);
             pstmt.setString(5,phoneNumber);
             pstmt.setString(6,storeName);
-
-
 
             // why execute update and why not query? because we are updating values in the database
             // not asking for a query

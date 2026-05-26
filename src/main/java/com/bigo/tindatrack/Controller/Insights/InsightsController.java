@@ -42,7 +42,7 @@ public class InsightsController {
 
     @FXML private GridPane expiryGrid;
 
-    // ------------ Recommendation Fields - Densing ------------
+    //  Recommendation Fields - Densing
     // Recommendation Product Names
     @FXML
     private Label reco_ProductName_1, reco_ProductName_2, reco_ProductName_3;
@@ -125,7 +125,6 @@ public class InsightsController {
         slowMovingController.load();
 
         // Fast Moving Items
-        // Fast Moving Items
         FastMovingItemsController fastMovingController = new FastMovingItemsController(
                 new ProgressBar[]{ item1PB, item2PB, item3PB, item4PB, item5PB },
                 new Label[]{ item1Label, item2Label, item3Label, item4Label, item5Label },
@@ -149,7 +148,7 @@ public class InsightsController {
         loadExpirySection();
     }
 
-    // ------------ Recommendation Methods- DENSING ------------
+    // Recommendation Methods- DENSING
 
     private static class RecommendationInfo {
         private String productName;
@@ -340,7 +339,7 @@ public class InsightsController {
         return new RecommendationInfo(name, category, suggestion);
     }
 
-    // ------------ NAVIGATION METHODS ----------------
+    // NAVIGATION METHODS
 
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);

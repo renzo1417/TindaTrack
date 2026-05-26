@@ -493,11 +493,6 @@ public class DashboardController {
         };
     }
 
-    public void refreshSellFirst() {
-        NotificationService.evaluateAllProducts();
-        populateSellFirst(getCurrentUserId());
-    }
-
 
     public void onNotificationIconClick(MouseEvent mouseEvent) { utility.switchToNotification(mouseEvent); }
     public void goToInventory(ActionEvent event) { utility.switchScene(event, "/com/bigo/tindatrack/Inventory-view.fxml"); }

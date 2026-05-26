@@ -74,7 +74,7 @@ public class ForgotPasswordVerificationTwoController {
             return "Password must contain at least one special character";
         }
 
-        return null; //valid password
+        return null;
     }
 
     public void initialize(){

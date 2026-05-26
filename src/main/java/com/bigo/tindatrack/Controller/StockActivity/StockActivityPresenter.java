@@ -18,15 +18,6 @@ public class StockActivityPresenter {
         this.controller = controller;
         model = new StockActivityModel();
     }
-
-//    public void setupListener() {
-//        model.getList().addListener((ListChangeListener<StockDetails>) change -> {
-//            while (change.next()) {
-//                updateActivityCount();
-//            }
-//        });
-//    }
-
     public void updateActivityCount() {
         controller.updateActivityCount(
                 model.getTotalRestocked(),

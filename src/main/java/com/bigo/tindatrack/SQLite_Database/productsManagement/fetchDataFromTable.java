@@ -120,7 +120,6 @@ import static com.bigo.tindatrack.SQLite_Database.ConnectionBridge.connect;
 
 public class fetchDataFromTable {
 
-    // Shared helper to map a ResultSet row → Product
     private static Product mapRow(ResultSet rs) throws SQLException {
         int       id         = rs.getInt("id");
         String    name       = rs.getString("name");
@@ -159,15 +158,6 @@ public class fetchDataFromTable {
         return runQuery(query, ownerId);
     }
 
-    public static ObservableList<Product> getInventoryOrderedByQuantity(int ownerId) {
-        return runQuery(BASE_QUERY + "ORDER BY quantity DESC",ownerId);
-    }
-
-    public static ObservableList<Product> getInventoryOrderedByID(int ownerId) {
-        return runQuery(BASE_QUERY + "ORDER BY id ASC",ownerId);
-    }
-
-    // ── NEW: used by NotificationService ─────────────────────────────────
     public static ObservableList<Product> getAllProducts(int ownerId) {
         return runQuery(BASE_QUERY + "ORDER BY id ASC",ownerId);
     }

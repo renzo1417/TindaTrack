@@ -13,12 +13,7 @@ public class UserUIHelper {
 
         username_top.setText(user.getUsername());
         username_bottom.setText(user.getUsername());
-
         String firstLetter = user.getUsername().charAt(0) + "";
-//                user.getUsername()
-//                        .substring(0, 1)
-//                        .toUpperCase();
-
         initial_top.setText(firstLetter.toUpperCase());
         initial_bottom.setText(firstLetter.toUpperCase());
 

@@ -52,27 +52,14 @@ public class LoginController {
         }
     }
 
-
-
-    // forgotpassword switch scene
-//    @FXML
-//    public void goToforgotPassword(MouseEvent event){
-//        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/FogotPassword-view.fxml");
-//    }
-
-
     @FXML
     public void initialize(){
         User user = SessionManager.loadUser();
-
         if(user!=null){
-
             javafx.application.Platform.runLater(() -> {
                 goToDashboard();
             });
-
         }
-
     }
 
     private void showAlert(String message) {
@@ -82,8 +69,6 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-
 
     public void handleSignInButton(ActionEvent event){
         String username  = usernameField.getText();
@@ -106,31 +91,23 @@ public class LoginController {
                 showAlert("INCORRECT USERNAME OR PASSWORD");
             }
 
-
         }
 
     }
 
     @FXML
     public void onCreateAccountClick(MouseEvent event ) throws IOException {
-//
         Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Register-view.fxml"));
-
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         stage.setScene(new Scene(root));
         stage.show();
 
-//        utility.switchSceneForLabel(event, "/com/bigo/tindatrack/Register-view.fxml");
     }
 
 
     public void OnForgotPasswordClick(MouseEvent mouseEvent) throws IOException {
-
         Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/ForgotPassword-view.fxml"));
-
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-
         stage.setScene(new Scene(root));
         stage.show();
     }

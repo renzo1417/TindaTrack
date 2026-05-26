@@ -48,7 +48,6 @@ public class utility {
         try {
             Parent root =FXMLLoader.load(Objects.requireNonNull(utility.class.getResource(fxmlPath)));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Stage stage = (Stage) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

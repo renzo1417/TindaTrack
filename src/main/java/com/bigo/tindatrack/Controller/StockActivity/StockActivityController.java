@@ -57,10 +57,6 @@ public class StockActivityController {
             System.out.println("Error: No user found!");
             return;
         }
-
-
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,
@@ -78,8 +74,6 @@ public class StockActivityController {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         presenter.updateActivityCount();
-
-//        presenter.setupListener();
         presenter.provideFilter(searchTextField, detailsTableView);
         detailsTableView.setSelectionModel(null);
     }
@@ -92,26 +86,6 @@ public class StockActivityController {
         totalLabel.setText(totalActivities + "");
         totalSoldLabel.setText(totalSold + "");
     }
-
-    private void switchScene(ActionEvent event, String fxmlPath) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Stage stage = (Stage) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("Error loading scene: " + fxmlPath);
-            e.printStackTrace();
-        }
-    }
-
-//    @FXML
-//    public void switchToInventory(ActionEvent event) {
-//        switchScene(event,"/com/bigo/tindatrack/Inventory-view.fxml");
-//    }
-
-
 
     public void onNotificationIconClick(MouseEvent mouseEvent) {
         utility.switchToNotification(mouseEvent);

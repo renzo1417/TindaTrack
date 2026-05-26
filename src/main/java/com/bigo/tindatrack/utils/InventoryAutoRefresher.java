@@ -19,7 +19,6 @@ public class InventoryAutoRefresher {
     public void start() {
         scheduler = Executors.newSingleThreadScheduledExecutor(runnable -> {
             Thread thread = new Thread(runnable);
-            // Daemon ensures the thread dies automatically if the main app window is closed
             thread.setDaemon(true);
             return thread;
         });

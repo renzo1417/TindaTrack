@@ -106,44 +106,18 @@ public class RegisterController {
 
             System.out.println("user created successfully!");
             createUser(username, fullname, password,email,phoneNumber,storeName);
-
             Parent root = null;
             try {
                 root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Login-view.fxml"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             stage.setScene(new Scene(root));
             stage.show();
-
         }
 
-
-
     }
-
-    @FXML
-    public void setCreateAccountButton(){
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String fullname = fullNameField.getText();
-        String email = emailField.getText();
-        String storeName = storeNameField.getText();
-        String phoneNumber = phoneField.getText();
-        String confirmPass = confirmPasswordField.getText();
-
-        // 1username, 2fullname, 3password, 4email, 5phoneNumber, 6storeName
-//        createUser(username, fullname, password,email,phoneNumber,storeName);
-
-        System.out.println(username  + "\n" +  password + fullname + "\n" + email + "\n" + storeName + "\n" + phoneNumber + "\n" + confirmPass);
-
-
-
-    }
-
 
     public void onsigninClick(MouseEvent mouseEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/com/bigo/tindatrack/Login-view.fxml"));

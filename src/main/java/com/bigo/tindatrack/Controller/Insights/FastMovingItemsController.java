@@ -18,16 +18,9 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class FastMovingItemsController {
 
-    // Label for pr progress bar
     private ProgressBar[] progressBars;
-
-
     private Label[] barNameLabels;
-
-
     private Label[] rankNameLabels;
-
-    // labels for ranked list counts
     private Label[] rankCountLabels;
 
     public FastMovingItemsController(

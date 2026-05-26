@@ -32,10 +32,6 @@ public class Status {
         this.status = status;
     }
 
-    public Pane getStatusPane() {
-        return controller.getStatusPane();
-    }
-
     public void updateStatus(LocalDate expiryDate, int quantity, int originalQuantity) {
         // 1. Default "Safe" values
         String labelColor = "#25A14B";

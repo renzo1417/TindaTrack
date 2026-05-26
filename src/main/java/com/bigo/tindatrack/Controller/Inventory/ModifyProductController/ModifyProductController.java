@@ -74,10 +74,6 @@ public class ModifyProductController {
         categoryComboBox.setValue(null);
     }
 
-    public Product getToBeModified() {
-        return toBemodified;
-    }
-
     public void loadProduct(Product product) {
         String productName = product.getProductName();
         LocalDate expiryDate = product.getLocalExpiryDate();

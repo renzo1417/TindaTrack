@@ -50,10 +50,6 @@ public class StockDetails {
         return date.toString();
     }
 
-    public Pane getChange() { return manager.getChange(); }
-
-    public Pane getReasoning() { return manager.getReason(); }
-
     public void setId(int id) {
         this.id = id;
     }

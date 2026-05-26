@@ -17,10 +17,6 @@ public class ActionController {
     @FXML
     private Button sellButton;
 
-    public Pane getActionPane() {
-        return actionPane;
-    }
-
     public Button getTrashButton() {
         return trashButton;
     }

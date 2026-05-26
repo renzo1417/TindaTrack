@@ -60,10 +60,6 @@ public class Product {
         return category;
     }
 
-    public Pane getStatus() {
-        return status.getStatusPane();
-    }
-
     public Status getStatusController() {
         return status;
     }

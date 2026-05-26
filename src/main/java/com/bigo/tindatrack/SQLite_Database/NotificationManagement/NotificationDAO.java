@@ -96,7 +96,7 @@ public class NotificationDAO {
         }
     }
 
-    // ── Delete notifications for a deleted product ────────────────────────
+    // Delete notifications for a deleted product
     public static boolean deleteByProductId(int productId) {
         String query = "DELETE FROM notifications WHERE product_id = ?";
         try (Connection conn = connect();
@@ -110,7 +110,6 @@ public class NotificationDAO {
         }
     }
 
-    // ── FIX: Check duplicate alerts matching product, type, AND user ───────
     public static boolean exists(int ownerId, int productId, String type) {
         String query =
                 "SELECT COUNT(*) FROM notifications" +
@@ -129,18 +128,4 @@ public class NotificationDAO {
         }
     }
 
-    // ── FIX: Count unread notifications ONLY for this specific user ────────
-    public static int countUnread(int ownerId) {
-        String query = "SELECT COUNT(*) FROM notifications WHERE is_read = 0 AND owner_id = ?";
-        try (Connection conn = connect();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, ownerId);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.err.println("ERROR COUNTING UNREAD: " + e.getMessage());
-        }
-        return 0;
-    }
 }

@@ -51,17 +51,6 @@ public class NotificationService {
         if (prefs.isNotificationSound()) {
             NotificationSoundPlayer.play();
         }
-
-        evaluateProduct(p, prefs);
-    }
-
-
-    public static void onProductUpdated(Product p) {
-        int ownerId = getCurrentUserId();
-        if (ownerId == -1) return;
-
-        NotificationPreferences prefs = NotificationPreferencesDAO.load(ownerId);
-        NotificationDAO.deleteByProductId(p.getId());
         evaluateProduct(p, prefs);
     }
 

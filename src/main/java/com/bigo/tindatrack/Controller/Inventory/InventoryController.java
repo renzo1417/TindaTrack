@@ -65,9 +65,6 @@ public class InventoryController {
             System.out.println("Error: No user found!");
             return;
         }
-
-//        username_top.setText(user.getUsername());
-//        username_bottom.setText(user.getUsername());
         UserUIHelper.setupUserUI(username_top_initial,
                 username_bottom_initial,
                 username_top,
@@ -134,7 +131,6 @@ public class InventoryController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Stage stage = (Stage) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

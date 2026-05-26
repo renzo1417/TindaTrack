@@ -39,20 +39,11 @@ public class User implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
     public void setPassword(String password) {
         this.password = password;
     }
     public void setEmail(String email) {
         this.email = email;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
     }
 
     @Override

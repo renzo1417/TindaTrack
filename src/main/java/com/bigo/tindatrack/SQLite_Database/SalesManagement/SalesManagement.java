@@ -48,7 +48,6 @@ public class SalesManagement {
         String insertSaleQuery = "INSERT INTO sales (owner_id, product_id, name, quantity, sale_date) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = connect()) {
-            // Start Transaction: Don't save anything until we say so!
             conn.setAutoCommit(false);
 
             try (PreparedStatement updatePs = conn.prepareStatement(deductStockQuery); PreparedStatement insertPs = conn.prepareStatement(insertSaleQuery)) {

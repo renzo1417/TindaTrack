@@ -10,15 +10,13 @@ import static com.bigo.tindatrack.SQLite_Database.userManagement.SessionManager.
 
 public class NotificationEmailSender {
 
-    // ── Replace with your Gmail + App Password ────────────────────────────
+    // Replace with your Gmail + App Password
     private static final String SENDER_EMAIL    = "your_app_email@gmail.com";
     private static final String SENDER_PASSWORD = "your_app_password"; // Gmail App Password
 
     public static void send(int userId, String subject, String body) {
-        // Run on background thread — never block JavaFX UI thread
         Thread emailThread = new Thread(() -> {
             try {
-                // ── Get recipient email directly from session ─────────────
                 User user = loadUser();
                 if (user == null) {
                     System.err.println("EmailSender: No active session found.");
@@ -31,7 +29,7 @@ public class NotificationEmailSender {
                     return;
                 }
 
-                // ── SMTP config for Gmail ─────────────────────────────────
+                //  SMTP config for Gmail
                 Properties props = new Properties();
                 props.put("mail.smtp.auth",            "true");
                 props.put("mail.smtp.starttls.enable", "true");
@@ -46,7 +44,7 @@ public class NotificationEmailSender {
                     }
                 });
 
-                // ── Build the email ───────────────────────────────────────
+                // Build the email
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(SENDER_EMAIL, "TindaTrack Alerts"));
                 message.setRecipients(
@@ -55,7 +53,7 @@ public class NotificationEmailSender {
                 );
                 message.setSubject(subject);
 
-                // ── HTML body for a nicer look ────────────────────────────
+                // HTML body for a nicer look
                 String htmlBody = buildHtmlEmail(user.getUsername(), body);
                 message.setContent(htmlBody, "text/html; charset=utf-8");
 
@@ -67,11 +65,10 @@ public class NotificationEmailSender {
             }
         }, "tindatrack-email-thread");
 
-        emailThread.setDaemon(true); // won't block app from closing
+        emailThread.setDaemon(true);
         emailThread.start();
     }
 
-    // ── Simple HTML template matching TindaTrack's green theme ───────────
     private static String buildHtmlEmail(String username, String body) {
         return """
                 <!DOCTYPE html>

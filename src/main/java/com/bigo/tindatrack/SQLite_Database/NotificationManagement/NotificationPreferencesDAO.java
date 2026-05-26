@@ -24,7 +24,6 @@ public class NotificationPreferencesDAO {
         }
     }
 
-    // ── Load preferences for a user (returns defaults if none saved yet) ─
     public static NotificationPreferences load(int userId) {
         String sql = "SELECT * FROM notification_preferences WHERE user_id = ?";
         try (Connection conn = ConnectionBridge.connect();
@@ -47,11 +46,9 @@ public class NotificationPreferencesDAO {
             System.err.println("load error: " + e.getMessage());
         }
 
-        // No row yet → return safe defaults
         return new NotificationPreferences(userId, true, true, true, true, false);
     }
 
-    // ── Save (INSERT or UPDATE) ───────────────────────────────────────────
     public static boolean save(NotificationPreferences prefs) {
         String sql = """
                 INSERT INTO notification_preferences
