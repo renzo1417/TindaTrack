@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import com.bigo.tindatrack.utils.InventoryAutoRefresher;
 
 import javafx.scene.layout.Pane;
 
@@ -56,6 +57,8 @@ public class InventoryController {
 
     private User user = loadUser();
 
+    private InventoryAutoRefresher autoRefresher;
+
     @FXML
     public void initialize() {
         if (user == null) {
@@ -96,6 +99,9 @@ public class InventoryController {
 
        inventoryTableView.setSelectionModel(null);
        presenter.setupMasterFilter(searchTextField, statusFilter, inventoryTableView);
+
+        autoRefresher = new InventoryAutoRefresher(this);
+        autoRefresher.start();
     }
 
     @FXML
@@ -119,6 +125,12 @@ public class InventoryController {
 
     //this is helper function for switching screens
     private void switchScene(ActionEvent event, String fxmlPath) {
+
+        // kills refresher after moving to different scene
+        if (autoRefresher != null) {
+            autoRefresher.stop();
+        }
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -179,5 +191,8 @@ public class InventoryController {
 
     public void refreshTable() {
         inventoryTableView.refresh();
+        if (presenter != null) {
+            presenter.syncWithDatabase();
+        }
     }
 }
